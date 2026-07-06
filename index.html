@@ -142,17 +142,6 @@
   .card-link{font-size:13px;font-weight:600;color:var(--accent-deep);}
   .card-link:hover{text-decoration:underline;}
 
-  /* GALLERY */
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
-  .gallery-item{
-    aspect-ratio:1;border-radius:var(--radius);
-    border:1px dashed var(--line);
-    background:var(--bg-alt);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);
-    text-align:center;padding:10px;
-  }
-
   /* CONTACT */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
   form{display:flex;flex-direction:column;gap:16px;}
@@ -183,6 +172,7 @@
   }
 
   @media (max-width: 760px){
+    .wrap{padding:0 20px;}
     .nav-links{
       position:fixed;top:70px;left:0;right:0;bottom:0;
       background:var(--bg);flex-direction:column;padding:32px 28px;
@@ -191,8 +181,23 @@
     }
     .nav-links.open{transform:translateX(0);}
     .nav-toggle{display:block;}
-    .about-grid, .contact-grid{grid-template-columns:1fr;}
-    .avatar{width:140px;height:140px;}
+    .hero{padding:64px 0 56px;}
+    .hero .cta-row{flex-direction:column;}
+    .hero .cta-row .btn{text-align:center;}
+    section{padding:56px 0;}
+    .about-grid{grid-template-columns:1fr;gap:32px;}
+    .avatar{width:140px;height:140px;margin:0 auto;}
+    .ledger-row{flex-direction:column;gap:4px;align-items:flex-start;}
+    .ledger-row .value{text-align:left;}
+    .project-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:40px;}
+    footer.wrap{flex-direction:column;text-align:center;}
+  }
+
+  @media (max-width: 400px){
+    .wrap{padding:0 16px;}
+    .hero h1{font-size:38px;}
+    .btn{width:100%;text-align:center;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -209,7 +214,6 @@
     <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
@@ -283,21 +287,6 @@
         <a href="#" class="card-link">View project →</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="gallery" class="wrap">
-  <div class="section-head">
-    <h2>Gallery</h2>
-    <p>Behind-the-scenes shots, edits, and moments worth keeping.</p>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item">+ Add photo</div>
-    <div class="gallery-item">+ Add photo</div>
-    <div class="gallery-item">+ Add photo</div>
-    <div class="gallery-item">+ Add photo</div>
-    <div class="gallery-item">+ Add photo</div>
-    <div class="gallery-item">+ Add photo</div>
   </div>
 </section>
 
@@ -377,5 +366,6 @@
     }
   });
 </script>
+
 </body>
 </html>
