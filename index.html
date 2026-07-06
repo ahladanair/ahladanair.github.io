@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -64,9 +64,16 @@
   .nav-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
 
   /* HERO */
-  .hero{padding:110px 0 90px;}
+  .hero{
+    padding:96px 0 0;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero-copy{padding-bottom:80px;}
   .hero .eyebrow{margin-bottom:18px;}
-  .hero h1{font-size:clamp(42px, 8vw, 76px);line-height:1;}
+  .hero h1{font-size:clamp(42px, 6vw, 72px);line-height:1;}
   .hero .tagline{
     font-family:'Fraunces', serif;font-style:italic;font-weight:500;
     font-size:clamp(18px, 2.4vw, 24px);
@@ -75,7 +82,7 @@
     max-width:560px;
   }
   .hero p.lede{
-    margin-top:22px;max-width:520px;color:var(--ink-soft);font-size:16px;
+    margin-top:22px;max-width:480px;color:var(--ink-soft);font-size:16px;
   }
   .hero .cta-row{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
   .btn{
@@ -84,8 +91,42 @@
     transition:all .2s ease;
   }
   .btn-primary{background:var(--accent);border-color:var(--accent);color:#FAF6EF;}
-  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep);}
+  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep);transform:translateY(-1px);}
   .btn-ghost:hover{background:var(--ink);color:var(--bg);}
+  .btn:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px;}
+
+  /* HERO SIGNATURE CARD */
+  .hero-card{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:26px 26px 22px;
+    position:relative;
+    box-shadow:0 18px 40px rgba(42,35,29,0.07);
+  }
+  .hero-card:before{
+    content:'INDEX CARD';
+    position:absolute;top:14px;right:20px;
+    font-family:'IBM Plex Mono', monospace;font-size:10px;
+    letter-spacing:.14em;color:var(--ink-soft);opacity:.55;
+  }
+  .hero-card .hc-title{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);
+    margin-bottom:16px;
+  }
+  .hero-card .hc-row{
+    display:flex;justify-content:space-between;gap:14px;
+    padding:10px 0;border-bottom:1px dashed var(--line);
+    font-size:14px;
+  }
+  .hero-card .hc-row:last-of-type{border-bottom:none;}
+  .hero-card .hc-row .k{color:var(--ink-soft);}
+  .hero-card .hc-row .v{font-weight:600;text-align:right;}
+  .hero-card .hc-foot{
+    margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-soft);
+  }
 
   section{padding:80px 0;border-top:1px solid var(--line);}
   .section-head{margin-bottom:48px;}
@@ -143,27 +184,43 @@
   .card-link:hover{text-decoration:underline;}
 
   /* CONTACT */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
-  form{display:flex;flex-direction:column;gap:16px;}
-  label{font-size:12px;font-family:'IBM Plex Mono', monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);}
+  .contact-grid{
+    display:grid;grid-template-columns:1.2fr 1fr;gap:28px;
+    align-items:stretch;
+  }
+  .contact-panel{
+    background:var(--bg-alt);border:1px solid var(--line);border-radius:8px;
+    padding:32px;
+  }
+  form{display:flex;flex-direction:column;gap:16px;height:100%;}
+  label{display:block;margin-bottom:6px;font-size:12px;font-family:'IBM Plex Mono', monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);}
   input, textarea{
+    width:100%;
     font-family:'Inter', sans-serif;font-size:15px;
     padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);
-    background:#fff;color:var(--ink);
+    background:#FFFDF9;color:var(--ink);
   }
-  input:focus, textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  input:focus, textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
   textarea{resize:vertical;min-height:120px;}
   .form-status{font-size:14px;min-height:20px;}
   .form-status.ok{color:var(--accent-deep);}
   .form-status.err{color:#a13c3c;}
-  .socials h3{font-size:16px;margin-bottom:18px;}
-  .social-list{display:flex;flex-direction:column;gap:12px;}
+  .socials{display:flex;flex-direction:column;}
+  .socials h3{font-size:13px;font-family:'IBM Plex Mono', monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:18px;}
+  .social-list{display:flex;flex-direction:column;gap:10px;}
   .social-list a{
-    font-size:15px;padding:12px 16px;border:1px solid var(--line);border-radius:var(--radius);
-    display:flex;justify-content:space-between;align-items:center;
-    background:var(--bg-alt);
+    font-size:15px;padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius);
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:#FFFDF9;transition:border-color .2s ease,transform .2s ease;
   }
-  .social-list a:hover{border-color:var(--accent);color:var(--accent-deep);}
+  .social-list a .s-name{display:flex;align-items:center;gap:12px;font-weight:500;}
+  .social-list a .s-mono{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--accent-deep);
+    background:var(--accent-soft);width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .social-list a:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateX(2px);}
+  .contact-note{margin-top:20px;font-size:13px;color:var(--ink-soft);}
 
   footer{
     border-top:1px solid var(--line);padding:32px 0;
@@ -181,23 +238,31 @@
     }
     .nav-links.open{transform:translateX(0);}
     .nav-toggle{display:block;}
-    .hero{padding:64px 0 56px;}
+    .hero{
+      grid-template-columns:1fr;
+      padding:48px 0 0;
+      gap:36px;
+    }
+    .hero-copy{padding-bottom:48px;}
     .hero .cta-row{flex-direction:column;}
     .hero .cta-row .btn{text-align:center;}
+    .hero-card{order:-1;}
     section{padding:56px 0;}
     .about-grid{grid-template-columns:1fr;gap:32px;}
     .avatar{width:140px;height:140px;margin:0 auto;}
     .ledger-row{flex-direction:column;gap:4px;align-items:flex-start;}
     .ledger-row .value{text-align:left;}
     .project-grid{grid-template-columns:1fr;}
-    .contact-grid{grid-template-columns:1fr;gap:40px;}
+    .contact-grid{grid-template-columns:1fr;gap:24px;}
+    .contact-panel{padding:24px;}
     footer.wrap{flex-direction:column;text-align:center;}
   }
 
   @media (max-width: 400px){
     .wrap{padding:0 16px;}
-    .hero h1{font-size:38px;}
+    .hero h1{font-size:36px;}
     .btn{width:100%;text-align:center;}
+    .contact-panel{padding:20px;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -221,13 +286,23 @@
 </header>
 
 <section class="hero wrap" style="border-top:none;">
-  <div class="eyebrow">BBA · First Year · DCSMAT Vagamon</div>
-  <h1>Ahlad Nair</h1>
-  <p class="tagline">I study business, but I build on the side.</p>
-  <p class="lede">Websites, edits, and small digital projects I put together myself — sometimes with an AI co-pilot, always with my own hands on the final result. This is where I collect the things I make.</p>
-  <div class="cta-row">
-    <a href="#projects" class="btn btn-primary">See my work</a>
-    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  <div class="hero-copy">
+    <div class="eyebrow">BBA · First Year · DCSMAT Vagamon</div>
+    <h1>Ahlad Nair</h1>
+    <p class="tagline">I study business, but I build on the side.</p>
+    <p class="lede">Websites, edits, and small digital projects I put together myself — sometimes with an AI co-pilot, always with my own hands on the final result. This is where I collect the things I make.</p>
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-primary">See my work</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hc-title">On record</div>
+    <div class="hc-row"><span class="k">Studying</span><span class="v">BBA, Year 1</span></div>
+    <div class="hc-row"><span class="k">Based at</span><span class="v">DCSMAT, Vagamon</span></div>
+    <div class="hc-row"><span class="k">Building</span><span class="v">Websites &amp; edits</span></div>
+    <div class="hc-row"><span class="k">Tools</span><span class="v">Code + AI co-pilot</span></div>
+    <div class="hc-foot">Updated as things change — this card grows with the work.</div>
   </div>
 </section>
 
@@ -296,30 +371,41 @@
     <p>Got an idea, a project, or just want to say hi?</p>
   </div>
   <div class="contact-grid">
-    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div>
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
-      <div class="form-status" id="formStatus"></div>
-    </form>
-    <div class="socials">
+    <div class="contact-panel">
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
+        <div class="form-status" id="formStatus"></div>
+      </form>
+    </div>
+    <div class="contact-panel socials">
       <h3>Or find me here</h3>
       <div class="social-list">
-        <a href="mailto:youremail@example.com">Email <span>→</span></a>
-        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram <span>→</span></a>
-        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn <span>→</span></a>
-        <a href="https://github.com/yourhandle" target="_blank" rel="noopener">GitHub <span>→</span></a>
+        <a href="mailto:youremail@example.com">
+          <span class="s-name"><span class="s-mono">@</span>Email</span><span>→</span>
+        </a>
+        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">
+          <span class="s-name"><span class="s-mono">IG</span>Instagram</span><span>→</span>
+        </a>
+        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">
+          <span class="s-name"><span class="s-mono">in</span>LinkedIn</span><span>→</span>
+        </a>
+        <a href="https://github.com/yourhandle" target="_blank" rel="noopener">
+          <span class="s-name"><span class="s-mono">GH</span>GitHub</span><span>→</span>
+        </a>
       </div>
+      <p class="contact-note">Kerala, India · usually replies within a day or two.</p>
     </div>
   </div>
 </section>
