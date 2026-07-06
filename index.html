@@ -1,1 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahlad Nair — Portfolio</title>
+<meta name="description" content="Ahlad Nair — BBA student at DCSMAT Vagamon. Portfolio, projects, and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAF6EF;
+    --bg-alt: #F1E8DA;
+    --ink: #2A231D;
+    --ink-soft: #6B5D50;
+    --line: #E1D3BE;
+    --accent: #C1602C;
+    --accent-deep: #8A431C;
+    --accent-soft: #F0D9C0;
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-deep);
+  }
+  h1,h2,h3{font-family:'Fraunces', serif;font-weight:600;letter-spacing:-0.01em;}
 
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,239,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:70px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;font-weight:600;font-size:19px;
+  }
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:32px;font-size:14px;font-weight:500;}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a:after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--accent);transition:width .25s ease;
+  }
+  .nav-links a:hover:after{width:100%;}
+  .nav-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+
+  /* HERO */
+  .hero{padding:110px 0 90px;}
+  .hero .eyebrow{margin-bottom:18px;}
+  .hero h1{font-size:clamp(42px, 8vw, 76px);line-height:1;}
+  .hero .tagline{
+    font-family:'Fraunces', serif;font-style:italic;font-weight:500;
+    font-size:clamp(18px, 2.4vw, 24px);
+    color:var(--accent-deep);
+    margin-top:18px;
+    max-width:560px;
+  }
+  .hero p.lede{
+    margin-top:22px;max-width:520px;color:var(--ink-soft);font-size:16px;
+  }
+  .hero .cta-row{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:var(--radius);
+    font-size:14px;font-weight:600;border:1px solid var(--ink);
+    transition:all .2s ease;
+  }
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:#FAF6EF;}
+  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep);}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg);}
+
+  section{padding:80px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:48px;}
+  .section-head h2{font-size:clamp(28px,4vw,38px);}
+  .section-head p{color:var(--ink-soft);margin-top:8px;font-size:15px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start;}
+  .avatar{
+    width:180px;height:180px;border-radius:50%;
+    border:1.5px dashed var(--accent);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    background:var(--bg-alt);
+    text-align:center;gap:6px;
+  }
+  .avatar .initials{font-family:'Fraunces', serif;font-size:44px;color:var(--accent);}
+  .avatar .hint{font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono', monospace;padding:0 20px;}
+  .bio p{color:var(--ink-soft);margin-bottom:16px;max-width:560px;}
+  .ledger{margin-top:28px;border-top:1px solid var(--line);}
+  .ledger-row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:14px 0;border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .ledger-row .label{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .ledger-row .value{text-align:right;font-weight:500;}
+
+  /* PROJECTS */
+  .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+  .card{
+    background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(42,35,29,0.08);}
+  .card-thumb{
+    height:150px;background:
+      repeating-linear-gradient(135deg, var(--accent-soft), var(--accent-soft) 10px, #EAD8C0 10px, #EAD8C0 20px);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--accent-deep);
+    letter-spacing:.08em;text-transform:uppercase;
+  }
+  .card-body{padding:20px 22px 24px;}
+  .card-body h3{font-size:19px;margin-bottom:8px;}
+  .card-body p{font-size:14px;color:var(--ink-soft);margin-bottom:14px;}
+  .tag{
+    display:inline-block;font-family:'IBM Plex Mono', monospace;font-size:11px;
+    background:var(--accent-soft);color:var(--accent-deep);padding:3px 9px;
+    border-radius:20px;margin-bottom:14px;
+  }
+  .card-link{font-size:13px;font-weight:600;color:var(--accent-deep);}
+  .card-link:hover{text-decoration:underline;}
+
+  /* GALLERY */
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+  .gallery-item{
+    aspect-ratio:1;border-radius:var(--radius);
+    border:1px dashed var(--line);
+    background:var(--bg-alt);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);
+    text-align:center;padding:10px;
+  }
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  form{display:flex;flex-direction:column;gap:16px;}
+  label{font-size:12px;font-family:'IBM Plex Mono', monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);}
+  input, textarea{
+    font-family:'Inter', sans-serif;font-size:15px;
+    padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);
+    background:#fff;color:var(--ink);
+  }
+  input:focus, textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  textarea{resize:vertical;min-height:120px;}
+  .form-status{font-size:14px;min-height:20px;}
+  .form-status.ok{color:var(--accent-deep);}
+  .form-status.err{color:#a13c3c;}
+  .socials h3{font-size:16px;margin-bottom:18px;}
+  .social-list{display:flex;flex-direction:column;gap:12px;}
+  .social-list a{
+    font-size:15px;padding:12px 16px;border:1px solid var(--line);border-radius:var(--radius);
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--bg-alt);
+  }
+  .social-list a:hover{border-color:var(--accent);color:var(--accent-deep);}
+
+  footer{
+    border-top:1px solid var(--line);padding:32px 0;
+    font-size:13px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media (max-width: 760px){
+    .nav-links{
+      position:fixed;top:70px;left:0;right:0;bottom:0;
+      background:var(--bg);flex-direction:column;padding:32px 28px;
+      gap:24px;font-size:18px;
+      transform:translateX(100%);transition:transform .25s ease;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-toggle{display:block;}
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .avatar{width:140px;height:140px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">Ahlad <span>Nair</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </nav>
+</header>
+
+<section class="hero wrap" style="border-top:none;">
+  <div class="eyebrow">BBA · First Year · DCSMAT Vagamon</div>
+  <h1>Ahlad Nair</h1>
+  <p class="tagline">I study business, but I build on the side.</p>
+  <p class="lede">Websites, edits, and small digital projects I put together myself — sometimes with an AI co-pilot, always with my own hands on the final result. This is where I collect the things I make.</p>
+  <div class="cta-row">
+    <a href="#projects" class="btn btn-primary">See my work</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+</section>
+
+<section id="about" class="wrap">
+  <div class="section-head">
+    <h2>About</h2>
+    <p>The short version, for now — edit this whenever you like.</p>
+  </div>
+  <div class="about-grid">
+    <div class="avatar">
+      <div class="initials">AN</div>
+      <div class="hint">Replace this circle with your photo</div>
+    </div>
+    <div class="bio">
+      <p>Hi, I'm Ahlad — a first-year BBA student at DCSMAT Vagamon. Alongside my coursework, I've been teaching myself how to build and edit websites, using AI tools to speed up the process while still shaping every detail myself.</p>
+      <p>Write a couple of lines here about what you're curious about, what you're learning, or what kind of work you want people to think of when they hear your name.</p>
+      <div class="ledger">
+        <div class="ledger-row"><span class="label">Course</span><span class="value">Bachelor of Business Administration</span></div>
+        <div class="ledger-row"><span class="label">College</span><span class="value">DCSMAT, Vagamon</span></div>
+        <div class="ledger-row"><span class="label">Year</span><span class="value">First Year</span></div>
+        <div class="ledger-row"><span class="label">Also building</span><span class="value">Websites & digital edits, AI-assisted</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="wrap">
+  <div class="section-head">
+    <h2>Projects</h2>
+    <p>A running log of things I've built and edited.</p>
+  </div>
+  <div class="project-grid">
+    <div class="card">
+      <div class="card-thumb">Add screenshot</div>
+      <div class="card-body">
+        <span class="tag">Web Design</span>
+        <h3>Rianadalha</h3>
+        <p>A website I designed and edited myself. Add the story here — what it's for, what you built, what you'd do differently next time.</p>
+        <a href="#" class="card-link">View project →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-thumb">Add screenshot</div>
+      <div class="card-body">
+        <span class="tag">Project name</span>
+        <h3>Project Two</h3>
+        <p>Placeholder description. Swap this out with your next project once it's ready to show.</p>
+        <a href="#" class="card-link">View project →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-thumb">Add screenshot</div>
+      <div class="card-body">
+        <span class="tag">Project name</span>
+        <h3>Project Three</h3>
+        <p>Placeholder description. Keep this slot for whatever you build next.</p>
+        <a href="#" class="card-link">View project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="wrap">
+  <div class="section-head">
+    <h2>Gallery</h2>
+    <p>Behind-the-scenes shots, edits, and moments worth keeping.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">+ Add photo</div>
+    <div class="gallery-item">+ Add photo</div>
+    <div class="gallery-item">+ Add photo</div>
+    <div class="gallery-item">+ Add photo</div>
+    <div class="gallery-item">+ Add photo</div>
+    <div class="gallery-item">+ Add photo</div>
+  </div>
+</section>
+
+<section id="contact" class="wrap">
+  <div class="section-head">
+    <h2>Let's talk</h2>
+    <p>Got an idea, a project, or just want to say hi?</p>
+  </div>
+  <div class="contact-grid">
+    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
+      <div class="form-status" id="formStatus"></div>
+    </form>
+    <div class="socials">
+      <h3>Or find me here</h3>
+      <div class="social-list">
+        <a href="mailto:youremail@example.com">Email <span>→</span></a>
+        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram <span>→</span></a>
+        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn <span>→</span></a>
+        <a href="https://github.com/yourhandle" target="_blank" rel="noopener">GitHub <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 Ahlad Nair</span>
+  <span>Built by hand, sped up with AI.</span>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(form.action.includes('YOUR_FORM_ID')){
+      status.textContent = 'Almost there — connect this form to Formspree first (see README).';
+      status.className = 'form-status err';
+      return;
+    }
+    status.textContent = 'Sending...';
+    status.className = 'form-status';
+    try{
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if(res.ok){
+        status.textContent = 'Thanks! Your message is on its way.';
+        status.className = 'form-status ok';
+        form.reset();
+      } else {
+        status.textContent = 'Something went wrong. Try again in a moment.';
+        status.className = 'form-status err';
+      }
+    } catch(err){
+      status.textContent = 'Network error — check your connection and try again.';
+      status.className = 'form-status err';
+    }
+  });
+</script>
+</body>
+</html>
