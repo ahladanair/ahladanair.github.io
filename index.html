@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahlad A Nair | Founder & BBA Student</title>
+<title>Ahlad A Nair | Founder & BBA</title>
 <meta name="description" content="Ahlad A Nair — Founder of Rianadalha & Lexivise. BBA student at DCSMAT Vagamon.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
     --text-main: #F2F2F2;
     --text-muted: #888888;
     --border: #2A2A2A;
-    --accent: #C5A059; /* Sophisticated Bronze/Gold */
+    --accent: #C5A059;
     --accent-hover: #E3BE77;
     --radius: 4px;
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -25,6 +25,10 @@
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--bg-dark);
+    /* Added a subtle glow to remove the "empty void" feeling */
+    background-image: radial-gradient(circle at top right, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
+                      radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+    background-attachment: fixed;
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -39,8 +43,8 @@
   /* --- NAVIGATION --- */
   header {
     position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   nav {
@@ -66,7 +70,7 @@
     font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 20px;
   }
   .hero h1 {
-    font-size: clamp(50px, 8vw, 100px); line-height: 1.1; margin-bottom: 30px; letter-spacing: -1px;
+    font-size: clamp(40px, 8vw, 100px); line-height: 1.1; margin-bottom: 30px; letter-spacing: -1px;
   }
   .hero h1 i { color: var(--text-muted); }
   .hero-desc {
@@ -101,7 +105,7 @@
     overflow: hidden;
     transition: var(--transition);
   }
-  .venture-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+  .venture-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
   .venture-type {
     font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; display: block;
   }
@@ -172,19 +176,54 @@
   }
   footer p { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-  /* --- RESPONSIVE --- */
+  /* --- TABLET RESPONSIVE --- */
   @media (max-width: 900px) {
-    .container { padding: 0 25px; }
+    .container { padding: 0 30px; }
     .about-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
+    .hero { min-height: 80vh; }
+    
+    /* Bigger, more engaging mobile menu */
     .nav-links {
       position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
-      background: var(--bg-dark); flex-direction: column; align-items: center; justify-content: center;
-      gap: 40px; transform: translateY(-100%); opacity: 0; transition: var(--transition); pointer-events: none;
+      background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 50px; transform: translateY(-100%); opacity: 0; transition: var(--transition); pointer-events: none;
+      font-size: 20px; /* Scaled up for mobile */
+      letter-spacing: 3px;
     }
     .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .nav-links a { color: var(--text-main); }
+    
     .menu-btn { display: block; }
-    .hero h1 { font-size: 40px; }
-    section { padding: 80px 0; }
+    section { padding: 90px 0; }
+  }
+
+  /* --- MOBILE SPECIFIC RESPONSIVE --- */
+  @media (max-width: 600px) {
+    .container { padding: 0 24px; }
+    
+    /* Tighten up hero to remove empty space */
+    .hero { min-height: auto; padding-top: 140px; padding-bottom: 60px; }
+    .hero h1 { font-size: clamp(38px, 10vw, 48px); margin-bottom: 20px; }
+    .hero-desc { font-size: 16px; margin-bottom: 40px; }
+    
+    /* Reduce section padding so content flows better */
+    section { padding: 70px 0; }
+    .section-title { font-size: 32px; margin-bottom: 40px; gap: 15px; }
+    
+    /* Compact the venture cards */
+    .ventures-grid { grid-template-columns: 1fr; gap: 24px; }
+    .venture-card { padding: 30px 24px; }
+    .venture-card h3 { font-size: 24px; }
+    
+    /* Tighten about and contact sections */
+    .about-wrapper, .contact-wrapper { gap: 40px; }
+    .about-text p { font-size: 15px; }
+    .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
+    
+    .contact-info h3 { font-size: 28px; }
+    .social-links a { font-size: 18px; }
+    .contact-form { gap: 24px; }
   }
 </style>
 </head>
@@ -193,7 +232,7 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo">Ahlad <span>Nair</span></div>
+        <div class="logo">Ahlad A <span>Nair</span></div>
         <div class="nav-links">
           <a href="#ventures">Ventures</a>
           <a href="#about">About</a>
@@ -215,7 +254,7 @@
       </div>
     </section>
 
-    <!-- VENTURES (Moved to top) -->
+    <!-- VENTURES -->
     <section id="ventures">
       <div class="container">
         <h2 class="section-title">Selected Ventures</h2>
@@ -246,7 +285,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (Moved below projects) -->
+    <!-- ABOUT -->
     <section id="about">
       <div class="container about-wrapper">
         <div class="about-image">
