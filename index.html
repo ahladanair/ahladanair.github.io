@@ -196,41 +196,52 @@
 
   /* --- NEW TRENDY FULL-PAGE MOBILE RESPONSIVE --- */
   @media (max-width: 600px) {
-    .container { padding: 0 20px; } /* Pushes content closer to edges for full feel */
+    .container { padding: 0 20px; } 
     
-    /* True full screen hero */
     .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 20px; justify-content: center; }
-    
-    /* Massive, screen-filling typography */
     .hero h1 { font-size: 14vw; line-height: 1.05; margin-bottom: 20px; letter-spacing: -2px; }
     .hero-subtitle { font-size: 12px; margin-bottom: 15px; }
     .hero-desc { font-size: 16px; margin-bottom: 35px; }
     
-    /* Full width buttons */
     .hero > div { width: 100%; display: flex; }
     .hero .btn { width: 100%; font-size: 14px; padding: 18px 0; }
     
-    /* Sections take up the whole screen beautifully */
     section { padding: 80px 0; }
     .section-title { font-size: 10vw; margin-bottom: 40px; gap: 15px; }
-    .section-title::after { display: none; } /* Remove line for cleaner mobile look */
+    .section-title::after { display: none; } 
     
-    /* Cards stretch to fill the screen nicely */
     .ventures-grid { grid-template-columns: 1fr; gap: 20px; }
     .venture-card { padding: 35px 25px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
     .venture-card h3 { font-size: 26px; }
     
-    /* Tighten about section to feel cohesive */
-    .about-wrapper, .contact-wrapper { gap: 40px; }
+    .about-wrapper, .contact-wrapper { gap: 50px; }
     .about-text p { font-size: 16px; }
     
-    /* Stats grid */
     .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
     .stat-item p { font-size: 24px; }
     
-    /* Contact form elements stretch full width */
-    .contact-info h3 { font-size: 32px; }
-    .social-links a { font-size: 20px; }
+    /* FIX: Mobile Contact Info & Social Links Re-design */
+    .contact-info h3 { font-size: 32px; margin-bottom: 15px; }
+    .contact-info p { margin-bottom: 30px; }
+    
+    .social-links { gap: 12px; }
+    .social-links a { 
+      font-size: 16px; 
+      font-family: 'Inter', sans-serif; /* Cleaner font for mobile buttons */
+      font-weight: 500;
+      display: flex; 
+      justify-content: space-between; /* Pushes arrow to the right edge */
+      align-items: center;
+      padding: 18px 24px; 
+      border: 1px solid rgba(255,255,255,0.1); 
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      color: var(--text-main);
+    }
+    .social-links a span { color: var(--text-muted); transition: color 0.3s; }
+    .social-links a:hover { padding-left: 24px; border-color: var(--accent); background: rgba(197, 160, 89, 0.05); }
+    .social-links a:hover span { color: var(--accent); }
+    
     .contact-form { gap: 30px; }
     .contact-form .btn { width: 100%; padding: 18px 0; }
   }
@@ -366,13 +377,12 @@
     
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-      // Change icon when open
       if (navLinks.classList.contains('active')) {
         menuBtn.innerHTML = '✕';
-        document.body.style.overflow = 'hidden'; // Stop background scrolling
+        document.body.style.overflow = 'hidden'; 
       } else {
         menuBtn.innerHTML = '☰';
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = ''; 
       }
     });
 
@@ -380,7 +390,7 @@
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         menuBtn.innerHTML = '☰';
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = ''; 
       });
     });
   </script>
