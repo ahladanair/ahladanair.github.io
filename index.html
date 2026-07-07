@@ -25,7 +25,6 @@
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--bg-dark);
-    /* Added a subtle glow to remove the "empty void" feeling */
     background-image: radial-gradient(circle at top right, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
                       radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
     background-attachment: fixed;
@@ -53,12 +52,13 @@
   }
   .logo {
     font-size: 20px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    position: relative; z-index: 101;
   }
   .logo span { color: var(--accent); font-family: 'Playfair Display', serif; font-style: italic; text-transform: none; font-size: 24px; }
   .nav-links { display: flex; gap: 40px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
   .nav-links a { color: var(--text-muted); }
   .nav-links a:hover { color: var(--accent); }
-  .menu-btn { display: none; background: none; border: none; color: var(--text-main); font-size: 24px; cursor: pointer; }
+  .menu-btn { display: none; background: none; border: none; color: var(--text-main); font-size: 24px; cursor: pointer; position: relative; z-index: 101; }
 
   /* --- HERO SECTION --- */
   .hero {
@@ -180,50 +180,59 @@
   @media (max-width: 900px) {
     .container { padding: 0 30px; }
     .about-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
-    .hero { min-height: 80vh; }
+    .menu-btn { display: block; }
     
-    /* Bigger, more engaging mobile menu */
     .nav-links {
-      position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
-      background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh;
+      background: rgba(8, 8, 8, 0.98); backdrop-filter: blur(20px);
       flex-direction: column; align-items: center; justify-content: center;
-      gap: 50px; transform: translateY(-100%); opacity: 0; transition: var(--transition); pointer-events: none;
-      font-size: 20px; /* Scaled up for mobile */
-      letter-spacing: 3px;
+      gap: 40px; transform: translateY(-100%); opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
     }
     .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: all; }
-    .nav-links a { color: var(--text-main); }
-    
-    .menu-btn { display: block; }
+    .nav-links a { font-family: 'Playfair Display', serif; font-size: 32px; font-style: italic; text-transform: capitalize; color: var(--text-main); }
+    .nav-links a:hover { color: var(--accent); }
     section { padding: 90px 0; }
   }
 
-  /* --- MOBILE SPECIFIC RESPONSIVE --- */
+  /* --- NEW TRENDY FULL-PAGE MOBILE RESPONSIVE --- */
   @media (max-width: 600px) {
-    .container { padding: 0 24px; }
+    .container { padding: 0 20px; } /* Pushes content closer to edges for full feel */
     
-    /* Tighten up hero to remove empty space */
-    .hero { min-height: auto; padding-top: 140px; padding-bottom: 60px; }
-    .hero h1 { font-size: clamp(38px, 10vw, 48px); margin-bottom: 20px; }
-    .hero-desc { font-size: 16px; margin-bottom: 40px; }
+    /* True full screen hero */
+    .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 20px; justify-content: center; }
     
-    /* Reduce section padding so content flows better */
-    section { padding: 70px 0; }
-    .section-title { font-size: 32px; margin-bottom: 40px; gap: 15px; }
+    /* Massive, screen-filling typography */
+    .hero h1 { font-size: 14vw; line-height: 1.05; margin-bottom: 20px; letter-spacing: -2px; }
+    .hero-subtitle { font-size: 12px; margin-bottom: 15px; }
+    .hero-desc { font-size: 16px; margin-bottom: 35px; }
     
-    /* Compact the venture cards */
-    .ventures-grid { grid-template-columns: 1fr; gap: 24px; }
-    .venture-card { padding: 30px 24px; }
-    .venture-card h3 { font-size: 24px; }
+    /* Full width buttons */
+    .hero > div { width: 100%; display: flex; }
+    .hero .btn { width: 100%; font-size: 14px; padding: 18px 0; }
     
-    /* Tighten about and contact sections */
+    /* Sections take up the whole screen beautifully */
+    section { padding: 80px 0; }
+    .section-title { font-size: 10vw; margin-bottom: 40px; gap: 15px; }
+    .section-title::after { display: none; } /* Remove line for cleaner mobile look */
+    
+    /* Cards stretch to fill the screen nicely */
+    .ventures-grid { grid-template-columns: 1fr; gap: 20px; }
+    .venture-card { padding: 35px 25px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+    .venture-card h3 { font-size: 26px; }
+    
+    /* Tighten about section to feel cohesive */
     .about-wrapper, .contact-wrapper { gap: 40px; }
-    .about-text p { font-size: 15px; }
-    .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
+    .about-text p { font-size: 16px; }
     
-    .contact-info h3 { font-size: 28px; }
-    .social-links a { font-size: 18px; }
-    .contact-form { gap: 24px; }
+    /* Stats grid */
+    .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
+    .stat-item p { font-size: 24px; }
+    
+    /* Contact form elements stretch full width */
+    .contact-info h3 { font-size: 32px; }
+    .social-links a { font-size: 20px; }
+    .contact-form { gap: 30px; }
+    .contact-form .btn { width: 100%; padding: 18px 0; }
   }
 </style>
 </head>
@@ -357,13 +366,21 @@
     
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-      menuBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+      // Change icon when open
+      if (navLinks.classList.contains('active')) {
+        menuBtn.innerHTML = '✕';
+        document.body.style.overflow = 'hidden'; // Stop background scrolling
+      } else {
+        menuBtn.innerHTML = '☰';
+        document.body.style.overflow = ''; // Restore scrolling
+      }
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         menuBtn.innerHTML = '☰';
+        document.body.style.overflow = ''; // Restore scrolling
       });
     });
   </script>
