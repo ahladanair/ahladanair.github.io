@@ -144,11 +144,35 @@
   }
   .contact-info h3 { font-size: 32px; margin-bottom: 20px; }
   .contact-info p { color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
-  .social-links { display: flex; flex-direction: column; gap: 20px; }
+  
+  /* Desktop & Base Contact Links - Now fully card-based */
+  .social-links { display: flex; flex-direction: column; gap: 16px; }
   .social-links a {
-    font-size: 20px; font-family: 'Playfair Display', serif; display: flex; align-items: center; gap: 15px; color: var(--text-muted);
+    font-size: 16px; 
+    font-family: 'Inter', sans-serif; 
+    font-weight: 500;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 28px; 
+    border: 1px solid rgba(255,255,255,0.08); 
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    color: var(--text-main);
   }
-  .social-links a:hover { color: var(--accent); padding-left: 10px; }
+  .social-links a span { 
+    color: var(--text-muted); 
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s; 
+    display: inline-block;
+  }
+  .social-links a:hover { 
+    border-color: var(--accent); 
+    background: rgba(197, 160, 89, 0.05); 
+  }
+  .social-links a:hover span { 
+    color: var(--accent); 
+    transform: translateX(6px); /* Smooth arrow nudge on hover */
+  }
   
   .contact-form { display: flex; flex-direction: column; gap: 30px; }
   .input-group { position: relative; }
@@ -220,27 +244,13 @@
     .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
     .stat-item p { font-size: 24px; }
     
-    /* FIX: Mobile Contact Info & Social Links Re-design */
+    /* Mobile Contact Adjustments */
     .contact-info h3 { font-size: 32px; margin-bottom: 15px; }
     .contact-info p { margin-bottom: 30px; }
     
+    /* Tighten links slightly for smaller screens */
     .social-links { gap: 12px; }
-    .social-links a { 
-      font-size: 16px; 
-      font-family: 'Inter', sans-serif; /* Cleaner font for mobile buttons */
-      font-weight: 500;
-      display: flex; 
-      justify-content: space-between; /* Pushes arrow to the right edge */
-      align-items: center;
-      padding: 18px 24px; 
-      border: 1px solid rgba(255,255,255,0.1); 
-      border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-      color: var(--text-main);
-    }
-    .social-links a span { color: var(--text-muted); transition: color 0.3s; }
-    .social-links a:hover { padding-left: 24px; border-color: var(--accent); background: rgba(197, 160, 89, 0.05); }
-    .social-links a:hover span { color: var(--accent); }
+    .social-links a { padding: 16px 20px; font-size: 15px; }
     
     .contact-form { gap: 30px; }
     .contact-form .btn { width: 100%; padding: 18px 0; }
