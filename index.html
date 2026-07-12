@@ -79,7 +79,9 @@
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
-    padding-top: 80px; position: relative;
+    padding-top: 80px; 
+    padding-bottom: 100px; /* FIX: Added padding to ensure gap before border */
+    position: relative;
   }
   .hero-subtitle {
     font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 20px;
@@ -160,7 +162,7 @@
   .contact-info h3 { font-size: 32px; margin-bottom: 20px; }
   .contact-info p { color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
   
-  /* Desktop & Base Contact Links - Now fully card-based */
+  /* Desktop & Base Contact Links */
   .social-links { display: flex; flex-direction: column; gap: 16px; }
   .social-links a {
     font-size: 16px; 
@@ -186,10 +188,15 @@
   }
   .social-links a:hover span { 
     color: var(--accent); 
-    transform: translateX(6px); /* Smooth arrow nudge on hover */
+    transform: translateX(6px); 
   }
   
-  .contact-form { display: flex; flex-direction: column; gap: 30px; }
+  .contact-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px; 
+    margin-top: 105px; /* FIX: Aligns top of form inputs with the text below the heading */
+  }
   .input-group { position: relative; }
   .contact-form input, .contact-form textarea {
     width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border);
@@ -209,16 +216,11 @@
   }
   .contact-form .btn { align-self: flex-start; margin-top: 10px; }
 
-  /* --- FOOTER --- */
-  footer {
-    padding: 40px 0; border-top: 1px solid var(--border); text-align: center;
-  }
-  footer p { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-
   /* --- TABLET RESPONSIVE --- */
   @media (max-width: 900px) {
     .container { padding: 0 30px; }
     .about-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
+    .contact-form { margin-top: 0; } /* FIX: Removes the top margin when stacked on tablet/mobile */
     .menu-btn { display: block; }
     
     .nav-links {
@@ -237,7 +239,7 @@
   @media (max-width: 600px) {
     .container { padding: 0 20px; } 
     
-    .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 20px; justify-content: center; }
+    .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 80px; justify-content: center; } /* FIX: adjusted mobile padding-bottom */
     .hero h1 { font-size: 14vw; line-height: 1.05; margin-bottom: 20px; letter-spacing: -2px; }
     .hero-subtitle { font-size: 12px; margin-bottom: 15px; }
     .hero-desc { font-size: 16px; margin-bottom: 35px; }
@@ -267,7 +269,7 @@
     .social-links { gap: 12px; }
     .social-links a { padding: 16px 20px; font-size: 15px; }
     
-    .contact-form { gap: 30px; }
+    .contact-form { gap: 30px; margin-top: 0; } /* Ensure it stays 0 */
     .contact-form .btn { width: 100%; padding: 18px 0; }
   }
 </style>
