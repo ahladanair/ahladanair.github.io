@@ -80,7 +80,7 @@
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
     padding-top: 80px; 
-    padding-bottom: 100px; /* FIX: Added padding to ensure gap before border */
+    padding-bottom: 100px; 
     position: relative;
   }
   .hero-subtitle {
@@ -195,7 +195,7 @@
     display: flex; 
     flex-direction: column; 
     gap: 30px; 
-    margin-top: 105px; /* FIX: Aligns top of form inputs with the text below the heading */
+    margin-top: 190px; /* Exact calculated offset to align form with social links */
   }
   .input-group { position: relative; }
   .contact-form input, .contact-form textarea {
@@ -220,7 +220,7 @@
   @media (max-width: 900px) {
     .container { padding: 0 30px; }
     .about-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
-    .contact-form { margin-top: 0; } /* FIX: Removes the top margin when stacked on tablet/mobile */
+    .contact-form { margin-top: 0; } /* Reset margin when columns stack */
     .menu-btn { display: block; }
     
     .nav-links {
@@ -239,7 +239,7 @@
   @media (max-width: 600px) {
     .container { padding: 0 20px; } 
     
-    .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 80px; justify-content: center; } /* FIX: adjusted mobile padding-bottom */
+    .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 80px; justify-content: center; } 
     .hero h1 { font-size: 14vw; line-height: 1.05; margin-bottom: 20px; letter-spacing: -2px; }
     .hero-subtitle { font-size: 12px; margin-bottom: 15px; }
     .hero-desc { font-size: 16px; margin-bottom: 35px; }
@@ -269,7 +269,7 @@
     .social-links { gap: 12px; }
     .social-links a { padding: 16px 20px; font-size: 15px; }
     
-    .contact-form { gap: 30px; margin-top: 0; } /* Ensure it stays 0 */
+    .contact-form { gap: 30px; margin-top: 0; } 
     .contact-form .btn { width: 100%; padding: 18px 0; }
   }
 </style>
