@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 <!-- Open Graph Site Name -->
 <meta property="og:site_name" content="Ahlad A Nair">
 
@@ -14,7 +15,6 @@
 }
 </script>
 <meta name="google-site-verification" content="0OUgR18SYc4f7OfibZyCpI6NCCRIqmiRAudg_aQf-L0" />
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahlad A Nair | Founder & BBA</title>
 <meta name="description" content="Ahlad A Nair — Founder of Rianadalha & Stated Words. BBA student.">
@@ -195,7 +195,7 @@
     display: flex; 
     flex-direction: column; 
     gap: 30px; 
-    margin-top: 190px; /* Exact calculated offset to align form with social links */
+    margin-top: 190px;
   }
   .input-group { position: relative; }
   .contact-form input, .contact-form textarea {
@@ -216,11 +216,20 @@
   }
   .contact-form .btn { align-self: flex-start; margin-top: 10px; }
 
+  /* --- FOOTER STYLES ADDED HERE --- */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
   /* --- TABLET RESPONSIVE --- */
   @media (max-width: 900px) {
     .container { padding: 0 30px; }
     .about-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
-    .contact-form { margin-top: 0; } /* Reset margin when columns stack */
+    .contact-form { margin-top: 0; } 
     .menu-btn { display: block; }
     
     .nav-links {
@@ -261,11 +270,9 @@
     .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
     .stat-item p { font-size: 24px; }
     
-    /* Mobile Contact Adjustments */
     .contact-info h3 { font-size: 32px; margin-bottom: 15px; }
     .contact-info p { margin-bottom: 30px; }
     
-    /* Tighten links slightly for smaller screens */
     .social-links { gap: 12px; }
     .social-links a { padding: 16px 20px; font-size: 15px; }
     
