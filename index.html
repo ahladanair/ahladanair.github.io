@@ -22,303 +22,297 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --card: linear-gradient(135deg, #c85a06 0%, #a8460a 55%, #8d3a0b 100%);
-      --glass: rgba(0, 0, 0, 0.18);
-      --line: rgba(255, 255, 255, 0.16);
-      --text: #fff;
-      --soft: rgba(255, 255, 255, 0.82);
-      --pill: #fff;
-      --pill-ink: #8d3a0b;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    :root { --bg: #dcdcdc; --ink: #0d0d0d; --red: #e0472f; --ease: cubic-bezier(0.16, 1, 0.3, 1); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      min-height: 100vh;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      line-height: 1.6;
-      background: linear-gradient(160deg, #ff4d00 0%, #ff7a00 50%, #ffb300 100%) fixed;
-      -webkit-font-smoothing: antialiased;
-      padding: 24px;
-    }
+    body { background: var(--bg); color: var(--ink); font-family: 'Archivo', sans-serif; font-stretch: 112%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
-    h1, h2, h3, .logo { font-family: 'Montserrat', sans-serif; }
-    :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .tiny { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+    .plus { position: absolute; font-size: 16px; font-weight: 300; line-height: 1; }
 
-    /* Floating cards */
-    .card {
-      max-width: 1240px; margin: 0 auto 28px;
-      background: var(--card);
-      border-radius: 36px;
-      box-shadow: 0 40px 80px -20px rgba(120, 30, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.18);
-      padding: 34px 48px;
-      position: relative; overflow: hidden;
-    }
-
-    /* Top bar */
-    .topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; position: relative; z-index: 5; }
-    .logo { font-size: 14px; font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; padding-top: 10px; }
-    .logo b { background: #fff; color: var(--pill-ink); font-size: 12px; padding: 2px 5px; border-radius: 2px; }
-    .pill-nav {
-      display: flex; flex-wrap: wrap; gap: 4px 6px; max-width: 360px; justify-content: center;
-      background: var(--glass); border-radius: 26px; padding: 8px;
-      backdrop-filter: blur(10px);
-    }
-    .pill-nav a { font-size: 12px; font-weight: 500; padding: 8px 16px; border-radius: 20px; transition: background .3s var(--ease), color .3s; }
-    .pill-nav a:hover { background: rgba(255,255,255,0.18); }
-    .pill-nav a.on { background: var(--pill); color: var(--pill-ink); }
-    .top-icons { display: flex; gap: 8px; padding-top: 6px; }
-    .dot-btn {
-      width: 30px; height: 30px; border-radius: 50%; background: var(--glass);
-      display: grid; place-items: center; font-size: 13px; transition: background .3s;
-    }
-    .dot-btn:hover { background: rgba(255,255,255,0.25); }
+    /* Fixed nav */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: flex-end; align-items: center; gap: 28px; padding: 22px 4vw; mix-blend-mode: difference; color: #fff; pointer-events: none; }
+    .nav a { pointer-events: auto; position: relative; }
+    .nav a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 1px; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+    .nav a:hover::after { transform: scaleX(1); }
+    .nav .mark::after { display: none; }
+    .mark { width: 34px; height: 34px; border: 2px solid #fff; border-radius: 50%; display: grid; place-items: center; font-weight: 900; font-size: 11px; letter-spacing: -.5px; transition: transform .6s var(--ease); }
+    .mark:hover { transform: rotate(180deg); }
 
     /* Hero */
-    .hero-grid {
-      display: grid; grid-template-columns: 1.05fr 1fr 0.8fr; align-items: center; gap: 24px;
-      min-height: 480px; padding: 20px 0 40px; position: relative;
-    }
-    .hero-left h1 { font-size: clamp(34px, 4.2vw, 52px); font-weight: 600; line-height: 1.1; margin: 22px 0 18px; }
-    .hero-left p { font-size: 13.5px; color: var(--soft); max-width: 330px; margin-bottom: 26px; }
-    .arrows { display: flex; gap: 8px; }
-    .btn-white {
-      display: inline-flex; align-items: center; gap: 10px; background: var(--pill); color: #222;
-      border: 0; border-radius: 30px; padding: 11px 22px; font: 500 13px 'DM Sans', sans-serif; cursor: pointer;
-      transition: transform .3s var(--ease), box-shadow .3s;
-    }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
-    .btn-white i { font-style: normal; width: 16px; height: 16px; border-radius: 50%; background: #222; color: #fff; font-size: 10px; display: grid; place-items: center; }
+    .hero { position: relative; height: 100vh; min-height: 620px; display: grid; place-items: center; overflow: hidden; }
+    .hero .welcome { position: absolute; top: 9vh; left: 8vw; font-weight: 800; font-size: clamp(14px, 1.7vw, 22px); line-height: 1.1; letter-spacing: .5px; z-index: 3; }
+    .red-block { position: absolute; left: 50%; top: 7vh; width: min(17vw, 190px); height: 62vh; background: var(--red); transform: translate(calc(-50% + var(--mx, 0) * -14px), calc(var(--my, 0) * -10px)); transition: transform .3s ease-out; animation: drop 1.2s var(--ease) both; }
+    @keyframes drop { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+    .title { position: relative; width: 100%; text-align: center; z-index: 2; margin-top: 8vh; }
+    .title span { display: block; font-size: clamp(44px, 13.4vw, 220px); font-weight: 900; font-stretch: 125%; line-height: .9; letter-spacing: -.03em; white-space: nowrap; }
+    .title .solid { position: relative; animation: rise 1.1s .3s var(--ease) both; }
+    .title .echo { position: absolute; inset: 0; color: transparent; -webkit-text-stroke: 1.6px var(--ink); pointer-events: none; transform-origin: center; }
+    .title .e1 { animation: wave1 5s ease-in-out infinite; }
+    .title .e2 { animation: wave2 6.5s ease-in-out infinite; opacity: .7; }
+    @keyframes rise { from { transform: translateY(40%); opacity: 0; } to { opacity: 1; } }
+    @keyframes wave1 { 0%,100% { transform: translate(-2%, -22%) skewX(-14deg) scaleY(.85); } 50% { transform: translate(2%, -26%) skewX(10deg) scaleY(.95); } }
+    @keyframes wave2 { 0%,100% { transform: translate(3%, 20%) skewX(12deg) scaleY(.5); } 50% { transform: translate(-3%, 24%) skewX(-12deg) scaleY(.6); } }
+    .hero .l-name, .hero .r-role { position: absolute; bottom: 12vh; z-index: 3; }
+    .hero .l-name { left: 8vw; } .hero .r-role { right: 8vw; text-align: right; }
+    .tri { position: absolute; top: 40%; width: 0; height: 0; border: 6px solid transparent; }
+    .tri.l { left: 3vw; border-left-color: var(--ink); } .tri.r { right: 3vw; border-right-color: var(--ink); }
+    .scroll-hint { position: absolute; bottom: 3.5vh; left: 50%; transform: translateX(-50%); animation: bob 2s ease-in-out infinite; }
+    @keyframes bob { 50% { transform: translate(-50%, 6px); } }
 
-    .hero-photo { position: relative; display: grid; place-items: center; }
-    .hero-photo::before {
-      content: ''; position: absolute; width: 85%; aspect-ratio: 1; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,170,60,0.55), transparent 68%);
-    }
-    .hero-photo img {
-      position: relative; width: min(100%, 330px); aspect-ratio: 4/5; object-fit: cover;
-      border-radius: 140px 140px 28px 28px;
-      box-shadow: 0 40px 50px -20px rgba(60, 10, 0, 0.7);
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float { 50% { transform: translateY(-10px); } }
+    /* Fan of cards */
+    .work { position: relative; padding: 14vh 0 0; overflow: hidden; }
+    .work h2 { text-align: center; font-size: clamp(14px, 1.6vw, 20px); font-weight: 800; letter-spacing: 1px; margin-bottom: 4vh; }
+    .fan { position: relative; height: clamp(380px, 52vw, 560px); }
+    .card { position: absolute; left: 50%; top: 4%; width: clamp(150px, 20vw, 250px); aspect-ratio: 3/4; border-radius: 26px; overflow: hidden; cursor: pointer; border: 0; padding: 0; color: inherit; text-align: left; font: inherit; box-shadow: 0 24px 40px -16px rgba(0,0,0,.45); transition: transform .7s var(--ease), box-shadow .4s; will-change: transform; }
+    .card.hover, .card.active { box-shadow: 0 40px 60px -16px rgba(0,0,0,.55); }
+    .card .in { position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+    .c-red { background: var(--red); color: #111; } .c-dark { background: #0d0d0d; color: #fff; } .c-light { background: #f2f2f2; color: #111; }
+    .big { font-size: clamp(54px, 8vw, 110px); font-weight: 900; font-stretch: 125%; line-height: .85; letter-spacing: -.04em; }
+    .c-photo { background: #333; color: #fff; }
+    .c-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .5s; }
+    .c-photo.hover img, .c-photo.active img { filter: grayscale(0); }
+    .ico { width: 62%; align-self: center; animation: spin 18s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    .hero-right { text-align: center; }
-    .big-num { font-family: 'Montserrat', sans-serif; font-size: clamp(34px, 4vw, 48px); font-weight: 500; line-height: 1.1; }
-    .big-num s { display: block; opacity: .75; text-decoration-thickness: 3px; }
-    .choose { font-size: 13px; margin: 22px 0 12px; color: var(--soft); }
-    .circles { display: flex; gap: 12px; justify-content: center; }
-    .circle {
-      width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
-      background: rgba(0,0,0,0.25); color: #fff; font: 500 14px 'DM Sans', sans-serif;
-      transition: transform .3s var(--ease), background .3s, color .3s;
-    }
-    .circle:hover { transform: scale(1.08); }
-    .circle[aria-pressed="true"] { background: #fff; color: var(--pill-ink); }
-    .venture-box { margin-top: 24px; background: var(--glass); border-radius: 20px; padding: 18px; text-align: left; min-height: 150px; }
-    .venture-box small { font-size: 12px; color: var(--soft); }
-    .venture-box h3 { font-size: 20px; margin: 2px 0 6px; font-weight: 600; }
-    .venture-box p { font-size: 12.5px; color: var(--soft); margin-bottom: 10px; }
-    .venture-box a { font-size: 13px; font-weight: 500; border-bottom: 1px solid #fff; }
+    .detail { position: relative; z-index: 5; max-width: 760px; margin: -10px auto 0; padding: 0 6vw; text-align: center; min-height: 150px; }
+    .detail h3 { font-size: clamp(28px, 5vw, 56px); font-weight: 900; font-stretch: 125%; letter-spacing: -.03em; line-height: 1; }
+    .detail p { font-size: 15px; line-height: 1.6; margin: 12px auto 18px; max-width: 520px; font-stretch: 100%; }
+    .pill { display: inline-block; background: var(--ink); color: #fff; padding: 13px 26px; border-radius: 40px; transition: background .3s, transform .3s var(--ease); }
+    .pill:hover { background: var(--red); transform: translateY(-3px); }
 
-    .tagline { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); text-align: center; font: 500 17px/1.25 'Montserrat', sans-serif; width: 100%; }
-    .socials { position: absolute; left: 0; bottom: 6px; display: flex; gap: 20px; font-size: 13px; font-weight: 500; }
-    .socials a { opacity: .85; transition: opacity .3s; }
-    .socials a:hover { opacity: 1; text-decoration: underline; }
+    /* Ring */
+    .ring-wrap { position: relative; height: clamp(180px, 26vw, 330px); display: grid; justify-items: center; overflow: hidden; margin-top: 4vh; }
+    .ring { width: clamp(340px, 46vw, 620px); aspect-ratio: 1; margin-top: 4vh; }
+    .ring svg { width: 100%; height: 100%; overflow: visible; }
+    .ring .spin { transform-origin: 200px 200px; }
+    .ring text { font-size: 15px; font-weight: 600; letter-spacing: 6px; fill: #777; font-stretch: 125%; }
+    .ring-me { position: absolute; top: 3vh; left: 50%; transform: translateX(-50%); text-align: center; font-weight: 900; font-size: 18px; font-stretch: 125%; z-index: 2; }
+    .ring-me i { display: block; margin: 0 auto 4px; width: 0; height: 0; border: 6px solid transparent; border-bottom: 9px solid var(--ink); border-top: 0; }
 
-    /* Sections */
-    .sec-title { font-size: clamp(30px, 4vw, 44px); font-weight: 600; line-height: 1.1; margin-bottom: 28px; }
-    .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; }
-    .about-grid img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 28px; box-shadow: 0 30px 40px -20px rgba(60,10,0,.7); }
-    .about-grid p { color: var(--soft); margin-bottom: 16px; max-width: 520px; }
-    .about-grid strong { color: #fff; font-weight: 500; }
-    .facts { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
-    .facts div { background: var(--glass); border-radius: 18px; padding: 14px 22px; }
-    .facts small { display: block; font-size: 12px; color: var(--soft); }
-    .facts span { font: 600 17px 'Montserrat', sans-serif; }
+    /* Marquee */
+    .marquee { background: var(--ink); color: #fff; padding: 22px 0; overflow: hidden; white-space: nowrap; transform: rotate(-1.5deg); margin: 6vh -2vw 0; }
+    .marquee div { display: inline-block; animation: slide 22s linear infinite; font-size: clamp(22px, 4vw, 48px); font-weight: 900; font-stretch: 125%; letter-spacing: -.02em; }
+    .marquee b { color: var(--red); margin: 0 .5em; }
+    @keyframes slide { to { transform: translateX(-50%); } }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
-    .contact-grid > div > p { color: var(--soft); max-width: 420px; margin-bottom: 26px; }
-    .links { display: flex; flex-direction: column; gap: 10px; }
-    .links a {
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--glass); border-radius: 22px; padding: 16px 24px; font-weight: 500;
-      transition: background .3s, transform .3s var(--ease);
-    }
-    .links a:hover { background: rgba(255,255,255,0.22); transform: translateX(4px); }
-    form { display: flex; flex-direction: column; gap: 14px; align-self: end; }
-    form input, form textarea {
-      width: 100%; background: var(--glass); border: 1px solid transparent; border-radius: 22px;
-      padding: 15px 22px; color: #fff; font: 400 15px 'DM Sans', sans-serif; resize: none;
-    }
-    form input::placeholder, form textarea::placeholder { color: rgba(255,255,255,0.65); }
-    form input:focus, form textarea:focus { outline: none; border-color: #fff; }
-    form .btn-white { align-self: flex-start; }
+    /* About */
+    .about { padding: 16vh 8vw 12vh; display: grid; grid-template-columns: 1fr 1.3fr; gap: 6vw; align-items: center; position: relative; }
+    .about .photo { position: relative; aspect-ratio: 4/5; background: #333; border-radius: 26px; overflow: hidden; transform: rotate(-4deg); transition: transform .6s var(--ease), opacity .9s var(--ease); }
+    .about .photo.in:hover { transform: rotate(0); }
+    .about .photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter .5s; }
+    .about .photo:hover img { filter: none; }
+    .about h2 { font-size: clamp(34px, 6vw, 84px); font-weight: 900; font-stretch: 125%; line-height: .95; letter-spacing: -.03em; margin-bottom: 26px; }
+    .about p { font-size: 16px; line-height: 1.7; max-width: 520px; margin-bottom: 14px; font-stretch: 100%; }
+    .facts { display: flex; gap: 40px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--ink); }
+    .facts b { display: block; font-size: 20px; font-weight: 800; margin-top: 4px; }
 
-    footer { text-align: center; font-size: 13px; color: rgba(255,255,255,0.9); padding: 8px 0 20px; }
+    /* Contact */
+    .contact { background: var(--ink); color: #fff; padding: 14vh 8vw 8vh; border-radius: 40px 40px 0 0; position: relative; }
+    .contact h2 { font-size: clamp(40px, 10vw, 150px); font-weight: 900; font-stretch: 125%; line-height: .9; letter-spacing: -.04em; margin-bottom: 6vh; }
+    .contact h2 em { font-style: normal; color: var(--red); }
+    .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; }
+    .links a { display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #333; font-size: clamp(18px, 2.4vw, 30px); font-weight: 800; font-stretch: 125%; transition: color .3s, padding .4s var(--ease); }
+    .links a:hover { color: var(--red); padding-left: 14px; }
+    form { display: flex; flex-direction: column; gap: 16px; }
+    form input, form textarea { background: transparent; border: 0; border-bottom: 1px solid #555; color: #fff; padding: 14px 0; font: 400 16px 'Archivo', sans-serif; font-stretch: 100%; resize: none; }
+    form input:focus, form textarea:focus { outline: none; border-color: var(--red); }
+    form input::placeholder, form textarea::placeholder { color: #888; }
+    form button { align-self: flex-start; background: var(--red); color: #fff; border: 0; border-radius: 40px; padding: 15px 30px; font: 800 14px 'Archivo', sans-serif; cursor: pointer; transition: transform .3s var(--ease); }
+    form button:hover { transform: translateY(-3px) rotate(-2deg); }
+    footer { margin-top: 10vh; display: flex; justify-content: space-between; gap: 12px; color: #888; }
 
-    /* Tablet */
-    @media (max-width: 1000px) {
-      body { padding: 14px; }
-      .card { padding: 26px 24px; border-radius: 28px; }
-      .topbar { flex-wrap: wrap; }
-      .pill-nav { order: 3; width: 100%; max-width: none; }
-      .top-icons { display: none; }
-      .hero-grid { grid-template-columns: 1fr; text-align: center; padding-bottom: 130px; }
-      .hero-left p { margin-inline: auto; }
-      .arrows, .hero-left .btn-white { margin-inline: auto; }
-      .arrows { justify-content: center; }
-      .hero-photo img { width: min(70%, 300px); }
-      .venture-box { text-align: center; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .about-grid img { max-width: 320px; }
+    /* Reveal on scroll */
+    .rv { opacity: 0; transform: translateY(40px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .rv.in { opacity: 1; transform: none; }
+    .about .photo.rv { transform: translateY(40px) rotate(-4deg); }
+    .about .photo.rv.in { transform: rotate(-4deg); }
+
+    @media (max-width: 800px) {
+      .hero .welcome, .hero .l-name { left: 6vw; } .hero .r-role { right: 6vw; }
+      .red-block { width: 22vw; height: 52vh; }
+      .about, .c-grid { grid-template-columns: 1fr; }
+      .about .photo { max-width: 320px; }
+      .nav { gap: 16px; }
     }
-    @media (max-width: 520px) {
-      .tagline { font-size: 15px; bottom: 44px; }
-      .socials { left: 50%; transform: translateX(-50%); }
-      .hero-left h1 { font-size: 36px; }
-    }
-    @media (prefers-reduced-motion: reduce) { .hero-photo img { animation: none; } html { scroll-behavior: auto; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .rv { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
 
+  <nav class="nav tiny" aria-label="Main">
+    <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    <a href="#home" class="mark" aria-label="Back to top">AN</a>
+  </nav>
+
   <!-- HERO -->
-  <header class="card" id="home">
-    <div class="topbar">
-      <a href="#home" class="logo"><b>AN</b> AHLAD A NAIR</a>
-      <nav class="pill-nav" aria-label="Main">
-        <a href="#home" class="on">Home</a>
-        <a href="#ventures">Ventures</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="top-icons">
-        <a class="dot-btn" href="mailto:ahladanair2007@gmail.com" aria-label="Email">✉</a>
-        <a class="dot-btn" href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" aria-label="LinkedIn">in</a>
-      </div>
-    </div>
+  <header class="hero" id="home">
+    <span class="plus" style="top:5vh;left:3vw">+</span><span class="plus" style="top:5vh;left:50%">+</span><span class="plus" style="top:5vh;right:3vw">+</span>
+    <span class="plus" style="bottom:10vh;left:3vw">+</span><span class="plus" style="bottom:10vh;left:50%">+</span><span class="plus" style="bottom:10vh;right:3vw">+</span>
+    <i class="tri l"></i><i class="tri r"></i>
 
-    <div class="hero-grid">
-      <div class="hero-left">
-        <div class="arrows">
-          <button class="dot-btn" id="prev" aria-label="Previous venture" style="border:0;color:#fff;cursor:pointer">‹</button>
-          <button class="dot-btn" id="next" aria-label="Next venture" style="border:0;color:#fff;cursor:pointer">›</button>
-        </div>
-        <h1>Building businesses and shaping stories.</h1>
-        <p>I'm Ahlad A Nair, a BBA student at DCSMAT Vagamon. I run an editing agency and an online news platform, and learn business by practising it.</p>
-        <a href="#ventures" class="btn-white">Explore my work <i>›</i></a>
-      </div>
-
-      <div class="hero-photo">
-        <img src="myphoto.jpg" alt="Ahlad A Nair" onerror="this.style.visibility='hidden'">
-      </div>
-
-      <div class="hero-right" id="ventures">
-        <div class="big-num">3 ventures<s>1 founder</s></div>
-        <p class="choose">Choose a venture</p>
-        <div class="circles" id="circles">
-          <button class="circle" aria-pressed="true" aria-label="Rianadalha">R</button>
-          <button class="circle" aria-pressed="false" aria-label="The Stated Words">S</button>
-          <button class="circle" aria-pressed="false" aria-label="Digital Hub">D</button>
-        </div>
-        <div class="venture-box" aria-live="polite">
-          <small id="v-type"></small>
-          <h3 id="v-name"></h3>
-          <p id="v-desc"></p>
-          <a id="v-link" href="#" target="_blank" rel="noopener"></a>
-        </div>
-      </div>
-
-      <div class="socials">
-        <a href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub</a>
-      </div>
-      <div class="tagline">Execution,<br>wrapped in strategy.</div>
-    </div>
+    <p class="welcome">WELCOME<br>TO MY</p>
+    <div class="red-block"></div>
+    <h1 class="title" aria-label="Portfolio">
+      <span class="echo e1" aria-hidden="true">PORTFOLIO</span>
+      <span class="echo e2" aria-hidden="true">PORTFOLIO</span>
+      <span class="solid">PORTFOLIO</span>
+    </h1>
+    <p class="l-name tiny">Ahlad A Nair</p>
+    <p class="r-role tiny">Founder · BBA Student</p>
+    <p class="scroll-hint tiny">Scroll ↓</p>
   </header>
 
-  <main>
-    <!-- ABOUT -->
-    <section class="card" id="about">
-      <div class="about-grid">
-        <img src="myphoto.jpg" alt="Ahlad A Nair" onerror="this.style.visibility='hidden'">
-        <div>
-          <h2 class="sec-title">The founder</h2>
-          <p>Hi, I am <strong>Ahlad A Nair</strong>. While most first-year students focus on theory, I believe the best way to learn business administration is to practise it.</p>
-          <p>At <strong>DCSMAT Vagamon</strong> I split my time between coursework and my companies: coordinating editors for Rianadalha and managing publishing schedules for The Stated Words. I care about scalable execution and high-quality output.</p>
-          <p>I also built the official website for <strong>Luminance</strong>, DCSMAT's college fest, which handles online event bookings.</p>
-          <div class="facts">
-            <div><small>Education</small><span>BBA, First Year</span></div>
-            <div><small>Location</small><span>Vagamon, Kerala</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- WORK -->
+  <section class="work" id="work">
+    <h2 class="rv">PICK A CARD</h2>
+    <div class="fan" id="fan">
+      <button class="card c-red" aria-label="Rianadalha">
+        <div class="in"><span class="tiny">Editing agency</span>
+          <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8c14 0 18 12 30 14s16 14 10 26c6 12 0 24-12 28-4 12-16 16-28 10-12 6-24-2-26-14C10 66 8 54 16 46 12 34 20 22 32 20 38 10 44 8 50 8Z" fill="#111"/><ellipse cx="50" cy="50" rx="22" ry="13" fill="#e0472f" transform="rotate(-20 50 50)"/><circle cx="50" cy="50" r="7" fill="#111"/></svg>
+          <span class="tiny">Rianadalha</span></div>
+      </button>
+      <button class="card c-photo" aria-label="The founder">
+        <img src="myphoto.jpg" alt="Ahlad A Nair" onerror="this.style.display='none'">
+        <div class="in"><span class="tiny" style="text-align:right">Founder<br>2026</span><span class="tiny">Ahlad A Nair</span></div>
+      </button>
+      <button class="card c-light" aria-label="Luminance website">
+        <div class="in"><span class="tiny">Web development</span><span class="big">26</span><span class="tiny">Luminance · DCSMAT</span></div>
+      </button>
+      <button class="card c-dark" aria-label="The Stated Words">
+        <div class="in"><span class="tiny">News platform</span><span class="big" style="color:var(--red)">SW</span><span class="tiny">The Stated Words</span></div>
+      </button>
+      <button class="card c-dark" aria-label="Contact" style="background:var(--red);color:#111">
+        <div class="in"><span class="tiny">Say hi</span><span class="big">HI</span><span class="tiny">Contact ↗</span></div>
+      </button>
+    </div>
 
-    <!-- CONTACT -->
-    <section class="card" id="contact">
-      <div class="contact-grid">
-        <div>
-          <h2 class="sec-title">Let's connect</h2>
-          <p>Need media editing, have a business proposal, or want to talk digital strategy? My inbox is open.</p>
-          <div class="links">
-            <a href="mailto:ahladanair2007@gmail.com">Email me <span>↗</span></a>
-            <a href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
-            <a href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
-            <a href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
-          </div>
-        </div>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
-          <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
-          <textarea name="message" rows="5" placeholder="Your message" aria-label="Your message" required></textarea>
-          <button type="submit" class="btn-white">Send message <i>›</i></button>
-        </form>
-      </div>
-    </section>
-  </main>
+    <div class="detail" aria-live="polite" id="detail"></div>
 
-  <footer>© 2026 Ahlad A Nair. Designed & built with intent.</footer>
+    <div class="ring-wrap">
+      <div class="ring-me"><i></i>ME</div>
+      <a class="ring" href="#about" aria-label="About me">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="190" fill="none" stroke="#999" stroke-dasharray="3 6"/>
+          <g class="spin" id="spin">
+            <defs><path id="circ" d="M200 200 m-160 0 a160 160 0 1 1 320 0 a160 160 0 1 1 -320 0"/></defs>
+            <text><textPath href="#circ">PORTFOLIO · AHLAD A NAIR · PORTFOLIO · AHLAD A NAIR ·</textPath></text>
+          </g>
+        </svg>
+      </a>
+    </div>
+
+    <div class="marquee" aria-hidden="true"><div>
+      BUILDING BUSINESSES<b>✦</b>SHAPING STORIES<b>✦</b>EDITING<b>✦</b>NEWS<b>✦</b>WEB<b>✦</b>
+      BUILDING BUSINESSES<b>✦</b>SHAPING STORIES<b>✦</b>EDITING<b>✦</b>NEWS<b>✦</b>WEB<b>✦</b>
+    </div></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="photo rv"><img src="myphoto.jpg" alt="Ahlad A Nair" onerror="this.style.display='none'"></div>
+    <div class="rv">
+      <h2>The founder</h2>
+      <p>Hi, I am <b>Ahlad A Nair</b>. While most first-year students focus on theory, I believe the best way to learn business administration is to practise it.</p>
+      <p>At <b>DCSMAT Vagamon</b> I split my time between coursework and my companies: coordinating editors for Rianadalha and managing publishing schedules for The Stated Words. I care about scalable execution and high-quality output.</p>
+      <div class="facts">
+        <div><span class="tiny">Education</span><b>BBA, First Year</b></div>
+        <div><span class="tiny">Location</span><b>Vagamon, Kerala</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2 class="rv">LET'S<br>WORK <em>TOGETHER</em></h2>
+    <div class="c-grid rv">
+      <div class="links">
+        <a href="mailto:ahladanair2007@gmail.com">Email <span>↗</span></a>
+        <a href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+        <a href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
+        <a href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+      </div>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+        <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+        <textarea name="message" rows="4" placeholder="Tell me about your project" aria-label="Your message" required></textarea>
+        <button type="submit">Send message ↗</button>
+      </form>
+    </div>
+    <footer class="tiny"><span>© 2026 Ahlad A Nair</span><span>Designed & built with intent</span></footer>
+  </section>
 
   <script>
-    const ventures = [
-      { type: 'Editing agency', name: 'Rianadalha', link: 'https://rianadalha.odoo.com', cta: 'Visit agency',
-        desc: 'High-end media editing for creators and businesses: precise cuts and clear narrative flow.' },
-      { type: 'News platform', name: 'The Stated Words', link: 'https://thestatedword.blogspot.com', cta: 'Read articles',
-        desc: 'An online publisher delivering timely news while growing its digital reach.' },
-      { type: 'Web development', name: 'Digital Hub', link: 'https://luminancefestdc.github.io/2026/', cta: 'Visit the website',
-        desc: 'The official site for Luminance at DCSMAT, South India\'s biggest college fest, with online event booking.' }
+    const items = [
+      { t: 'Rianadalha', d: 'High-end media editing for creators and businesses: precise cuts and clear narrative flow.', l: 'https://rianadalha.odoo.com', c: 'Visit agency' },
+      { t: 'The Founder', d: 'BBA student at DCSMAT Vagamon, learning business by running it.', l: '#about', c: 'Read my story' },
+      { t: 'Luminance', d: "I built the official website for DCSMAT's Luminance, South India's biggest college fest, with online event booking.", l: 'https://luminancefestdc.github.io/2026/', c: 'Visit the website' },
+      { t: 'The Stated Words', d: 'An online publisher delivering timely news while growing its digital reach.', l: 'https://thestatedword.blogspot.com', c: 'Read articles' },
+      { t: "Let's talk", d: 'Editing, a proposal or a web project? My inbox is open.', l: '#contact', c: 'Get in touch' }
     ];
-    const btns = [...document.querySelectorAll('.circle')];
-    let i = 0;
-    function show(n) {
-      i = (n + ventures.length) % ventures.length;
-      const v = ventures[i];
-      btns.forEach((b, k) => b.setAttribute('aria-pressed', k === i));
-      document.getElementById('v-type').textContent = v.type;
-      document.getElementById('v-name').textContent = v.name;
-      document.getElementById('v-desc').textContent = v.desc;
-      const a = document.getElementById('v-link');
-      a.href = v.link; a.textContent = v.cta + ' ↗';
-    }
-    btns.forEach((b, k) => b.addEventListener('click', () => show(k)));
-    document.getElementById('prev').addEventListener('click', () => show(i - 1));
-    document.getElementById('next').addEventListener('click', () => show(i + 1));
-    show(0);
 
-    // Highlight active nav pill
-    const links = [...document.querySelectorAll('.pill-nav a')];
-    const targets = links.map(l => document.querySelector(l.getAttribute('href')));
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) links.forEach((l, k) => l.classList.toggle('on', targets[k] === e.target));
-    }), { rootMargin: '-40% 0px -50% 0px' });
-    targets.forEach(t => t && io.observe(t));
+    // Hero mouse parallax (CSS variables drive the red block)
+    const hero = document.getElementById('home');
+    hero.addEventListener('mousemove', e => {
+      hero.style.setProperty('--mx', (e.clientX / innerWidth - .5) * 2);
+      hero.style.setProperty('--my', (e.clientY / innerHeight - .5) * 2);
+    });
+
+    // Card fan
+    const fan = document.getElementById('fan');
+    const cards = [...fan.querySelectorAll('.card')];
+    const detail = document.getElementById('detail');
+    let hov = -1, act = -1, shift = 0, ready = false;
+
+    function layout() {
+      if (!ready) return;
+      const W = fan.clientWidth, n = cards.length;
+      const spread = Math.min(W / (n + .3), 230);
+      cards.forEach((c, i) => {
+        const t = i - (n - 1) / 2;
+        const x = t * spread + shift * 14 * t;
+        let y = t * t * (W > 700 ? 20 : 10), r = t * 11, s = 1, z = 10 - Math.abs(Math.round(t));
+        if (i === hov || (hov < 0 && i === act)) { r = 0; y -= 26; s = 1.08; z = 50; }
+        c.style.zIndex = z;
+        c.style.transform = `translateX(calc(-50% + ${x}px)) translateY(${y}px) rotate(${r}deg) scale(${s})`;
+        c.classList.toggle('hover', i === hov);
+        c.classList.toggle('active', i === act);
+      });
+    }
+    function setActive(i) {
+      act = i; const v = items[i];
+      const ext = v.l[0] !== '#';
+      detail.innerHTML = `<h3>${v.t}</h3><p>${v.d}</p><a class="pill" href="${v.l}"${ext ? ' target="_blank" rel="noopener"' : ''}>${v.c} ↗</a>`;
+      layout();
+    }
+    cards.forEach((c, i) => {
+      c.addEventListener('mouseenter', () => { hov = i; layout(); });
+      c.addEventListener('focus', () => { hov = i; layout(); });
+      c.addEventListener('mouseleave', () => { hov = -1; layout(); });
+      c.addEventListener('blur', () => { hov = -1; layout(); });
+      c.addEventListener('click', () => setActive(i));
+    });
+    fan.addEventListener('mousemove', e => { const r = fan.getBoundingClientRect(); shift = ((e.clientX - r.left) / r.width - .5) * 1.2; layout(); });
+    fan.addEventListener('mouseleave', () => { shift = 0; layout(); });
+    addEventListener('resize', layout);
+
+    // Intro: cards start stacked, then fan out when scrolled into view
+    cards.forEach(c => c.style.transform = 'translateX(-50%) translateY(60px) scale(.8)');
+    new IntersectionObserver((es, o) => {
+      if (es[0].isIntersecting) { ready = true; setActive(2); o.disconnect(); }
+    }, { threshold: .25 }).observe(fan);
+
+    // Ring spins with scroll
+    const spin = document.getElementById('spin');
+    addEventListener('scroll', () => { spin.style.transform = `rotate(${scrollY * .25}deg)`; }, { passive: true });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
