@@ -5,438 +5,320 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ahlad A Nair | Professional Portfolio</title>
   <meta name="description" content="Ahlad A Nair — Founder of Rianadalha & Stated Words. BBA student.">
-  
-  <!-- Open Graph / Social Sharing Meta Tags -->
+
   <meta property="og:site_name" content="Ahlad A Nair">
   <meta property="og:title" content="Ahlad A Nair | Founder & BBA" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ahladanair.github.io/" />
   <meta property="og:description" content="Ahlad A Nair — Founder of Rianadalha & Stated Words. BBA student." />
   <meta property="og:image" content="https://ahladanair.github.io/thumbnail.jpg" />
-  
-  <!-- Structured Data for Google Site Name -->
+
   <script type="application/ld+json">
-  {
-    "@context" : "https://schema.org",
-    "@type" : "WebSite",
-    "name" : "Ahlad A Nair",
-    "url" : "https://ahladanair.github.io/"
-  }
+  { "@context": "https://schema.org", "@type": "WebSite", "name": "Ahlad A Nair", "url": "https://ahladanair.github.io/" }
   </script>
-  
+
   <meta name="google-site-verification" content="0OUgR18SYc4f7OfibZyCpI6NCCRIqmiRAudg_aQf-L0" />
   <link rel="icon" type="image/png" href="favicon.png">
-  
-  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg-dark: #0a0a0a;
-      --bg-card: #121212;
-      --text-main: #F2F2F2;
-      --text-muted: #888888;
-      --border: #2A2A2A;
-      --accent: #C5A059;
-      --accent-hover: #E3BE77;
-      --radius: 4px;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --card: linear-gradient(135deg, #c85a06 0%, #a8460a 55%, #8d3a0b 100%);
+      --glass: rgba(0, 0, 0, 0.18);
+      --line: rgba(255, 255, 255, 0.16);
+      --text: #fff;
+      --soft: rgba(255, 255, 255, 0.82);
+      --pill: #fff;
+      --pill-ink: #8d3a0b;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background-color: var(--bg-dark);
-      background-image: radial-gradient(circle at top right, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
-      background-attachment: fixed;
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    a { color: inherit; text-decoration: none; transition: var(--transition); }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-    
-    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; font-weight: 400; }
-    
-    /* --- NAVIGATION --- */
-    header {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    nav {
-      display: flex; justify-content: space-between; align-items: center;
-      height: 80px;
-    }
-    .logo {
-      font-size: 20px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-      position: relative; z-index: 101;
-    }
-    .logo span { color: var(--accent); font-family: 'Playfair Display', serif; font-style: italic; text-transform: none; font-size: 24px; }
-    .nav-links { display: flex; gap: 40px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
-    .nav-links a { color: var(--text-muted); }
-    .nav-links a:hover { color: var(--accent); }
-    .menu-btn { display: none; background: none; border: none; color: var(--text-main); font-size: 24px; cursor: pointer; position: relative; z-index: 101; }
-
-    /* --- HERO SECTION --- */
-    .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding-top: 80px; 
-      padding-bottom: 100px; 
-      position: relative;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: linear-gradient(160deg, #ff4d00 0%, #ff7a00 50%, #ffb300 100%) fixed;
+      -webkit-font-smoothing: antialiased;
+      padding: 24px;
     }
-    .hero-subtitle {
-      font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: clamp(40px, 8vw, 100px); line-height: 1.1; margin-bottom: 30px; letter-spacing: -1px;
-    }
-    .hero h1 i { color: var(--text-muted); }
-    .hero-desc {
-      max-width: 500px; font-size: 18px; color: var(--text-muted); font-weight: 300; margin-bottom: 50px;
-    }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 16px 32px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;
-      border: 1px solid var(--accent); color: var(--accent);
-      background: transparent; cursor: pointer; transition: var(--transition);
-    }
-    .btn:hover { background: var(--accent); color: var(--bg-dark); }
-    
-    /* --- SECTION HEADERS --- */
-    section { padding: 120px 0; border-top: 1px solid var(--border); }
-    .section-title {
-      font-size: 40px; margin-bottom: 60px; display: flex; align-items: center; gap: 20px;
-    }
-    .section-title::after {
-      content: ''; flex-grow: 1; height: 1px; background: var(--border); max-width: 300px;
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, .logo { font-family: 'Montserrat', sans-serif; }
+    :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    /* Floating cards */
+    .card {
+      max-width: 1240px; margin: 0 auto 28px;
+      background: var(--card);
+      border-radius: 36px;
+      box-shadow: 0 40px 80px -20px rgba(120, 30, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.18);
+      padding: 34px 48px;
+      position: relative; overflow: hidden;
     }
 
-    /* --- VENTURES (PROJECTS) --- */
-    .ventures-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
+    /* Top bar */
+    .topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; position: relative; z-index: 5; }
+    .logo { font-size: 14px; font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; padding-top: 10px; }
+    .logo b { background: #fff; color: var(--pill-ink); font-size: 12px; padding: 2px 5px; border-radius: 2px; }
+    .pill-nav {
+      display: flex; flex-wrap: wrap; gap: 4px 6px; max-width: 360px; justify-content: center;
+      background: var(--glass); border-radius: 26px; padding: 8px;
+      backdrop-filter: blur(10px);
     }
-    .venture-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
+    .pill-nav a { font-size: 12px; font-weight: 500; padding: 8px 16px; border-radius: 20px; transition: background .3s var(--ease), color .3s; }
+    .pill-nav a:hover { background: rgba(255,255,255,0.18); }
+    .pill-nav a.on { background: var(--pill); color: var(--pill-ink); }
+    .top-icons { display: flex; gap: 8px; padding-top: 6px; }
+    .dot-btn {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--glass);
+      display: grid; place-items: center; font-size: 13px; transition: background .3s;
     }
-    .venture-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
-    .venture-type {
-      font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; display: block;
-    }
-    .venture-card h3 { font-size: 28px; margin-bottom: 15px; }
-    .venture-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; font-weight: 300; }
-    .venture-link {
-      font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main);
-      display: inline-flex; align-items: center; gap: 8px; border-bottom: 1px solid transparent; padding-bottom: 2px;
-    }
-    .venture-card:hover .venture-link { color: var(--accent); border-bottom-color: var(--accent); gap: 12px; }
+    .dot-btn:hover { background: rgba(255,255,255,0.25); }
 
-    /* --- ABOUT --- */
-    .about-wrapper {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    /* Hero */
+    .hero-grid {
+      display: grid; grid-template-columns: 1.05fr 1fr 0.8fr; align-items: center; gap: 24px;
+      min-height: 480px; padding: 20px 0 40px; position: relative;
     }
-    .about-image {
-      width: 100%; aspect-ratio: 4/5; background: var(--bg-card); border: 1px solid var(--border);
-      position: relative;
+    .hero-left h1 { font-size: clamp(34px, 4.2vw, 52px); font-weight: 600; line-height: 1.1; margin: 22px 0 18px; }
+    .hero-left p { font-size: 13.5px; color: var(--soft); max-width: 330px; margin-bottom: 26px; }
+    .arrows { display: flex; gap: 8px; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 10px; background: var(--pill); color: #222;
+      border: 0; border-radius: 30px; padding: 11px 22px; font: 500 13px 'DM Sans', sans-serif; cursor: pointer;
+      transition: transform .3s var(--ease), box-shadow .3s;
     }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: var(--transition); }
-    .about-image:hover img { filter: grayscale(0%); }
-    .about-text p {
-      font-size: 17px; color: var(--text-muted); margin-bottom: 24px; font-weight: 300; line-height: 1.8;
-    }
-    .about-text p strong { color: var(--text-main); font-weight: 500; }
-    .stats {
-      margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
-      border-top: 1px solid var(--border); padding-top: 40px;
-    }
-    .stat-item h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px; }
-    .stat-item p { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text-main); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.25); }
+    .btn-white i { font-style: normal; width: 16px; height: 16px; border-radius: 50%; background: #222; color: #fff; font-size: 10px; display: grid; place-items: center; }
 
-    /* --- CONTACT --- */
-    .contact-wrapper {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    .hero-photo { position: relative; display: grid; place-items: center; }
+    .hero-photo::before {
+      content: ''; position: absolute; width: 85%; aspect-ratio: 1; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,170,60,0.55), transparent 68%);
     }
-    .contact-info h3 { font-size: 32px; margin-bottom: 20px; }
-    .contact-info p { color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
-    
-    /* Desktop & Base Contact Links */
-    .social-links { display: flex; flex-direction: column; gap: 16px; }
-    .social-links a {
-      font-size: 16px; 
-      font-family: 'Inter', sans-serif; 
-      font-weight: 500;
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      padding: 20px 28px; 
-      border: 1px solid rgba(255,255,255,0.08); 
-      border-radius: 8px;
-      background: rgba(255,255,255,0.02);
-      color: var(--text-main);
+    .hero-photo img {
+      position: relative; width: min(100%, 330px); aspect-ratio: 4/5; object-fit: cover;
+      border-radius: 140px 140px 28px 28px;
+      box-shadow: 0 40px 50px -20px rgba(60, 10, 0, 0.7);
+      animation: float 6s ease-in-out infinite;
     }
-    .social-links a span { 
-      color: var(--text-muted); 
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s; 
-      display: inline-block;
-    }
-    .social-links a:hover { 
-      border-color: var(--accent); 
-      background: rgba(197, 160, 89, 0.05); 
-    }
-    .social-links a:hover span { 
-      color: var(--accent); 
-      transform: translateX(6px); 
-    }
-    
-    .contact-form { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 30px; 
-      margin-top: 190px;
-    }
-    .input-group { position: relative; }
-    .contact-form input, .contact-form textarea {
-      width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border);
-      padding: 15px 0; color: var(--text-main); font-size: 16px; font-family: 'Inter', sans-serif;
-      transition: var(--transition); resize: none;
-    }
-    .contact-form input:focus, .contact-form textarea:focus {
-      outline: none; border-bottom-color: var(--accent);
-    }
-    .contact-form label {
-      position: absolute; top: 15px; left: 0; color: var(--text-muted); font-size: 15px;
-      transition: var(--transition); pointer-events: none;
-    }
-    .contact-form input:focus ~ label, .contact-form input:valid ~ label,
-    .contact-form textarea:focus ~ label, .contact-form textarea:valid ~ label {
-      top: -12px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent);
-    }
-    .contact-form .btn { align-self: flex-start; margin-top: 10px; }
+    @keyframes float { 50% { transform: translateY(-10px); } }
 
-    /* --- FOOTER STYLES ADDED HERE --- */
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 14px;
+    .hero-right { text-align: center; }
+    .big-num { font-family: 'Montserrat', sans-serif; font-size: clamp(34px, 4vw, 48px); font-weight: 500; line-height: 1.1; }
+    .big-num s { display: block; opacity: .75; text-decoration-thickness: 3px; }
+    .choose { font-size: 13px; margin: 22px 0 12px; color: var(--soft); }
+    .circles { display: flex; gap: 12px; justify-content: center; }
+    .circle {
+      width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+      background: rgba(0,0,0,0.25); color: #fff; font: 500 14px 'DM Sans', sans-serif;
+      transition: transform .3s var(--ease), background .3s, color .3s;
     }
+    .circle:hover { transform: scale(1.08); }
+    .circle[aria-pressed="true"] { background: #fff; color: var(--pill-ink); }
+    .venture-box { margin-top: 24px; background: var(--glass); border-radius: 20px; padding: 18px; text-align: left; min-height: 150px; }
+    .venture-box small { font-size: 12px; color: var(--soft); }
+    .venture-box h3 { font-size: 20px; margin: 2px 0 6px; font-weight: 600; }
+    .venture-box p { font-size: 12.5px; color: var(--soft); margin-bottom: 10px; }
+    .venture-box a { font-size: 13px; font-weight: 500; border-bottom: 1px solid #fff; }
 
-    /* --- TABLET RESPONSIVE --- */
-    @media (max-width: 900px) {
-      .container { padding: 0 30px; }
-      .about-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 60px; }
-      .contact-form { margin-top: 0; } 
-      .menu-btn { display: block; }
-      
-      .nav-links {
-        position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh;
-        background: rgba(8, 8, 8, 0.98); backdrop-filter: blur(20px);
-        flex-direction: column; align-items: center; justify-content: center;
-        gap: 40px; transform: translateY(-100%); opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
-      }
-      .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: all; }
-      .nav-links a { font-family: 'Playfair Display', serif; font-size: 32px; font-style: italic; text-transform: capitalize; color: var(--text-main); }
-      .nav-links a:hover { color: var(--accent); }
-      section { padding: 90px 0; }
-    }
+    .tagline { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); text-align: center; font: 500 17px/1.25 'Montserrat', sans-serif; width: 100%; }
+    .socials { position: absolute; left: 0; bottom: 6px; display: flex; gap: 20px; font-size: 13px; font-weight: 500; }
+    .socials a { opacity: .85; transition: opacity .3s; }
+    .socials a:hover { opacity: 1; text-decoration: underline; }
 
-    /* --- NEW TRENDY FULL-PAGE MOBILE RESPONSIVE --- */
-    @media (max-width: 600px) {
-      .container { padding: 0 20px; } 
-      
-      .hero { min-height: 100dvh; padding-top: 80px; padding-bottom: 80px; justify-content: center; } 
-      .hero h1 { font-size: 14vw; line-height: 1.05; margin-bottom: 20px; letter-spacing: -2px; }
-      .hero-subtitle { font-size: 12px; margin-bottom: 15px; }
-      .hero-desc { font-size: 16px; margin-bottom: 35px; }
-      
-      .hero > div { width: 100%; display: flex; }
-      .hero .btn { width: 100%; font-size: 14px; padding: 18px 0; }
-      
-      section { padding: 80px 0; }
-      .section-title { font-size: 10vw; margin-bottom: 40px; gap: 15px; }
-      .section-title::after { display: none; } 
-      
-      .ventures-grid { grid-template-columns: 1fr; gap: 20px; }
-      .venture-card { padding: 35px 25px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
-      .venture-card h3 { font-size: 26px; }
-      
-      .about-wrapper, .contact-wrapper { gap: 50px; }
-      .about-text p { font-size: 16px; }
-      
-      .stats { grid-template-columns: 1fr; gap: 20px; padding-top: 30px; margin-top: 30px; }
-      .stat-item p { font-size: 24px; }
-      
-      .contact-info h3 { font-size: 32px; margin-bottom: 15px; }
-      .contact-info p { margin-bottom: 30px; }
-      
-      .social-links { gap: 12px; }
-      .social-links a { padding: 16px 20px; font-size: 15px; }
-      
-      .contact-form { gap: 30px; margin-top: 0; } 
-      .contact-form .btn { width: 100%; padding: 18px 0; }
+    /* Sections */
+    .sec-title { font-size: clamp(30px, 4vw, 44px); font-weight: 600; line-height: 1.1; margin-bottom: 28px; }
+    .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; }
+    .about-grid img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 28px; box-shadow: 0 30px 40px -20px rgba(60,10,0,.7); }
+    .about-grid p { color: var(--soft); margin-bottom: 16px; max-width: 520px; }
+    .about-grid strong { color: #fff; font-weight: 500; }
+    .facts { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+    .facts div { background: var(--glass); border-radius: 18px; padding: 14px 22px; }
+    .facts small { display: block; font-size: 12px; color: var(--soft); }
+    .facts span { font: 600 17px 'Montserrat', sans-serif; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .contact-grid > div > p { color: var(--soft); max-width: 420px; margin-bottom: 26px; }
+    .links { display: flex; flex-direction: column; gap: 10px; }
+    .links a {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--glass); border-radius: 22px; padding: 16px 24px; font-weight: 500;
+      transition: background .3s, transform .3s var(--ease);
     }
+    .links a:hover { background: rgba(255,255,255,0.22); transform: translateX(4px); }
+    form { display: flex; flex-direction: column; gap: 14px; align-self: end; }
+    form input, form textarea {
+      width: 100%; background: var(--glass); border: 1px solid transparent; border-radius: 22px;
+      padding: 15px 22px; color: #fff; font: 400 15px 'DM Sans', sans-serif; resize: none;
+    }
+    form input::placeholder, form textarea::placeholder { color: rgba(255,255,255,0.65); }
+    form input:focus, form textarea:focus { outline: none; border-color: #fff; }
+    form .btn-white { align-self: flex-start; }
+
+    footer { text-align: center; font-size: 13px; color: rgba(255,255,255,0.9); padding: 8px 0 20px; }
+
+    /* Tablet */
+    @media (max-width: 1000px) {
+      body { padding: 14px; }
+      .card { padding: 26px 24px; border-radius: 28px; }
+      .topbar { flex-wrap: wrap; }
+      .pill-nav { order: 3; width: 100%; max-width: none; }
+      .top-icons { display: none; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; padding-bottom: 130px; }
+      .hero-left p { margin-inline: auto; }
+      .arrows, .hero-left .btn-white { margin-inline: auto; }
+      .arrows { justify-content: center; }
+      .hero-photo img { width: min(70%, 300px); }
+      .venture-box { text-align: center; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-grid img { max-width: 320px; }
+    }
+    @media (max-width: 520px) {
+      .tagline { font-size: 15px; bottom: 44px; }
+      .socials { left: 50%; transform: translateX(-50%); }
+      .hero-left h1 { font-size: 36px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero-photo img { animation: none; } html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">Ahlad A <span>Nair</span></div>
-        <div class="nav-links">
-          <a href="#ventures">Ventures</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button class="menu-btn">☰</button>
+  <!-- HERO -->
+  <header class="card" id="home">
+    <div class="topbar">
+      <a href="#home" class="logo"><b>AN</b> AHLAD A NAIR</a>
+      <nav class="pill-nav" aria-label="Main">
+        <a href="#home" class="on">Home</a>
+        <a href="#ventures">Ventures</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <div class="top-icons">
+        <a class="dot-btn" href="mailto:ahladanair2007@gmail.com" aria-label="Email">✉</a>
+        <a class="dot-btn" href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="arrows">
+          <button class="dot-btn" id="prev" aria-label="Previous venture" style="border:0;color:#fff;cursor:pointer">‹</button>
+          <button class="dot-btn" id="next" aria-label="Next venture" style="border:0;color:#fff;cursor:pointer">›</button>
+        </div>
+        <h1>Building businesses and shaping stories.</h1>
+        <p>I'm Ahlad A Nair, a BBA student at DCSMAT Vagamon. I run an editing agency and an online news platform, and learn business by practising it.</p>
+        <a href="#ventures" class="btn-white">Explore my work <i>›</i></a>
+      </div>
+
+      <div class="hero-photo">
+        <img src="myphoto.jpg" alt="Ahlad A Nair" onerror="this.style.visibility='hidden'">
+      </div>
+
+      <div class="hero-right" id="ventures">
+        <div class="big-num">3 ventures<s>1 founder</s></div>
+        <p class="choose">Choose a venture</p>
+        <div class="circles" id="circles">
+          <button class="circle" aria-pressed="true" aria-label="Rianadalha">R</button>
+          <button class="circle" aria-pressed="false" aria-label="The Stated Words">S</button>
+          <button class="circle" aria-pressed="false" aria-label="Digital Hub">D</button>
+        </div>
+        <div class="venture-box" aria-live="polite">
+          <small id="v-type"></small>
+          <h3 id="v-name"></h3>
+          <p id="v-desc"></p>
+          <a id="v-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+
+      <div class="socials">
+        <a href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="tagline">Execution,<br>wrapped in strategy.</div>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero container" style="border:none;">
-      <p class="hero-subtitle">BBA Student & Founder</p>
-      <h1>Building businesses <i>and</i> shaping stories.</h1>
-      <p class="hero-desc">I am Ahlad A Nair. I balance a business degree at DCSMAT Vagamon with real-world execution by running an editing agency and an online news platform.</p>
-      <div>
-        <a href="#ventures" class="btn">Explore My Work</a>
-      </div>
-    </section>
-
-    <!-- VENTURES -->
-    <section id="ventures">
-      <div class="container">
-        <h2 class="section-title">Selected Ventures</h2>
-        <div class="ventures-grid">
-          
-          <div class="venture-card">
-            <span class="venture-type">Editing Agency</span>
-            <h3>Rianadalha</h3>
-            <p>A high-end media editing service dedicated to bringing stories to life. We specialize in polished video production for creators and businesses, focusing on precise cuts and narrative flow.</p>
-            <a href="https://rianadalha.odoo.com" target="_blank" class="venture-link">Visit Agency <span>→</span></a>
-          </div>
-
-          <div class="venture-card">
-            <span class="venture-type">News Platform</span>
-            <h3>The Stated Words</h3>
-            <p>An online media publisher delivering timely and relevant news. Currently scaling our digital footprint and exploring the intersection of modern journalism and digital distribution.</p>
-            <a href="https://thestatedword.blogspot.com" target="_blank" class="venture-link">Read Articles <span>→</span></a>
-          </div>
-
-          <div class="venture-card">
-            <span class="venture-type">Web Development</span>
-            <h3>Digital Hub</h3>
-            <p>I built the official website for Luminance at DCSMAT, proudly recognized as South India's biggest college fest. It flawlessly handles the online event bookings for everybody.</p>
-           <a href="https://luminancefestdc.github.io/2026/" target="_blank" class="venture-link">Visit The Website <span>→</span></a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- ABOUT -->
-    <section id="about">
-      <div class="container about-wrapper">
-        <div class="about-image">
-          <!-- Add your image path here -->
-          <img src="myphoto.jpg" alt="Ahlad A Nair">
-        </div>
-        <div class="about-text">
-          <h2 class="section-title">The Founder</h2>
-          <p>Hi, I am <strong>Ahlad A Nair</strong>. While most first-year students are solely focused on theory, I believe the most effective way to learn business administration is to actively practice it.</p>
-          <p>Currently studying at <strong>DCSMAT Vagamon</strong>, I divide my time between academic coursework and managing my digital companies. Whether I am coordinating a team of editors for Rianadalha or managing publishing schedules for Stated Words, my focus remains on scalable execution and high-quality output.</p>
-          
-          <div class="stats">
-            <div class="stat-item">
-              <h4>Education</h4>
-              <p>BBA, First Year</p>
-            </div>
-            <div class="stat-item">
-              <h4>Location</h4>
-              <p>Vagamon, Kerala</p>
-            </div>
+    <section class="card" id="about">
+      <div class="about-grid">
+        <img src="myphoto.jpg" alt="Ahlad A Nair" onerror="this.style.visibility='hidden'">
+        <div>
+          <h2 class="sec-title">The founder</h2>
+          <p>Hi, I am <strong>Ahlad A Nair</strong>. While most first-year students focus on theory, I believe the best way to learn business administration is to practise it.</p>
+          <p>At <strong>DCSMAT Vagamon</strong> I split my time between coursework and my companies: coordinating editors for Rianadalha and managing publishing schedules for The Stated Words. I care about scalable execution and high-quality output.</p>
+          <p>I also built the official website for <strong>Luminance</strong>, DCSMAT's college fest, which handles online event bookings.</p>
+          <div class="facts">
+            <div><small>Education</small><span>BBA, First Year</span></div>
+            <div><small>Location</small><span>Vagamon, Kerala</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <div class="container contact-wrapper">
-        <div class="contact-info">
-          <h2 class="section-title">Let's Connect</h2>
-          <p>Whether you need media editing, have a business proposal, or just want to discuss digital strategy, my inbox is open.</p>
-          <div class="social-links">
-            <a href="mailto:ahladanair2007@gmail.com">Email Me <span>↗</span></a>
-            <a href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank">LinkedIn <span>↗</span></a>
-            <a href="https://instagram.com/ahladanair" target="_blank">Instagram <span>↗</span></a>
-            <a href="https://github.com/ahladanair" target="_blank">GitHub <span>↗</span></a>
+    <section class="card" id="contact">
+      <div class="contact-grid">
+        <div>
+          <h2 class="sec-title">Let's connect</h2>
+          <p>Need media editing, have a business proposal, or want to talk digital strategy? My inbox is open.</p>
+          <div class="links">
+            <a href="mailto:ahladanair2007@gmail.com">Email me <span>↗</span></a>
+            <a href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+            <a href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
+            <a href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
           </div>
         </div>
-        
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <div class="input-group">
-            <input type="text" id="name" name="name" required>
-            <label for="name">Your Name</label>
-          </div>
-          <div class="input-group">
-            <input type="email" id="email" name="email" required>
-            <label for="email">Your Email</label>
-          </div>
-          <div class="input-group">
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <label for="message">Your Message</label>
-          </div>
-          <button type="submit" class="btn">Send Inquiry</button>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+          <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+          <textarea name="message" rows="5" placeholder="Your message" aria-label="Your message" required></textarea>
+          <button type="submit" class="btn-white">Send message <i>›</i></button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 Ahlad A Nair. Designed & Built with intent.</p>
-    </div>
-  </footer>
+  <footer>© 2026 Ahlad A Nair. Designed & built with intent.</footer>
 
   <script>
-    // Mobile Menu Toggle
-    const menuBtn = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      if (navLinks.classList.contains('active')) {
-        menuBtn.innerHTML = '✕';
-        document.body.style.overflow = 'hidden'; 
-      } else {
-        menuBtn.innerHTML = '☰';
-        document.body.style.overflow = ''; 
-      }
-    });
+    const ventures = [
+      { type: 'Editing agency', name: 'Rianadalha', link: 'https://rianadalha.odoo.com', cta: 'Visit agency',
+        desc: 'High-end media editing for creators and businesses: precise cuts and clear narrative flow.' },
+      { type: 'News platform', name: 'The Stated Words', link: 'https://thestatedword.blogspot.com', cta: 'Read articles',
+        desc: 'An online publisher delivering timely news while growing its digital reach.' },
+      { type: 'Web development', name: 'Digital Hub', link: 'https://luminancefestdc.github.io/2026/', cta: 'Visit the website',
+        desc: 'The official site for Luminance at DCSMAT, South India\'s biggest college fest, with online event booking.' }
+    ];
+    const btns = [...document.querySelectorAll('.circle')];
+    let i = 0;
+    function show(n) {
+      i = (n + ventures.length) % ventures.length;
+      const v = ventures[i];
+      btns.forEach((b, k) => b.setAttribute('aria-pressed', k === i));
+      document.getElementById('v-type').textContent = v.type;
+      document.getElementById('v-name').textContent = v.name;
+      document.getElementById('v-desc').textContent = v.desc;
+      const a = document.getElementById('v-link');
+      a.href = v.link; a.textContent = v.cta + ' ↗';
+    }
+    btns.forEach((b, k) => b.addEventListener('click', () => show(k)));
+    document.getElementById('prev').addEventListener('click', () => show(i - 1));
+    document.getElementById('next').addEventListener('click', () => show(i + 1));
+    show(0);
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuBtn.innerHTML = '☰';
-        document.body.style.overflow = ''; 
-      });
-    });
+    // Highlight active nav pill
+    const links = [...document.querySelectorAll('.pill-nav a')];
+    const targets = links.map(l => document.querySelector(l.getAttribute('href')));
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) links.forEach((l, k) => l.classList.toggle('on', targets[k] === e.target));
+    }), { rootMargin: '-40% 0px -50% 0px' });
+    targets.forEach(t => t && io.observe(t));
   </script>
-
 </body>
 </html>
