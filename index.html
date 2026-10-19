@@ -230,81 +230,71 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
   .marquee .track{animation:none}
 }
 
-/* ================= MOBILE EDITION (<=700px) — separate theme & structure ================= */
+/* ================= MOBILE EDITION v2 — "Stories" (<=700px) ================= */
 .m{display:none}
 @media(max-width:700px){
-html,body{height:100%;overflow:hidden;background:#07070c}
+html,body{height:100%;overflow:hidden;background:#111}
 body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!important}
-.m{display:block;position:fixed;inset:0;background:#07070c;color:#f2f2f7;overflow:hidden;--lime:#c8ff3d;--vio:#7c5cff;--pink:#ff4fa3;-webkit-tap-highlight-color:transparent}
-.m-bg{position:absolute;inset:0;overflow:hidden;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px}
-.m-bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:mfl 11s ease-in-out infinite alternate}
-.m-bg i:nth-child(1){width:70vw;height:70vw;background:var(--vio);top:-10vw;left:-20vw}
-.m-bg i:nth-child(2){width:60vw;height:60vw;background:var(--pink);bottom:10vh;right:-25vw;animation-delay:-4s}
-.m-bg i:nth-child(3){width:45vw;height:45vw;background:var(--lime);top:45vh;left:-15vw;opacity:.25;animation-delay:-7s}
-@keyframes mfl{to{transform:translate(12vw,-8vh) scale(1.25)}}
-.m-glow{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity .5s;background:radial-gradient(190px circle at var(--x,50%) var(--y,30%),rgba(200,255,61,.2),transparent 70%)}
-.m-glow.on{opacity:1}
-.m-pg{position:absolute;top:0;left:0;height:3px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:left;z-index:30}
-.m-bar{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top,0px)) 22px 0;color:#f2f2f7}
-.m-bar b{font-family:'Archivo Black';font-size:12px;letter-spacing:.04em}
-.m-bar span{color:var(--lime)}
-.m-sc{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y proximity;overscroll-behavior:none;z-index:2;scrollbar-width:none}
-.m-sc::-webkit-scrollbar{display:none}
-.ms{position:relative;min-height:100svh;scroll-snap-align:start;padding:90px 22px 120px;display:flex;flex-direction:column;justify-content:center}
-.r{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--d,0)*90ms)}
-.in .r{opacity:1;transform:none}
-.mn{font-family:'Archivo Black';font-size:20.5vw;line-height:1;text-transform:uppercase;display:flex;overflow:hidden;padding:2vw 0;margin:1vw 0 0;user-select:none;touch-action:manipulation}
-.mn span{display:inline-block;opacity:0;background:linear-gradient(180deg,#f2f2f7 30%,var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
-.in .mn span{animation:mup .95s var(--ease) forwards;animation-delay:calc(var(--i)*70ms + .2s)}
-.mn span.pop{opacity:1;animation:mpop .6s var(--ease)}
-@keyframes mup{from{transform:translateY(110%) rotate(9deg);opacity:0}to{transform:none;opacity:1}}
-@keyframes mpop{40%{transform:translateY(-14%) scale(1.18) rotate(-5deg);filter:drop-shadow(0 0 18px var(--pink))}}
-.mo{font-family:'Archivo Black';font-size:14vw;line-height:1;color:transparent;-webkit-text-stroke:1.5px #f2f2f7;margin-bottom:26px}
-.mr{font-size:6vw;font-weight:300;margin-bottom:14px}
-.mr b{font-family:'Archivo Black';color:var(--lime);font-weight:400;text-transform:uppercase}
-.mr u{display:inline-block;width:2px;height:1em;background:var(--lime);margin-left:3px;vertical-align:-2px;animation:mcb 1s steps(2) infinite}
-@keyframes mcb{50%{opacity:0}}
-.md{color:#a8a8b8;font-weight:300;max-width:320px;font-size:15px}
-.cue{position:absolute;left:22px;bottom:110px;display:flex;gap:10px;align-items:center;color:#8a8a9a}
-.cue i{font-style:normal;color:var(--lime);font-size:16px;animation:mbn 1.4s ease-in-out infinite}
-@keyframes mbn{50%{transform:translateY(-7px)}}
-.ml{color:var(--lime);margin-bottom:6px}
-.mh{font-family:'Archivo Black';text-transform:uppercase;font-size:15vw;line-height:.95;margin-bottom:20px}
-.mh em{font-style:normal;color:var(--lime)}
-.mcar{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 11vw 26px;margin:0 -22px;position:relative;scrollbar-width:none}
-.mcar::-webkit-scrollbar{display:none}
-.mc{flex:0 0 78vw;scroll-snap-align:center;aspect-ratio:3/3.9;border-radius:28px;padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;color:#fff;box-shadow:0 18px 50px rgba(0,0,0,.5);transition:transform .12s linear,opacity .12s linear}
-.mc.a{background:linear-gradient(145deg,#7c5cff,#2a1b8a)}
-.mc.b{background:linear-gradient(145deg,#c8ff3d,#4fd66a);color:#07070c}
-.mc.c{background:linear-gradient(145deg,#ff4fa3,#ff8a3d)}
-.mc .bn{position:absolute;right:-3vw;top:-4vw;font-family:'Archivo Black';font-size:38vw;line-height:1;opacity:.16;pointer-events:none}
-.mc h3{font-family:'Archivo Black';text-transform:uppercase;font-size:9vw;line-height:1;margin:auto 0 10px;position:relative}
-.mc p{font-size:13px;line-height:1.5;font-weight:400;opacity:.9;margin-bottom:16px;position:relative}
-.go{align-self:flex-start;background:#07070c;color:#f2f2f7;padding:12px 20px;border-radius:30px;position:relative;overflow:hidden}
-.mc.b .go{color:var(--lime)}
-.dots{display:flex;gap:8px;justify-content:center}
-.dots i{width:8px;height:8px;border-radius:8px;background:#444;transition:all .4s var(--ease)}
-.dots i.on{width:26px;background:var(--lime)}
-.rip{position:relative;overflow:hidden}
-.rp{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:rgba(255,255,255,.55);pointer-events:none;animation:mrp .7s ease-out forwards}
-@keyframes mrp{to{transform:scale(34);opacity:0}}
-.ph{width:46vw;aspect-ratio:1;border-radius:50%;position:relative;margin:0 0 26px 6px}
-.ph::before{content:'';position:absolute;inset:-7px;border-radius:50%;background:conic-gradient(var(--lime),var(--vio),var(--pink),var(--lime));animation:spin 6s linear infinite;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px))}
-.ph b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Archivo Black';font-size:15vw;color:#2a2a38;background:#14141d;border-radius:50%}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
-.ma p{color:#b4b4c4;font-weight:300;font-size:15px;line-height:1.7;margin-bottom:14px}
-.ma p strong{color:#f2f2f7;font-weight:500}
-.sts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;border-top:1px solid #2a2a38;padding-top:18px}
-.sn{font-family:'Archivo Black';font-size:12vw;line-height:1;color:var(--lime)}
-.sts .mono{color:#8a8a9a;font-size:9px}
-.cp{background:var(--lime);color:#07070c;border-radius:40px;padding:20px 26px;margin:6px 0 18px;display:flex;justify-content:space-between;font-family:'Archivo Black';font-size:18px;text-transform:uppercase}
-.cl{display:flex;justify-content:space-between;padding:20px 4px;border-bottom:1px solid #2a2a38;font-family:'Archivo Black';text-transform:uppercase;font-size:20px;transition:color .3s,padding-left .4s var(--ease)}
-.cl:active{color:var(--pink);padding-left:14px}
-.mf{margin-top:22px;color:#6a6a7a;font-size:9px}
-.dk{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(92vw,380px);display:grid;grid-template-columns:repeat(4,1fr);padding:5px;border-radius:40px;background:rgba(20,20,30,.6);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);z-index:25}
-.dk button{position:relative;z-index:1;background:none;border:0;color:#9a9aa8;font:700 10px 'Space Mono',monospace;text-transform:uppercase;letter-spacing:.1em;padding:14px 0;cursor:pointer;transition:color .3s}
-.dk button.on{color:#07070c}
-.dk-pill{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/4);border-radius:30px;background:var(--lime);transition:transform .6s var(--ease)}
+.m{display:block;position:fixed;inset:0;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;background:#111;--fg:#111;--cream:#f1ede4;--blue:#2d3cff;--org:#ff5a36;--lime:#d4ff3a}
+.sl{position:absolute;inset:0;padding:110px 24px 40px;display:flex;flex-direction:column;justify-content:center;clip-path:inset(0 0 100% 0);z-index:0;transition:clip-path .8s var(--ease);overflow:hidden}
+.sl.out{clip-path:inset(0)!important;z-index:1;transition:none}
+.sl.act{clip-path:inset(0);z-index:2}
+.s1{background:var(--cream);color:#111}.s2{background:var(--blue);color:var(--cream)}.s3{background:var(--org);color:#111}.s4{background:#111;color:var(--cream)}.s5{background:var(--cream);color:#111}.s6{background:var(--lime);color:#111}
+.r{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .9s var(--ease)}
+.act .r{opacity:1;transform:none;transition-delay:calc(var(--d,0)*110ms + .45s)}
+.hd{position:absolute;top:0;left:0;right:0;z-index:20;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 0;color:var(--fg);transition:color .5s,opacity .3s}
+.m.hold .hd{opacity:0}
+.pb{display:flex;gap:4px}
+.pb button{flex:1;background:none;border:0;padding:8px 0;cursor:pointer}
+.pb i{display:block;height:3px;border-radius:3px;background:rgba(128,128,128,.35);overflow:hidden}
+.pb b{display:block;height:100%;background:var(--fg);transform-origin:left;transform:scaleX(0)}
+.hr{display:flex;justify-content:space-between;padding:10px 8px 0;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.big{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.92}
+.mono2{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.s1::before{content:'';position:absolute;inset:0;background:radial-gradient(240px circle at var(--x,75%) var(--y,25%),rgba(45,60,255,.28),transparent 70%);pointer-events:none}
+.L{display:flex;overflow:hidden;padding:1vw 0;font-size:22vw}
+.L span{display:inline-block;opacity:0}
+.act .L span{animation:rise .95s var(--ease) both;animation-delay:calc(var(--i)*65ms + .35s)}
+@keyframes rise{from{transform:translateY(105%) rotate(7deg);opacity:0}to{transform:none;opacity:1}}
+.s1 .nm{font-size:22vw;color:var(--blue);margin-bottom:22px}
+.s1 p.d{max-width:300px;font-size:15px;font-weight:400;color:#333}
+.tk{position:absolute;left:-5%;width:110%;bottom:44px;background:#111;color:var(--cream);padding:14px 0;transform:rotate(-3deg);overflow:hidden;white-space:nowrap}
+.tk div{display:flex;gap:26px;width:max-content;padding-right:26px;animation:mq 16s linear infinite;font-family:'Archivo Black';font-size:20px;text-transform:uppercase}
+.tk em{font-style:normal;color:var(--org)}
+.tap{position:absolute;right:24px;top:130px;width:74px;height:74px;animation:spin 12s linear infinite}
+.no{position:absolute;right:-4vw;bottom:-6vw;font-family:'Archivo Black';font-size:62vw;line-height:1;color:transparent;-webkit-text-stroke:2px currentColor;opacity:.22;pointer-events:none}
+.tt{font-size:17vw;margin:12px 0 18px}
+.s4 .tt{font-size:10.5vw;color:var(--lime)}
+.sl p.t{font-size:15px;line-height:1.6;max-width:320px;margin-bottom:26px;font-weight:400}
+.bt{align-self:flex-start;display:inline-flex;gap:10px;padding:16px 26px;border-radius:40px;background:currentColor;position:relative;overflow:hidden;transition:transform .4s var(--ease)}
+.bt span{color:var(--bg2)}
+.s2 .bt{--bg2:var(--blue);background:var(--cream)}.s3 .bt{--bg2:var(--org);background:#111}.s4 .bt{--bg2:#111;background:var(--lime)}.s3 .bt span{color:var(--cream)}
+.bt:active{transform:scale(.93)}
+.rings{position:absolute;top:120px;right:-30px;width:150px;height:150px}
+.rings i{position:absolute;inset:0;border:2px solid var(--cream);border-radius:50%;animation:rg 3s ease-out infinite}
+.rings i:nth-child(2){animation-delay:1s}.rings i:nth-child(3){animation-delay:2s}
+@keyframes rg{from{transform:scale(.2);opacity:1}to{transform:scale(1.4);opacity:0}}
+.play{position:absolute;top:120px;right:20px;width:92px;animation:spin 10s linear infinite}
+.win{position:absolute;top:118px;right:20px;width:46vw;border:2px solid var(--lime);border-radius:14px;padding:10px;animation:fl2 4s ease-in-out infinite alternate}
+.win u{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);margin-right:5px}
+.win b{display:block;height:8px;border-radius:4px;margin-top:9px;background:linear-gradient(90deg,#333 30%,var(--lime) 50%,#333 70%);background-size:200%;animation:sh 1.8s linear infinite}
+.win b:nth-of-type(2){width:70%}.win b:nth-of-type(3){width:85%}
+@keyframes sh{to{background-position:-200% 0}}
+@keyframes fl2{to{transform:translateY(12px) rotate(2deg)}}
+.pho{width:50vw;aspect-ratio:1;margin-bottom:22px;background:var(--blue);position:relative;overflow:hidden;animation:mo 7s ease-in-out infinite;border-radius:60% 40% 55% 45%/50% 60% 40% 50%}
+@keyframes mo{50%{border-radius:40% 60% 45% 55%/60% 40% 60% 40%}}
+.pho b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Archivo Black';font-size:16vw;color:var(--cream)}
+.pho img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s5 .tt{font-size:14vw;margin:0 0 14px}
+.s5 p.t{margin-bottom:12px;color:#333}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chips span{border:1.5px solid #111;border-radius:30px;padding:9px 14px}
+.s6 .tt{font-size:23vw}
+.cb{display:flex;justify-content:space-between;background:#111;color:var(--lime);border-radius:40px;padding:20px 26px;font-family:'Archivo Black';font-size:18px;text-transform:uppercase;margin:4px 0 14px;transition:transform .4s var(--ease)}
+.cb:active{transform:scale(.95)}
+.cr{display:flex;justify-content:space-between;padding:18px 4px;border-bottom:2px solid #111;font-family:'Archivo Black';font-size:20px;text-transform:uppercase;transition:padding-left .4s var(--ease)}
+.cr:active{padding-left:14px}
+.cp{margin-top:20px;opacity:.6}
 }
 </style>
 </head>
@@ -370,7 +360,7 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
         </a>
         <a class="card c-photo" href="#about" style="--i:0;--r:0deg;--y:-20px">
           <div class="initials">AN</div>
-          <img src="profile.png" alt="Ahlad A Nair" loading="eager" decoding="async" onerror="this.style.display='none'">
+          <img src="profile.jpg" alt="Ahlad A Nair" loading="eager" decoding="async" onerror="this.style.display='none'">
           <div class="tag"><span>Ahlad A Nair</span><span>BBA×DCSMAT</span></div>
           <h3>The<br>Founder</h3>
         </a>
@@ -425,7 +415,7 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
     <div class="container about-grid">
       <div class="photo rv">
         <span class="tag mono">Ahlad A Nair</span>
-        <img src="profile.jpg" alt="Portrait of Ahlad A Nair" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <img src="profile.png" alt="Portrait of Ahlad A Nair" loading="lazy" decoding="async" onerror="this.style.display='none'">
       </div>
       <div class="rv">
         <h2 class="display">The<br>Founder</h2>
@@ -470,50 +460,57 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
 
 <!-- MOBILE EDITION -->
 <div class="m" id="m" aria-label="Mobile portfolio">
-  <div class="m-bg" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div class="m-glow" id="mGlow" aria-hidden="true"></div>
-  <div class="m-pg" id="mPg" aria-hidden="true"></div>
-  <div class="m-bar mono"><b>Ahlad A Nair</b><span id="mCount">01/04</span></div>
-  <div class="m-sc" id="mSc">
-    <section class="ms" id="m-home">
-      <p class="mono r ml" style="--d:0">(Portfolio — 2026)</p>
-      <p class="mn" id="mName" role="heading" aria-level="1" aria-label="Ahlad">AHLAD</p>
-      <p class="mo r" style="--d:3">A Nair</p>
-      <p class="mr r" style="--d:4">I’m a <b id="mRole"></b><u></u></p>
-      <p class="md r" style="--d:5">BBA student &amp; founder building businesses and shaping stories.</p>
-      <div class="cue mono r" style="--d:6"><span>Swipe up</span><i>↑</i></div>
-    </section>
-    <section class="ms" id="m-work">
-      <p class="mono ml r">(Selected Ventures)</p>
-      <h2 class="mh r" style="--d:1">Things<br>I <em>built</em></h2>
-      <div class="mcar r" id="mCar" style="--d:2">
-        <a class="mc a rip" href="https://thestatedword.blogspot.com" target="_blank" rel="noopener"><span class="bn">01</span><span class="mono">News Platform</span><h3>Stated<br>Words</h3><p>An online publisher delivering timely news at the intersection of journalism and digital distribution.</p><span class="go mono">Open ↗</span></a>
-        <a class="mc b rip" href="https://rianadalha.odoo.com" target="_blank" rel="noopener"><span class="bn">02</span><span class="mono">Editing Agency</span><h3>Riana-<br>dalha</h3><p>High-end media editing — polished video production with precise cuts and narrative flow.</p><span class="go mono">Open ↗</span></a>
-        <a class="mc c rip" href="https://YOUR-PORTFOLIO-LINK" target="_blank" rel="noopener"><span class="bn">03</span><span class="mono">Web Development</span><h3>Principal’s<br>Portfolio</h3><p>A professional portfolio website built for a school principal, showcasing career and leadership.</p><span class="go mono">Open ↗</span></a>
-      </div>
-      <div class="dots r" style="--d:3"><i></i><i></i><i></i></div>
-    </section>
-    <section class="ms ma" id="m-about">
-      <div class="ph r"><b>AN</b><img src="profile.png" alt="Portrait of Ahlad A Nair" decoding="async" onerror="this.style.display='none'"></div>
-      <h2 class="mh r" style="--d:1">The<br><em>Founder</em></h2>
-      <p class="r" style="--d:2">Hi, I’m <strong>Ahlad A Nair</strong>. I believe the best way to learn business is to actually practice it.</p>
-      <p class="r" style="--d:3">Studying at <strong>DCSMAT Vagamon</strong> while running my digital companies — focused on scalable execution and high-quality output.</p>
-      <div class="sts r" style="--d:4">
-        <div><div class="sn" data-to="3">00</div><span class="mono">Ventures</span></div>
-        <div><div class="sn" data-to="1">00</div><span class="mono">BBA Year</span></div>
-        <div><div class="sn" data-to="4">00</div><span class="mono">Roles</span></div>
-      </div>
-    </section>
-    <section class="ms" id="m-contact">
-      <h2 class="mh r">Say<br><em>Hello</em></h2>
-      <a class="cp rip r" style="--d:1" href="mailto:ahladanair2007@gmail.com"><span>Email Me</span><span>↗</span></a>
-      <a class="cl r" style="--d:2" href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
-      <a class="cl r" style="--d:3" href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
-      <a class="cl r" style="--d:4" href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
-      <p class="mf mono r" style="--d:5">© 2026 Ahlad A Nair</p>
-    </section>
-  </div>
-  <nav class="dk" aria-label="Sections"><span class="dk-pill" id="dkPill"></span><button class="on">Home</button><button>Work</button><button>About</button><button>Contact</button></nav>
+  <div class="hd"><div class="pb" id="pb"><button aria-label="Slide 1"><i><b></b></i></button><button aria-label="Slide 2"><i><b></b></i></button><button aria-label="Slide 3"><i><b></b></i></button><button aria-label="Slide 4"><i><b></b></i></button><button aria-label="Slide 5"><i><b></b></i></button><button aria-label="Slide 6"><i><b></b></i></button></div>
+    <div class="hr"><span>Ahlad A Nair</span><span id="cnt">01/06</span></div></div>
+
+  <section class="sl s1 act" data-fg="#111">
+    <svg class="tap r" style="--d:6" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="mc" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="8" fill="#ff5a36"/><text font-family="Space Mono" font-size="11" letter-spacing="2.2" fill="#111"><textPath href="#mc">TAP • HOLD • SWIPE • TAP • HOLD •</textPath></text></svg>
+    <p class="mono2 r" style="--d:0">(Portfolio — 2026)</p>
+    <p class="big L" id="mL" aria-label="Ahlad">AHLAD</p>
+    <p class="big nm r" style="--d:3">A Nair</p>
+    <p class="d r" style="--d:4">BBA student &amp; founder building businesses and shaping stories.</p>
+    <div class="tk" aria-hidden="true"><div><span>Founder</span><em>✦</em><span>Editor</span><em>✦</em><span>Publisher</span><em>✦</em><span>Web Developer</span><em>✦</em><span>BBA Student</span><em>✦</em><span>Founder</span><em>✦</em><span>Editor</span><em>✦</em><span>Publisher</span><em>✦</em><span>Web Developer</span><em>✦</em><span>BBA Student</span><em>✦</em></div></div>
+  </section>
+
+  <section class="sl s2" data-fg="#f1ede4">
+    <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div><span class="no" aria-hidden="true">01</span>
+    <p class="mono2 r">News Platform</p>
+    <h2 class="big tt r" style="--d:1">Stated<br>Words</h2>
+    <p class="t r" style="--d:2">An online publisher delivering timely news at the intersection of modern journalism and digital distribution.</p>
+    <a class="bt mono2 r" style="--d:3" href="https://thestatedword.blogspot.com" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
+  </section>
+
+  <section class="sl s3" data-fg="#111">
+    <svg class="play" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#111" stroke-width="12"/><path d="M42 33l26 17-26 17z" fill="#111"/></svg><span class="no" aria-hidden="true">02</span>
+    <p class="mono2 r">Editing Agency</p>
+    <h2 class="big tt r" style="--d:1">Riana<br>dalha</h2>
+    <p class="t r" style="--d:2">High-end media editing — polished video production for creators and businesses, with precise cuts and narrative flow.</p>
+    <a class="bt mono2 r" style="--d:3" href="https://rianadalha.odoo.com" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
+  </section>
+
+  <section class="sl s4" data-fg="#f1ede4">
+    <div class="win" aria-hidden="true"><u></u><u></u><u></u><b></b><b></b><b></b></div><span class="no" aria-hidden="true">03</span>
+    <p class="mono2 r">Web Development</p>
+    <h2 class="big tt r" style="--d:1">The<br>Principal’s<br>Portfolio</h2>
+    <p class="t r" style="--d:2">A professional portfolio website built for a school principal, showcasing career and leadership.</p>
+    <a class="bt mono2 r" style="--d:3" href="https://YOUR-PORTFOLIO-LINK" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
+  </section>
+
+  <section class="sl s5" data-fg="#111">
+    <div class="pho r"><b>AN</b><img src="profile.png" alt="Portrait of Ahlad A Nair" decoding="async" onerror="this.style.display='none'"></div>
+    <h2 class="big tt r" style="--d:1">The<br>Founder</h2>
+    <p class="t r" style="--d:2">Hi, I’m <b>Ahlad A Nair</b>. I believe the best way to learn business is to practice it — so I run my companies alongside my degree.</p>
+    <div class="chips mono2 r" style="--d:3"><span>BBA · 1st Year</span><span>DCSMAT</span><span>Vagamon, Kerala</span></div>
+  </section>
+
+  <section class="sl s6" data-fg="#111">
+    <h2 class="big tt r">Say<br>Hello</h2>
+    <a class="cb r" style="--d:1" href="mailto:ahladanair2007@gmail.com"><span>Email Me</span><span>↗</span></a>
+    <a class="cr r" style="--d:2" href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+    <a class="cr r" style="--d:3" href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
+    <a class="cr r" style="--d:4" href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+    <p class="cp mono2 r" style="--d:5">© 2026 Ahlad A Nair</p>
+  </section>
 </div>
 <script>
 (() => {
@@ -746,79 +743,45 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
 <script>
 (() => {
   const m = document.getElementById('m'); if (!m) return;
-  const sc = document.getElementById('mSc');
-  const $ = (s, c = m) => c.querySelector(s), $$ = (s, c = m) => [...c.querySelectorAll(s)];
-  const vib = n => navigator.vibrate && navigator.vibrate(n);
+  const sl = [...m.querySelectorAll('.sl')], N = sl.length, fills = [...m.querySelectorAll('.pb b')], btns = [...m.querySelectorAll('.pb button')];
+  const cnt = document.getElementById('cnt'), vib = n => navigator.vibrate && navigator.vibrate(n);
+  const DUR = 6500; let cur = 0, el = 0, paused = false, last = performance.now();
 
-  // letters: tap to bounce
-  const nm = $('#mName');
-  nm.innerHTML = [...'AHLAD'].map((c, i) => `<span style="--i:${i}">${c}</span>`).join('');
-  nm.addEventListener('pointerdown', e => { const s = e.target.closest('span'); if (!s) return; s.classList.remove('pop'); void s.offsetWidth; s.classList.add('pop'); vib(12); });
+  document.getElementById('mL').innerHTML = [...'AHLAD'].map((c, i) => `<span style="--i:${i}">${c}</span>`).join('');
 
-  // typing roles
-  const roles = ['Founder', 'Editor', 'Publisher', 'Web Developer', 'BBA Student'], rt = $('#mRole');
-  let ri = 0, ci = 0, del = false;
-  (function type() {
-    const w = roles[ri]; ci += del ? -1 : 1; rt.textContent = w.slice(0, ci);
-    let d = del ? 45 : 90;
-    if (!del && ci === w.length) { del = true; d = 1300; } else if (del && ci === 0) { del = false; ri = (ri + 1) % roles.length; d = 300; }
-    setTimeout(type, d);
-  })();
+  function go(n) {
+    n = Math.max(0, Math.min(N - 1, n)); if (n === cur) return;
+    const old = sl[cur]; old.classList.remove('act'); old.classList.add('out'); setTimeout(() => old.classList.remove('out'), 850);
+    cur = n; sl[n].classList.remove('out'); sl[n].classList.add('act'); el = 0;
+    fills.forEach((f, i) => f.style.transform = `scaleX(${i < n ? 1 : 0})`);
+    m.style.setProperty('--fg', sl[n].dataset.fg);
+    cnt.textContent = `0${n + 1}/0${N}`;
+  }
+  (function tick(now) {
+    const dt = Math.min(100, now - last); last = now;
+    if (cur < N - 1) { if (!paused) { el += dt; if (el >= DUR) go(cur + 1); else fills[cur].style.transform = `scaleX(${el / DUR})`; } }
+    else fills[cur].style.transform = 'scaleX(1)';
+    requestAnimationFrame(tick);
+  })(last);
 
-  // touch glow
-  const g = $('#mGlow');
-  const mv = e => { g.style.setProperty('--x', e.clientX + 'px'); g.style.setProperty('--y', e.clientY + 'px'); g.classList.add('on'); };
-  m.addEventListener('pointermove', mv, { passive: true });
-  m.addEventListener('pointerdown', mv, { passive: true });
-  m.addEventListener('pointerup', () => setTimeout(() => g.classList.remove('on'), 700));
-
-  // ripple + haptics
-  $$('.rip').forEach(b => b.addEventListener('pointerdown', e => {
-    const r = b.getBoundingClientRect(), s = document.createElement('i');
-    s.className = 'rp'; s.style.left = e.clientX - r.left + 'px'; s.style.top = e.clientY - r.top + 'px';
-    b.appendChild(s); setTimeout(() => s.remove(), 700); vib(15);
-  }));
-
-  // count-up
-  let counted = 0;
-  const count = () => {
-    if (counted) return; counted = 1;
-    $$('[data-to]').forEach(el => {
-      const to = +el.dataset.to; let t0;
-      const st = ts => { t0 ??= ts; const p = Math.min(1, (ts - t0) / 1200); el.textContent = String(Math.round(to * (1 - Math.pow(1 - p, 3)))).padStart(2, '0'); if (p < 1) requestAnimationFrame(st); };
-      requestAnimationFrame(st);
-    });
-  };
-
-  // sections, dock, counter
-  const secs = $$('.ms'), dock = $$('.dk button'), pill = $('#dkPill'), cnt = $('#mCount');
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('in');
-    const i = secs.indexOf(e.target);
-    dock.forEach((b, j) => b.classList.toggle('on', i === j));
-    pill.style.transform = `translateX(${i * 100}%)`;
-    cnt.textContent = `0${i + 1}/04`;
-    if (e.target.id === 'm-about') count();
-  }), { root: sc, rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-  secs.forEach(s => io.observe(s));
-  dock.forEach((b, i) => b.addEventListener('click', () => { secs[i].scrollIntoView({ behavior: 'smooth' }); vib(10); }));
-  const pg = $('#mPg');
-  sc.addEventListener('scroll', () => { pg.style.transform = `scaleX(${(sc.scrollTop / Math.max(1, sc.scrollHeight - sc.clientHeight)).toFixed(3)})`; }, { passive: true });
-
-  // carousel: scale / tilt / fade by distance from centre
-  const car = $('#mCar'), cards = $$('.mc', car), dots = $$('.dots i');
-  const upd = () => {
-    const c = car.scrollLeft + car.clientWidth / 2; let best = 0, bd = 1e9;
-    cards.forEach((el, i) => {
-      const mid = el.offsetLeft + el.offsetWidth / 2, d = Math.abs(c - mid), k = Math.min(1, d / el.offsetWidth);
-      el.style.transform = `scale(${1 - .1 * k}) rotate(${((mid - c) / el.offsetWidth) * 4}deg)`;
-      el.style.opacity = 1 - .45 * k;
-      if (d < bd) { bd = d; best = i; }
-    });
-    dots.forEach((x, i) => x.classList.toggle('on', i === best));
-  };
-  car.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+  let sx = 0, st = 0, ht;
+  m.addEventListener('pointerdown', e => {
+    if (e.target.closest('a,button')) return;
+    sx = e.clientX; st = performance.now();
+    ht = setTimeout(() => { paused = true; m.classList.add('hold'); }, 220);
+  });
+  m.addEventListener('pointerup', e => {
+    clearTimeout(ht); if (!st) return;
+    const dx = e.clientX - sx, quick = performance.now() - st < 220;
+    paused = false; m.classList.remove('hold');
+    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
+    else if (quick) go(cur + (e.clientX > innerWidth * .35 ? 1 : -1));
+    st = 0; vib(8);
+  });
+  m.addEventListener('pointercancel', () => { clearTimeout(ht); paused = false; st = 0; m.classList.remove('hold'); });
+  m.addEventListener('pointermove', e => { m.style.setProperty('--x', e.clientX + 'px'); m.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });
+  btns.forEach((b, i) => b.addEventListener('click', () => { go(i); vib(10); }));
+  addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(cur + 1); if (e.key === 'ArrowLeft') go(cur - 1); });
 })();
 </script>
 </body>
