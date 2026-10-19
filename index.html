@@ -45,7 +45,7 @@ img{display:block}
 .container{max-width:1280px;margin:0 auto;padding:0 var(--gutter)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* film grain — adds a tactile, print-like feel */
+/* film grain */
 body::after{content:'';position:fixed;inset:-50%;z-index:9500;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   animation:grain 1.2s steps(6) infinite}
@@ -201,7 +201,7 @@ form{display:flex;flex-direction:column;gap:30px;align-self:end}
 .form-status.ok{color:#7ddc8a}.form-status.err{color:var(--red)}
 footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px;border-top:1px solid #222}
 
-/* reveal — only hidden when JS is running, so content never gets stuck invisible */
+/* reveal */
 .js .rv{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 
@@ -214,87 +214,67 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
   .about{padding:100px 0 80px}
   .contact{padding:90px 0 70px;border-radius:28px 28px 0 0}
 }
-@media(max-width:700px){
-  nav,.badge{display:none}
-  .menu-btn{display:block}
-  .red-block{width:24vw}
-  .hero-meta{flex-direction:column;gap:4px;bottom:24px}
-  .tri{display:none}
-  .stage{height:clamp(150px,44vw,260px)}
-  .card{border-radius:18px;padding:14px}
-  .card .tag{font-size:8px}
-}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01s!important;animation-iteration-count:1!important;transition-duration:.01s!important;scroll-behavior:auto!important}
   body::after{display:none}
   .marquee .track{animation:none}
 }
 
-/* ================= MOBILE EDITION v2 — "Stories" (<=700px) ================= */
-.m{display:none}
+/* ================= MOBILE REDESIGN (<=700px) ================= */
+.dock,.dots{display:none}
 @media(max-width:700px){
-html,body{height:100%;overflow:hidden;background:#111}
-body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!important}
-.m{display:block;position:fixed;inset:0;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;background:#111;--fg:#111;--cream:#f1ede4;--blue:#2d3cff;--org:#ff5a36;--lime:#d4ff3a}
-.sl{position:absolute;inset:0;padding:110px 24px 40px;display:flex;flex-direction:column;justify-content:center;clip-path:inset(0 0 100% 0);z-index:0;transition:clip-path .8s var(--ease);overflow:hidden}
-.sl.out{clip-path:inset(0)!important;z-index:1;transition:none}
-.sl.act{clip-path:inset(0);z-index:2}
-.s1{background:var(--cream);color:#111}.s2{background:var(--blue);color:var(--cream)}.s3{background:var(--org);color:#111}.s4{background:#111;color:var(--cream)}.s5{background:var(--cream);color:#111}.s6{background:var(--lime);color:#111}
-.r{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .9s var(--ease)}
-.act .r{opacity:1;transform:none;transition-delay:calc(var(--d,0)*110ms + .45s)}
-.hd{position:absolute;top:0;left:0;right:0;z-index:20;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 0;color:var(--fg);transition:color .5s,opacity .3s}
-.m.hold .hd{opacity:0}
-.pb{display:flex;gap:4px}
-.pb button{flex:1;background:none;border:0;padding:8px 0;cursor:pointer}
-.pb i{display:block;height:3px;border-radius:3px;background:rgba(128,128,128,.35);overflow:hidden}
-.pb b{display:block;height:100%;background:var(--fg);transform-origin:left;transform:scaleX(0)}
-.hr{display:flex;justify-content:space-between;padding:10px 8px 0;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.big{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.92}
-.mono2{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.s1::before{content:'';position:absolute;inset:0;background:radial-gradient(240px circle at var(--x,75%) var(--y,25%),rgba(45,60,255,.28),transparent 70%);pointer-events:none}
-.L{display:flex;overflow:hidden;padding:1vw 0;font-size:22vw}
-.L span{display:inline-block;opacity:0}
-.act .L span{animation:rise .95s var(--ease) both;animation-delay:calc(var(--i)*65ms + .35s)}
-@keyframes rise{from{transform:translateY(105%) rotate(7deg);opacity:0}to{transform:none;opacity:1}}
-.s1 .nm{font-size:22vw;color:var(--blue);margin-bottom:22px}
-.s1 p.d{max-width:300px;font-size:15px;font-weight:400;color:#333}
-.tk{position:absolute;left:-5%;width:110%;bottom:44px;background:#111;color:var(--cream);padding:14px 0;transform:rotate(-3deg);overflow:hidden;white-space:nowrap}
-.tk div{display:flex;gap:26px;width:max-content;padding-right:26px;animation:mq 16s linear infinite;font-family:'Archivo Black';font-size:20px;text-transform:uppercase}
-.tk em{font-style:normal;color:var(--org)}
-.tap{position:absolute;right:24px;top:130px;width:74px;height:74px;animation:spin 12s linear infinite}
-.no{position:absolute;right:-4vw;bottom:-6vw;font-family:'Archivo Black';font-size:62vw;line-height:1;color:transparent;-webkit-text-stroke:2px currentColor;opacity:.22;pointer-events:none}
-.tt{font-size:17vw;margin:12px 0 18px}
-.s4 .tt{font-size:10.5vw;color:var(--lime)}
-.sl p.t{font-size:15px;line-height:1.6;max-width:320px;margin-bottom:26px;font-weight:400}
-.bt{align-self:flex-start;display:inline-flex;gap:10px;padding:16px 26px;border-radius:40px;background:currentColor;position:relative;overflow:hidden;transition:transform .4s var(--ease)}
-.bt span{color:var(--bg2)}
-.s2 .bt{--bg2:var(--blue);background:var(--cream)}.s3 .bt{--bg2:var(--org);background:#111}.s4 .bt{--bg2:#111;background:var(--lime)}.s3 .bt span{color:var(--cream)}
-.bt:active{transform:scale(.93)}
-.rings{position:absolute;top:120px;right:-30px;width:150px;height:150px}
-.rings i{position:absolute;inset:0;border:2px solid var(--cream);border-radius:50%;animation:rg 3s ease-out infinite}
-.rings i:nth-child(2){animation-delay:1s}.rings i:nth-child(3){animation-delay:2s}
-@keyframes rg{from{transform:scale(.2);opacity:1}to{transform:scale(1.4);opacity:0}}
-.play{position:absolute;top:120px;right:20px;width:92px;animation:spin 10s linear infinite}
-.win{position:absolute;top:118px;right:20px;width:46vw;border:2px solid var(--lime);border-radius:14px;padding:10px;animation:fl2 4s ease-in-out infinite alternate}
-.win u{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);margin-right:5px}
-.win b{display:block;height:8px;border-radius:4px;margin-top:9px;background:linear-gradient(90deg,#333 30%,var(--lime) 50%,#333 70%);background-size:200%;animation:sh 1.8s linear infinite}
-.win b:nth-of-type(2){width:70%}.win b:nth-of-type(3){width:85%}
-@keyframes sh{to{background-position:-200% 0}}
-@keyframes fl2{to{transform:translateY(12px) rotate(2deg)}}
-.pho{width:50vw;aspect-ratio:1;margin-bottom:22px;background:var(--blue);position:relative;overflow:hidden;animation:mo 7s ease-in-out infinite;border-radius:60% 40% 55% 45%/50% 60% 40% 50%}
-@keyframes mo{50%{border-radius:40% 60% 45% 55%/60% 40% 60% 40%}}
-.pho b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Archivo Black';font-size:16vw;color:var(--cream)}
-.pho img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.s5 .tt{font-size:14vw;margin:0 0 14px}
-.s5 p.t{margin-bottom:12px;color:#333}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.chips span{border:1.5px solid #111;border-radius:30px;padding:9px 14px}
-.s6 .tt{font-size:23vw}
-.cb{display:flex;justify-content:space-between;background:#111;color:var(--lime);border-radius:40px;padding:20px 26px;font-family:'Archivo Black';font-size:18px;text-transform:uppercase;margin:4px 0 14px;transition:transform .4s var(--ease)}
-.cb:active{transform:scale(.95)}
-.cr{display:flex;justify-content:space-between;padding:18px 4px;border-bottom:2px solid #111;font-family:'Archivo Black';font-size:20px;text-transform:uppercase;transition:padding-left .4s var(--ease)}
-.cr:active{padding-left:14px}
-.cp{margin-top:20px;opacity:.6}
+:root{--gutter:20px}
+nav,.badge,.menu-btn,.menu{display:none!important}
+.tri{display:none}
+body::after{animation:none}
+header{padding:18px 0}
+
+.hero{padding:96px 0 70px}
+.hero-top{top:84px}
+.hero-meta{display:none}
+.red-block{width:24vw}
+.stage{height:clamp(190px,58vw,300px)}
+.stage-hint{font-size:10px;gap:10px}
+.hero-desc{font-size:14px;margin-top:4vh}
+.scroll-cue:active{background:var(--ink);color:var(--bg);transform:scale(.94)}
+
+.fan-section{padding:30px 0 20px}
+.fan-section>.container:first-child{padding:0}
+.fan{height:auto;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:46px 16vw 54px;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.fan::-webkit-scrollbar{display:none}
+.fan .card,.fan .card:hover,.fan .card:focus-visible{position:relative;left:auto;top:auto;flex:0 0 68vw;width:68vw;border-radius:26px;padding:20px;scroll-snap-align:center;scroll-snap-stop:always;animation:none;opacity:1;scale:1;translate:none;rotate:none;transform:scale(var(--s,.84)) rotate(var(--rt,0deg));transition:box-shadow .4s;z-index:auto;box-shadow:0 10px 26px rgba(0,0,0,.16)}
+.fan .card.mid{box-shadow:0 28px 54px rgba(0,0,0,.32)}
+.fan .card .tag{font-size:10px}
+.fan .card.c-photo.mid img{filter:none}
+.dots{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:-26px}
+.dots i{width:7px;height:7px;border-radius:7px;background:#a5a5a5;transition:width .5s var(--ease),background .4s}
+.dots i.on{width:28px;background:var(--red)}
+.round{margin:26px auto 0;width:190px}
+
+.sec-label{padding-top:50px}
+.v-row{padding:26px 8px;gap:8px 14px;-webkit-tap-highlight-color:transparent}
+.v-row:active::before{transform:translateY(0)}
+.v-row:active h3{transform:translateX(10px)}
+.v-row:active .arr{transform:translate(6px,-6px)}
+.marquee{margin-top:70px}
+
+.about{padding:90px 0 60px}
+.photo{aspect-ratio:1}
+.photo.live img{filter:grayscale(0);mix-blend-mode:normal;transform:scale(1.05)}
+
+.contact{padding:70px 0 130px}
+.links a{padding:22px 0}
+.links a:active{color:var(--red);padding-left:14px}
+.btn{width:100%;text-align:center}
+.btn:active{scale:.95}
+footer{padding-bottom:110px}
+
+.dock{display:flex;position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);z-index:160;background:rgba(13,13,13,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-radius:40px;padding:6px;transition:transform .8s var(--ease)}
+.dock.show{transform:translate(-50%,0)}
+.dock a{position:relative;z-index:1;padding:12px 15px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bg);transition:color .3s,transform .3s var(--ease);-webkit-tap-highlight-color:transparent}
+.dock a.on{color:var(--ink)}
+.dock a:active{transform:scale(.9)}
+.dock .pill{position:absolute;top:6px;bottom:6px;left:0;border-radius:30px;background:var(--red);transition:transform .6s var(--ease),width .6s var(--ease)}
 }
 </style>
 </head>
@@ -360,7 +340,7 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
         </a>
         <a class="card c-photo" href="#about" style="--i:0;--r:0deg;--y:-20px">
           <div class="initials">AN</div>
-          <img src="profile.jpge" alt="Ahlad A Nair" loading="eager" decoding="async" onerror="this.style.display='none'">
+          <img src="profile.png" alt="Ahlad A Nair" loading="eager" decoding="async" onerror="this.style.display='none'">
           <div class="tag"><span>Ahlad A Nair</span><span>BBA×DCSMAT</span></div>
           <h3>The<br>Founder</h3>
         </a>
@@ -457,61 +437,9 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
 
 <footer class="mono">© 2026 Ahlad A Nair. Designed &amp; Built with intent.</footer>
 
+<!-- MOBILE DOCK -->
+<div class="dock" id="dock" role="navigation" aria-label="Quick navigation"><i class="pill"></i><a href="#hero">Home</a><a href="#ventures">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
 
-<!-- MOBILE EDITION -->
-<div class="m" id="m" aria-label="Mobile portfolio">
-  <div class="hd"><div class="pb" id="pb"><button aria-label="Slide 1"><i><b></b></i></button><button aria-label="Slide 2"><i><b></b></i></button><button aria-label="Slide 3"><i><b></b></i></button><button aria-label="Slide 4"><i><b></b></i></button><button aria-label="Slide 5"><i><b></b></i></button><button aria-label="Slide 6"><i><b></b></i></button></div>
-    <div class="hr"><span>Ahlad A Nair</span><span id="cnt">01/06</span></div></div>
-
-  <section class="sl s1 act" data-fg="#111">
-    <svg class="tap r" style="--d:6" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="mc" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="8" fill="#ff5a36"/><text font-family="Space Mono" font-size="11" letter-spacing="2.2" fill="#111"><textPath href="#mc">TAP • HOLD • SWIPE • TAP • HOLD •</textPath></text></svg>
-    <p class="mono2 r" style="--d:0">(Portfolio — 2026)</p>
-    <p class="big L" id="mL" aria-label="Ahlad">AHLAD</p>
-    <p class="big nm r" style="--d:3">A Nair</p>
-    <p class="d r" style="--d:4">BBA student &amp; founder building businesses and shaping stories.</p>
-    <div class="tk" aria-hidden="true"><div><span>Founder</span><em>✦</em><span>Editor</span><em>✦</em><span>Publisher</span><em>✦</em><span>Web Developer</span><em>✦</em><span>BBA Student</span><em>✦</em><span>Founder</span><em>✦</em><span>Editor</span><em>✦</em><span>Publisher</span><em>✦</em><span>Web Developer</span><em>✦</em><span>BBA Student</span><em>✦</em></div></div>
-  </section>
-
-  <section class="sl s2" data-fg="#f1ede4">
-    <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div><span class="no" aria-hidden="true">01</span>
-    <p class="mono2 r">News Platform</p>
-    <h2 class="big tt r" style="--d:1">Stated<br>Words</h2>
-    <p class="t r" style="--d:2">An online publisher delivering timely news at the intersection of modern journalism and digital distribution.</p>
-    <a class="bt mono2 r" style="--d:3" href="https://thestatedword.blogspot.com" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
-  </section>
-
-  <section class="sl s3" data-fg="#111">
-    <svg class="play" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#111" stroke-width="12"/><path d="M42 33l26 17-26 17z" fill="#111"/></svg><span class="no" aria-hidden="true">02</span>
-    <p class="mono2 r">Editing Agency</p>
-    <h2 class="big tt r" style="--d:1">Riana<br>dalha</h2>
-    <p class="t r" style="--d:2">High-end media editing — polished video production for creators and businesses, with precise cuts and narrative flow.</p>
-    <a class="bt mono2 r" style="--d:3" href="https://rianadalha.odoo.com" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
-  </section>
-
-  <section class="sl s4" data-fg="#f1ede4">
-    <div class="win" aria-hidden="true"><u></u><u></u><u></u><b></b><b></b><b></b></div><span class="no" aria-hidden="true">03</span>
-    <p class="mono2 r">Web Development</p>
-    <h2 class="big tt r" style="--d:1">The<br>Principal’s<br>Portfolio</h2>
-    <p class="t r" style="--d:2">A professional portfolio website built for a school principal, showcasing career and leadership.</p>
-    <a class="bt mono2 r" style="--d:3" href="https://YOUR-PORTFOLIO-LINK" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
-  </section>
-
-  <section class="sl s5" data-fg="#111">
-    <div class="pho r"><b>AN</b><img src="profile.png" alt="Portrait of Ahlad A Nair" decoding="async" onerror="this.style.display='none'"></div>
-    <h2 class="big tt r" style="--d:1">The<br>Founder</h2>
-    <p class="t r" style="--d:2">Hi, I’m <b>Ahlad A Nair</b>. I believe the best way to learn business is to practice it — so I run my companies alongside my degree.</p>
-    <div class="chips mono2 r" style="--d:3"><span>BBA · 1st Year</span><span>DCSMAT</span><span>Vagamon, Kerala</span></div>
-  </section>
-
-  <section class="sl s6" data-fg="#111">
-    <h2 class="big tt r">Say<br>Hello</h2>
-    <a class="cb r" style="--d:1" href="mailto:ahladanair2007@gmail.com"><span>Email Me</span><span>↗</span></a>
-    <a class="cr r" style="--d:2" href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
-    <a class="cr r" style="--d:3" href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
-    <a class="cr r" style="--d:4" href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
-    <p class="cp mono2 r" style="--d:5">© 2026 Ahlad A Nair</p>
-  </section>
-</div>
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -550,7 +478,6 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
       for (let x = 0; x < W; x += step) {
         if (data[(y * W + x) * 4 + 3] > 128) {
           const p = parts[next.length] || {};
-          // new particles fly in from random points around the stage
           const a = Math.random() * Math.PI * 2, d = Math.max(W, H) * (.5 + Math.random() * .6);
           next.push({
             hx: x, hy: y,
@@ -573,7 +500,6 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
     for (let i = 0; i < parts.length; i++) {
       const p = parts[i];
       if (!reduce) {
-        // gentle idle wave so the word always feels alive
         const tx = p.hx + Math.sin(t * 1.4 + p.hy * .03) * 1.6;
         const ty = p.hy + Math.cos(t * 1.1 + p.hx * .025) * 1.6;
         p.vx += (tx - p.x) * .05; p.vy += (ty - p.y) * .05;
@@ -617,9 +543,9 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
   });
 
   /* ---------- State shared by the single animation loop ---------- */
-  let mouseX = 0, mouseY = 0;          // normalised -1..1
-  let sx = 0, sy = 0;                  // smoothed mouse
-  let cx = -100, cy = -100, px = -100, py = -100; // cursor target / smoothed
+  let mouseX = 0, mouseY = 0;
+  let sx = 0, sy = 0;
+  let cx = -100, cy = -100, px = -100, py = -100;
   let heroVisible = true, fanVisible = false;
   let scrollY = window.scrollY, smoothScroll = scrollY;
 
@@ -646,7 +572,6 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
       fan.style.setProperty('--mx', sx.toFixed(3));
       fan.style.setProperty('--my', sy.toFixed(3));
     }
-    // circular text: slow constant spin + scroll-driven spin
     round.style.transform = `rotate(${(smoothScroll * .25 + (reduce ? 0 : t * 16)).toFixed(2)}deg)`;
 
     if (fine) {
@@ -674,7 +599,7 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
     el.addEventListener('pointerleave', () => cursor.classList.remove('big'));
   });
 
-  /* ---------- Magnetic buttons (uses `translate`, so no clash with hover transforms) ---------- */
+  /* ---------- Magnetic buttons ---------- */
   if (fine && !reduce) {
     $$('.mag').forEach(b => {
       b.addEventListener('pointermove', e => {
@@ -692,7 +617,6 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
   $$('.rv').forEach((el, i) => {
     el.style.transitionDelay = (i % 3) * 90 + 'ms';
     io.observe(el);
-    // clear the stagger once revealed so hover transitions stay instant
     el.addEventListener('transitionend', ev => { if (ev.propertyName === 'transform') el.style.transitionDelay = ''; });
   });
 
@@ -703,7 +627,7 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
   }), { rootMargin: '-45% 0px -50% 0px' });
   ['ventures', 'about', 'contact'].forEach(id => spy.observe(document.getElementById(id)));
 
-  /* ---------- Mobile menu ---------- */
+  /* ---------- Mobile menu (kept for safety; hidden on phones) ---------- */
   const menu = $('#menu'), btn = $('#menuBtn');
   const setMenu = open => {
     menu.classList.toggle('open', open);
@@ -721,7 +645,6 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
     e.preventDefault();
     const say = (msg, cls) => { status.textContent = msg; status.className = 'form-status mono ' + (cls || ''); };
 
-    // Until a real Formspree ID is set, fall back to the visitor's mail app
     if (form.action.includes('YOUR_FORM_ID')) {
       const d = new FormData(form);
       location.href = `mailto:ahladanair2007@gmail.com?subject=${encodeURIComponent('Inquiry from ' + d.get('name'))}&body=${encodeURIComponent(d.get('message') + '\n\n— ' + d.get('name') + ' (' + d.get('email') + ')')}`;
@@ -740,48 +663,78 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
   setTimeout(() => $('.loader')?.remove(), 1400);
 })();
 </script>
+
 <script>
+/* ---------- Mobile enhancements: swipe deck, dock, touch hints ---------- */
 (() => {
-  const m = document.getElementById('m'); if (!m) return;
-  const sl = [...m.querySelectorAll('.sl')], N = sl.length, fills = [...m.querySelectorAll('.pb b')], btns = [...m.querySelectorAll('.pb button')];
-  const cnt = document.getElementById('cnt'), vib = n => navigator.vibrate && navigator.vibrate(n);
-  const DUR = 6500; let cur = 0, el = 0, paused = false, last = performance.now();
+  const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const mq = matchMedia('(max-width:700px)'), vib = n => navigator.vibrate && navigator.vibrate(n);
 
-  document.getElementById('mL').innerHTML = [...'AHLAD'].map((c, i) => `<span style="--i:${i}">${c}</span>`).join('');
-
-  function go(n) {
-    n = Math.max(0, Math.min(N - 1, n)); if (n === cur) return;
-    const old = sl[cur]; old.classList.remove('act'); old.classList.add('out'); setTimeout(() => old.classList.remove('out'), 850);
-    cur = n; sl[n].classList.remove('out'); sl[n].classList.add('act'); el = 0;
-    fills.forEach((f, i) => f.style.transform = `scaleX(${i < n ? 1 : 0})`);
-    m.style.setProperty('--fg', sl[n].dataset.fg);
-    cnt.textContent = `0${n + 1}/0${N}`;
+  if (matchMedia('(hover:none)').matches) {
+    const h = $('.stage-hint');
+    if (h) h.innerHTML = '<i></i><span>Drag to scatter</span><span>·</span><span>Tap to burst</span>';
   }
-  (function tick(now) {
-    const dt = Math.min(100, now - last); last = now;
-    if (cur < N - 1) { if (!paused) { el += dt; if (el >= DUR) go(cur + 1); else fills[cur].style.transform = `scaleX(${el / DUR})`; } }
-    else fills[cur].style.transform = 'scaleX(1)';
-    requestAnimationFrame(tick);
-  })(last);
+  $('#stage').addEventListener('pointerdown', () => vib(10));
 
-  let sx = 0, st = 0, ht;
-  m.addEventListener('pointerdown', e => {
-    if (e.target.closest('a,button')) return;
-    sx = e.clientX; st = performance.now();
-    ht = setTimeout(() => { paused = true; m.classList.add('hold'); }, 220);
+  /* swipe deck */
+  const fan = $('#fan'), cards = $$('.card', fan);
+  const dots = document.createElement('div');
+  dots.className = 'dots';
+  dots.innerHTML = cards.map(() => '<i></i>').join('');
+  fan.after(dots);
+  let mid = -1, tick = false;
+
+  const centre = (i, smooth) => {
+    const c = cards[i];
+    fan.scrollTo({ left: c.offsetLeft - (fan.clientWidth - c.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
+  };
+  function deck() {
+    tick = false;
+    if (!mq.matches) { cards.forEach(c => { c.style.removeProperty('--s'); c.style.removeProperty('--rt'); c.classList.remove('mid'); }); return; }
+    const mx = innerWidth / 2; let best = 0, bd = 1e9;
+    cards.forEach((c, i) => {
+      const r = c.getBoundingClientRect(), d = r.left + r.width / 2 - mx, n = Math.min(1, Math.abs(d) / (r.width * 1.1));
+      c.style.setProperty('--s', (1 - n * .16).toFixed(3));
+      c.style.setProperty('--rt', (d / r.width * 9).toFixed(2) + 'deg');
+      if (Math.abs(d) < bd) { bd = Math.abs(d); best = i; }
+    });
+    if (best !== mid) {
+      mid = best; vib(6);
+      cards.forEach((c, i) => c.classList.toggle('mid', i === best));
+      $$('i', dots).forEach((d, i) => d.classList.toggle('on', i === best));
+    }
+  }
+  const queue = () => { if (!tick) { tick = true; requestAnimationFrame(deck); } };
+  fan.addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', queue);
+  fan.addEventListener('click', e => {
+    const c = e.target.closest('.card'); if (!c || !mq.matches) return;
+    const i = cards.indexOf(c);
+    if (i !== mid) { e.preventDefault(); centre(i, true); }
   });
-  m.addEventListener('pointerup', e => {
-    clearTimeout(ht); if (!st) return;
-    const dx = e.clientX - sx, quick = performance.now() - st < 220;
-    paused = false; m.classList.remove('hold');
-    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
-    else if (quick) go(cur + (e.clientX > innerWidth * .35 ? 1 : -1));
-    st = 0; vib(8);
-  });
-  m.addEventListener('pointercancel', () => { clearTimeout(ht); paused = false; st = 0; m.classList.remove('hold'); });
-  m.addEventListener('pointermove', e => { m.style.setProperty('--x', e.clientX + 'px'); m.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });
-  btns.forEach((b, i) => b.addEventListener('click', () => { go(i); vib(10); }));
-  addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(cur + 1); if (e.key === 'ArrowLeft') go(cur - 1); });
+  addEventListener('load', () => { if (mq.matches) centre(2, false); deck(); });
+
+  /* dock with sliding pill */
+  const dock = $('#dock'), dl = $$('a', dock), pill = $('.pill', dock);
+  let curId = 'hero';
+  const setOn = id => {
+    curId = id;
+    const a = dl.find(x => x.getAttribute('href') === '#' + id); if (!a) return;
+    dl.forEach(x => x.classList.toggle('on', x === a));
+    pill.style.width = a.offsetWidth + 'px';
+    pill.style.transform = `translateX(${a.offsetLeft}px)`;
+  };
+  const dockIO = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setOn(e.target.id)), { rootMargin: '-45% 0px -50% 0px' });
+  ['hero', 'ventures', 'about', 'contact'].forEach(id => dockIO.observe(document.getElementById(id)));
+  dl.forEach(a => a.addEventListener('click', () => vib(8)));
+  (document.fonts?.ready ?? Promise.resolve()).then(() => setOn(curId));
+  addEventListener('resize', () => setOn(curId));
+  setOn('hero');
+  setTimeout(() => dock.classList.add('show'), 1500);
+
+  /* about photo turns to colour in view (no hover on touch) */
+  const ph = $('.photo');
+  new IntersectionObserver(([e]) => ph.classList.toggle('live', e.isIntersecting), { threshold: .6 }).observe(ph);
 })();
 </script>
 </body>
