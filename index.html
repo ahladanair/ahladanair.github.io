@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#dcdcdc">
-<meta name="theme-color" content="#07070c" media="(max-width:700px)">
+<meta name="theme-color" content="#09090c" media="(max-width:700px)">
 <title>Ahlad A Nair | Professional Portfolio</title>
 <meta name="description" content="Ahlad A Nair — Founder of Rianadalha & Stated Words. BBA student.">
 
@@ -24,7 +24,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <script>document.documentElement.classList.add('js')</script>
 <style>
@@ -214,87 +214,1032 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
   .about{padding:100px 0 80px}
   .contact{padding:90px 0 70px;border-radius:28px 28px 0 0}
 }
+
+/* ================= MOBILE EDITION v3 — KINETIC TACTILE OS (<=700px) ================= */
+.m{display:none}
 @media(max-width:700px){
-  nav,.badge{display:none}
-  .menu-btn{display:block}
-  .red-block{width:24vw}
-  .hero-meta{flex-direction:column;gap:4px;bottom:24px}
-  .tri{display:none}
-  .stage{height:clamp(150px,44vw,260px)}
-  .card{border-radius:18px;padding:14px}
-  .card .tag{font-size:8px}
+  html,body{background:#09090c;color:#f4f4f0;overflow-x:hidden;scroll-padding-top:76px}
+  header,.menu,main,footer,.cursor,.progress,.loader{display:none!important}
+  body::after{opacity:.055;z-index:9900}
+
+  .m{
+    display:block;
+    position:relative;
+    min-height:100svh;
+    background:#09090c;
+    color:#f4f4f0;
+    --m-red:#e24a38;
+    --m-lime:#d4ff3a;
+    --m-blue:#2d3cff;
+    --m-paper:#dcdcdc;
+    --m-ink:#09090c;
+    --m-card:#131319;
+    --m-border:rgba(255,255,255,0.11);
+    --accent:var(--m-red);
+    padding-bottom:108px;
+    overflow-x:hidden;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  /* Ambient glowing aura that shifts color per active section */
+  .m-ambient{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+      radial-gradient(360px circle at var(--tx, 50%) var(--ty, 22%), var(--accent-glow, rgba(226,74,56,0.22)), transparent 70%),
+      radial-gradient(280px circle at 85% 80%, rgba(45,60,255,0.12), transparent 65%);
+    transition:background .6s ease;
+  }
+
+  /* Subtle technical grid overlay */
+  .m-grid-bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background-size:36px 36px;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  }
+
+  /* Top Tactile Status Bar */
+  .m-topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:500;
+    padding:calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
+    background:rgba(9,9,12,0.78);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--m-border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .m-brand-pill{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:13px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+  }
+  .m-live-dot{
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--m-lime);
+    box-shadow:0 0 10px var(--m-lime);
+    animation:mPulseDot 1.8s ease-in-out infinite;
+  }
+  @keyframes mPulseDot{50%{transform:scale(0.65);opacity:.4}}
+  .m-status-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .m-clock{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    color:#a8a8b3;
+    background:rgba(255,255,255,0.05);
+    padding:5px 9px;
+    border-radius:20px;
+    border:1px solid var(--m-border);
+  }
+  .m-sfx-btn{
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--m-border);
+    color:#f4f4f0;
+    border-radius:20px;
+    padding:5px 10px;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    transition:transform .2s, background .3s, border-color .3s;
+  }
+  .m-sfx-btn:active{transform:scale(0.92)}
+  .m-sfx-btn.on{border-color:var(--m-lime);color:var(--m-lime);background:rgba(212,255,58,0.1)}
+  .m-sfx-bars{display:inline-flex;align-items:flex-end;gap:1.5px;height:9px}
+  .m-sfx-bars i{width:2px;background:currentColor;border-radius:1px;height:3px;transition:height .2s}
+  .m-sfx-btn.on .m-sfx-bars i:nth-child(1){animation:mBar .6s infinite alternate}
+  .m-sfx-btn.on .m-sfx-bars i:nth-child(2){animation:mBar .45s .15s infinite alternate}
+  .m-sfx-btn.on .m-sfx-bars i:nth-child(3){animation:mBar .55s .3s infinite alternate}
+  @keyframes mBar{from{height:2px}to{height:9px}}
+
+  /* Top mini progress bar */
+  .m-scroll-line{
+    position:absolute;
+    bottom:-1px;left:0;
+    height:2px;
+    width:100%;
+    background:linear-gradient(90deg, var(--m-red), var(--m-lime), var(--m-blue));
+    transform:scaleX(0);
+    transform-origin:left;
+  }
+
+  /* Bottom Floating Glassmorphic Dock */
+  .m-dock-wrap{
+    position:fixed;
+    bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+    left:12px;right:12px;
+    z-index:500;
+    display:flex;
+    justify-content:center;
+    pointer-events:none;
+  }
+  .m-dock{
+    pointer-events:auto;
+    background:rgba(16,16,22,0.86);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:36px;
+    padding:5px;
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    width:100%;
+    max-width:410px;
+    box-shadow:0 18px 45px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.1);
+    position:relative;
+  }
+  .m-dock-pill{
+    position:absolute;
+    top:5px;bottom:5px;
+    left:5px;
+    width:calc((100% - 10px) / 5);
+    background:var(--m-red);
+    border-radius:30px;
+    transition:transform .45s var(--ease), background .4s ease;
+    z-index:0;
+    box-shadow:0 4px 16px rgba(226,74,56,0.45);
+  }
+  .m-dock a{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    padding:8px 2px;
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:#9d9da8;
+    transition:color .3s, transform .2s;
+  }
+  .m-dock a svg{width:15px;height:15px;stroke-width:2.2}
+  .m-dock a.act{color:#09090c;font-weight:700}
+  .m-dock a:active{transform:scale(0.88)}
+
+  /* Section wrappers */
+  .m-sec{
+    position:relative;
+    z-index:2;
+    padding:26px 16px;
+  }
+  .m-sec-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+    padding-bottom:10px;
+    border-bottom:1px dashed rgba(255,255,255,0.14);
+  }
+  .m-tag{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:#9d9da8;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .m-tag i{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--m-red);
+    display:inline-block;
+  }
+
+  /* 1. HERO PLAYGROUND */
+  .m-hero{
+    padding-top:calc(68px + env(safe-area-inset-top, 0px));
+    padding-bottom:24px;
+    min-height:92svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position:relative;
+    overflow:hidden;
+  }
+  .m-hero-pillar{
+    position:absolute;
+    left:50%;top:50px;
+    width:30vw;
+    height:46%;
+    background:var(--m-red);
+    transform:translateX(-50%);
+    border-radius:0 0 22px 22px;
+    opacity:.92;
+    z-index:0;
+    pointer-events:none;
+    box-shadow:0 20px 60px rgba(226,74,56,0.35);
+    transition:background .45s ease, box-shadow .45s ease;
+  }
+  .m-hero-toprow{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .m-welcome{
+    font-family:'Archivo Black',sans-serif;
+    font-size:15px;
+    line-height:1.05;
+    text-transform:uppercase;
+    background:rgba(9,9,12,0.7);
+    backdrop-filter:blur(8px);
+    padding:8px 12px;
+    border-radius:14px;
+    border:1px solid var(--m-border);
+  }
+  .m-spin-seal{
+    width:62px;height:62px;
+    animation:spin 11s linear infinite;
+    cursor:pointer;
+  }
+  .m-spin-seal:active{transform:scale(1.18)}
+
+  /* Interactive Mobile Particle & Shockwave Canvas Card */
+  .m-stage-card{
+    position:relative;
+    z-index:2;
+    margin:14px 0 12px;
+    height:230px;
+    border-radius:26px;
+    background:rgba(18,18,25,0.78);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.16);
+    box-shadow:0 20px 50px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.14);
+    overflow:hidden;
+    touch-action:none;
+  }
+  .m-stage-card canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  .m-stage-hud{
+    position:absolute;
+    top:12px;left:14px;right:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    pointer-events:none;
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.65);
+  }
+  .m-stage-bottom{
+    position:absolute;
+    bottom:10px;left:12px;right:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:3;
+  }
+  .m-stage-hint{
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#d0d0d8;
+    background:rgba(9,9,12,0.75);
+    padding:5px 10px;
+    border-radius:20px;
+    border:1px solid var(--m-border);
+    pointer-events:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .m-stage-hint i{
+    width:6px;height:6px;border-radius:50%;background:var(--m-red);
+    animation:blink 1.4s infinite;
+  }
+  .m-vibe-btn{
+    background:var(--m-lime);
+    color:#09090c;
+    border:none;
+    padding:6px 12px;
+    border-radius:20px;
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(212,255,58,0.3);
+    transition:transform .2s;
+  }
+  .m-vibe-btn:active{transform:scale(0.9)}
+
+  /* Hero Typography & Bio Box */
+  .m-hero-info{
+    position:relative;
+    z-index:2;
+    background:var(--m-paper);
+    color:#0d0d0d;
+    border-radius:24px;
+    padding:18px;
+    box-shadow:0 16px 36px rgba(0,0,0,0.4);
+  }
+  .m-hero-title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:10px;
+  }
+  .m-hero-name{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(28px, 8.8vw, 38px);
+    line-height:.92;
+    text-transform:uppercase;
+    letter-spacing:-.02em;
+  }
+  .m-hero-name span{color:var(--m-red)}
+  .m-role-badge{
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    background:#0d0d0d;
+    color:#f4f4f0;
+    padding:5px 9px;
+    border-radius:12px;
+  }
+  .m-hero-desc{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#262626;
+    font-weight:400;
+    margin-bottom:14px;
+  }
+  .m-hero-actions{
+    display:flex;
+    gap:8px;
+  }
+  .m-cta-primary{
+    flex:1;
+    background:#0d0d0d;
+    color:#f4f4f0;
+    padding:13px 16px;
+    border-radius:30px;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:transform .2s, background .3s;
+  }
+  .m-cta-primary:active{transform:scale(0.96);background:var(--m-red);color:#0d0d0d}
+  .m-cta-burst{
+    background:var(--m-red);
+    color:#0d0d0d;
+    border:none;
+    padding:13px 15px;
+    border-radius:30px;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:transform .2s;
+  }
+  .m-cta-burst:active{transform:scale(0.9)}
+
+  /* Diagonal Kinetic Ribbon */
+  .m-ribbon{
+    position:relative;
+    z-index:3;
+    background:var(--m-lime);
+    color:#09090c;
+    padding:11px 0;
+    transform:rotate(-2deg);
+    width:108%;
+    margin-left:-4%;
+    margin-top:8px;
+    overflow:hidden;
+    border-top:2px solid #09090c;
+    border-bottom:2px solid #09090c;
+    box-shadow:0 10px 25px rgba(0,0,0,0.45);
+  }
+  .m-ribbon-track{
+    display:flex;
+    gap:24px;
+    width:max-content;
+    white-space:nowrap;
+    animation:mq 18s linear infinite;
+    font-family:'Archivo Black',sans-serif;
+    font-size:15px;
+    text-transform:uppercase;
+  }
+  .m-ribbon-track i{color:var(--m-red);font-style:normal}
+
+  /* 2. THE VENTURE DECK (3D SWIPEABLE PHYSICS STACK) */
+  .m-deck-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:14px;
+  }
+  .m-sec-title{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(30px, 9.5vw, 42px);
+    line-height:.92;
+    text-transform:uppercase;
+  }
+  .m-sec-title em{font-style:normal;color:var(--m-red)}
+  .m-deck-counter{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    font-weight:700;
+    color:var(--m-lime);
+    background:rgba(212,255,58,0.1);
+    border:1px solid rgba(212,255,58,0.3);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+
+  .m-deck-stage{
+    position:relative;
+    height:390px;
+    width:100%;
+    perspective:1100px;
+    margin:18px 0 16px;
+    touch-action:pan-y;
+  }
+  .m-dcard{
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:min(88vw, 330px);
+    height:365px;
+    border-radius:28px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+    box-shadow:0 24px 55px rgba(0,0,0,0.65);
+    border:1px solid rgba(255,255,255,0.15);
+    will-change:transform, opacity;
+    transition:transform .55s cubic-bezier(.18,1.15,.32,1), opacity .45s ease;
+    touch-action:none;
+    cursor:grab;
+  }
+  .m-dcard.dragging{
+    transition:none!important;
+    cursor:grabbing;
+  }
+  .m-dcard-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    position:relative;
+    z-index:2;
+  }
+  .m-dcard-pill{
+    padding:4px 10px;
+    border-radius:20px;
+    background:rgba(0,0,0,0.22);
+    backdrop-filter:blur(6px);
+  }
+  .m-dcard-art{
+    position:relative;
+    z-index:1;
+    margin:auto;
+    display:grid;
+    place-items:center;
+    width:100%;
+    height:150px;
+  }
+  .m-dcard-bottom{
+    position:relative;
+    z-index:2;
+  }
+  .m-dcard h3{
+    font-family:'Archivo Black',sans-serif;
+    font-size:30px;
+    line-height:.95;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .m-dcard p{
+    font-size:12.5px;
+    line-height:1.45;
+    opacity:.88;
+    margin-bottom:14px;
+  }
+  .m-dcard-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+  }
+  .m-dcard-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    border-radius:30px;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    background:#09090c;
+    color:#f4f4f0;
+    transition:transform .2s;
+  }
+  .m-dcard-link:active{transform:scale(0.93)}
+  .m-swipe-badge{
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    opacity:.75;
+  }
+
+  /* Deck Card Themes */
+  .m-dc-blue{background:linear-gradient(145deg, #2d3cff, #131c85);color:#f4f4f0}
+  .m-dc-blue .m-dcard-link{background:#d4ff3a;color:#09090c}
+  .m-dc-red{background:linear-gradient(145deg, #e24a38, #9c2517);color:#09090c}
+  .m-dc-red .m-dcard-pill{background:rgba(9,9,12,0.15);color:#09090c}
+  .m-dc-red .m-dcard-link{background:#09090c;color:#f4f4f0}
+  .m-dc-founder{background:#181820;color:#f4f4f0;padding:0}
+  .m-dc-founder .m-dcard-top{padding:20px 20px 0}
+  .m-dc-founder .m-dcard-bottom{
+    padding:20px;
+    background:linear-gradient(to top, rgba(9,9,12,0.96) 25%, rgba(9,9,12,0.5) 75%, transparent);
+  }
+  .m-dc-founder .m-founder-bg{
+    position:absolute;inset:0;
+    display:grid;place-items:center;
+    font-family:'Archivo Black',sans-serif;
+    font-size:110px;
+    color:rgba(255,255,255,0.08);
+    z-index:0;
+  }
+  .m-dc-founder img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    z-index:1;
+    filter:contrast(1.08);
+  }
+  .m-dc-founder .m-dcard-link{background:var(--m-red);color:#09090c}
+  .m-dc-paper{background:var(--m-paper);color:#09090c}
+  .m-dc-paper .m-dcard-pill{background:rgba(0,0,0,0.08)}
+  .m-dc-lime{background:linear-gradient(145deg, #d4ff3a, #9ec914);color:#09090c}
+  .m-dc-lime .m-dcard-pill{background:rgba(0,0,0,0.1)}
+
+  /* Controls beneath the 3D Deck */
+  .m-deck-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+  }
+  .m-ctrl-btn{
+    background:rgba(255,255,255,0.07);
+    border:1px solid var(--m-border);
+    color:#f4f4f0;
+    padding:11px 18px;
+    border-radius:30px;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:transform .2s, background .2s;
+  }
+  .m-ctrl-btn:active{transform:scale(0.9);background:var(--m-red);color:#09090c}
+  .m-ctrl-dots{
+    display:flex;
+    gap:6px;
+  }
+  .m-ctrl-dots i{
+    width:7px;height:7px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.22);
+    transition:all .3s var(--ease);
+  }
+  .m-ctrl-dots i.on{
+    width:22px;
+    border-radius:10px;
+    background:var(--m-red);
+  }
+
+  /* 3. KINETIC ACCORDION VENTURE DRAWERS */
+  .m-acc-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:16px;
+  }
+  .m-acc-item{
+    background:var(--m-card);
+    border:1px solid var(--m-border);
+    border-radius:22px;
+    overflow:hidden;
+    transition:border-color .35s ease, box-shadow .35s ease;
+  }
+  .m-acc-item.open{
+    border-color:var(--m-red);
+    box-shadow:0 14px 35px rgba(226,74,56,0.16);
+  }
+  .m-acc-trigger{
+    width:100%;
+    background:none;
+    border:none;
+    color:inherit;
+    padding:18px 18px;
+    display:grid;
+    grid-template-columns:34px 1fr auto;
+    align-items:center;
+    gap:10px;
+    text-align:left;
+    cursor:pointer;
+  }
+  .m-acc-num{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:var(--m-red);
+    font-weight:700;
+  }
+  .m-acc-name{
+    font-family:'Archivo Black',sans-serif;
+    font-size:21px;
+    text-transform:uppercase;
+    line-height:1;
+  }
+  .m-acc-icon{
+    width:32px;height:32px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+    display:grid;
+    place-items:center;
+    font-family:'Space Mono',monospace;
+    font-size:15px;
+    transition:transform .4s var(--ease), background .3s, color .3s;
+  }
+  .m-acc-item.open .m-acc-icon{
+    transform:rotate(45deg);
+    background:var(--m-red);
+    color:#09090c;
+  }
+  .m-acc-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .45s var(--ease);
+  }
+  .m-acc-inner{
+    padding:0 18px 20px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    padding-top:14px;
+  }
+  .m-acc-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:12px;
+  }
+  .m-acc-chips span{
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    padding:4px 9px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.06);
+    color:#c8c8d2;
+  }
+  .m-acc-inner p{
+    font-size:13.5px;
+    line-height:1.58;
+    color:#b8b8c4;
+    margin-bottom:16px;
+  }
+  .m-acc-launch{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--m-red);
+    color:#09090c;
+    padding:11px 18px;
+    border-radius:30px;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+  }
+
+  /* 4. THE FOUNDER — 3D HOLOGRAPHIC ID PASS & BENTO */
+  .m-id-card{
+    position:relative;
+    border-radius:26px;
+    background:linear-gradient(135deg, #1b1b24 0%, #0e0e14 100%);
+    border:1px solid rgba(255,255,255,0.18);
+    padding:20px;
+    overflow:hidden;
+    box-shadow:0 22px 50px rgba(0,0,0,0.6);
+    transform-style:preserve-3d;
+    transition:transform .3s ease;
+    margin-top:14px;
+  }
+  /* Holographic foil glare */
+  .m-id-glare{
+    position:absolute;
+    inset:0;
+    background:radial-gradient(260px circle at var(--gx, 50%) var(--gy, 30%), rgba(212,255,58,0.18), rgba(45,60,255,0.15) 45%, transparent 75%);
+    pointer-events:none;
+    z-index:1;
+    mix-blend-mode:screen;
+  }
+  .m-id-lanyard{
+    width:54px;height:10px;
+    border-radius:10px;
+    background:#09090c;
+    border:1px solid rgba(255,255,255,0.2);
+    margin:0 auto 16px;
+  }
+  .m-id-top{
+    position:relative;
+    z-index:2;
+    display:flex;
+    gap:16px;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .m-id-avatar{
+    width:84px;height:84px;
+    border-radius:20px;
+    background:var(--m-red);
+    position:relative;
+    overflow:hidden;
+    flex-shrink:0;
+    border:2px solid var(--m-lime);
+  }
+  .m-id-avatar b{
+    position:absolute;inset:0;
+    display:grid;place-items:center;
+    font-family:'Archivo Black',sans-serif;
+    font-size:28px;
+    color:#09090c;
+  }
+  .m-id-avatar img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .m-id-meta h3{
+    font-family:'Archivo Black',sans-serif;
+    font-size:24px;
+    line-height:1;
+    text-transform:uppercase;
+    margin-bottom:5px;
+  }
+  .m-id-verified{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--m-lime);
+    background:rgba(212,255,58,0.1);
+    padding:4px 8px;
+    border-radius:10px;
+    margin-bottom:6px;
+  }
+  .m-id-sub{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    color:#a0a0ab;
+  }
+  .m-id-bio{
+    position:relative;
+    z-index:2;
+    font-size:13.5px;
+    line-height:1.6;
+    color:#d4d4dc;
+    margin-bottom:16px;
+  }
+  .m-id-bio strong{color:#fff;font-weight:600}
+  .m-id-barcode{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:12px;
+    border-top:1px dashed rgba(255,255,255,0.15);
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    color:#8e8e99;
+  }
+  .m-bars{
+    display:flex;
+    gap:2px;
+    height:18px;
+    align-items:stretch;
+  }
+  .m-bars i{background:#f4f4f0;display:block}
+
+  /* Bento Grid under ID Pass */
+  .m-bento{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:12px;
+  }
+  .m-bento-box{
+    background:var(--m-card);
+    border:1px solid var(--m-border);
+    border-radius:20px;
+    padding:15px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .2s, border-color .3s;
+  }
+  .m-bento-box:active{
+    transform:scale(0.96);
+    border-color:var(--m-lime);
+  }
+  .m-bento-box .k{
+    font-family:'Space Mono',monospace;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:#8e8e99;
+    margin-bottom:6px;
+    display:block;
+  }
+  .m-bento-box .v{
+    font-family:'Archivo Black',sans-serif;
+    font-size:18px;
+    line-height:1.1;
+    text-transform:uppercase;
+    color:#f4f4f0;
+  }
+  .m-bento-box .v em{color:var(--m-red);font-style:normal}
+
+  /* 5. CONNECT TERMINAL & QUICK LAUNCHERS */
+  .m-connect-card{
+    background:linear-gradient(180deg, #15151d 0%, #0c0c10 100%);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:28px;
+    padding:22px 18px;
+    margin-top:14px;
+  }
+  .m-social-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:16px 0 22px;
+  }
+  .m-soc-btn{
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--m-border);
+    border-radius:18px;
+    padding:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Archivo Black',sans-serif;
+    font-size:14px;
+    text-transform:uppercase;
+    transition:transform .2s, background .3s, border-color .3s;
+  }
+  .m-soc-btn span{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    color:var(--m-red);
+  }
+  .m-soc-btn:active{
+    transform:scale(0.94);
+    background:var(--m-red);
+    color:#09090c;
+    border-color:var(--m-red);
+  }
+  .m-soc-btn:active span{color:#09090c}
+
+  /* Mobile Direct Inquiry Form */
+  .m-form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    border-top:1px solid var(--m-border);
+    padding-top:18px;
+  }
+  .m-form-title{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--m-lime);
+  }
+  .m-field input,.m-field textarea{
+    width:100%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--m-border);
+    border-radius:14px;
+    padding:13px 14px;
+    color:#f4f4f0;
+    font:14px 'Inter',sans-serif;
+    outline:none;
+    transition:border-color .3s, background .3s;
+  }
+  .m-field input:focus,.m-field textarea:focus{
+    border-color:var(--m-red);
+    background:rgba(226,74,56,0.05);
+  }
+  .m-submit{
+    background:var(--m-red);
+    color:#09090c;
+    border:none;
+    border-radius:30px;
+    padding:15px 22px;
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 10px 25px rgba(226,74,56,0.35);
+    transition:transform .2s;
+  }
+  .m-submit:active{transform:scale(0.95)}
+  .m-form-status{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    text-align:center;
+    min-height:1.2em;
+    color:var(--m-lime);
+  }
+  .m-foot-copy{
+    text-align:center;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    color:#6c6c78;
+    padding:22px 0 10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+  }
 }
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01s!important;animation-iteration-count:1!important;transition-duration:.01s!important;scroll-behavior:auto!important}
   body::after{display:none}
-  .marquee .track{animation:none}
-}
-
-/* ================= MOBILE EDITION v2 — "Stories" (<=700px) ================= */
-.m{display:none}
-@media(max-width:700px){
-html,body{height:100%;overflow:hidden;background:#111}
-body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!important}
-.m{display:block;position:fixed;inset:0;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;background:#111;--fg:#111;--cream:#f1ede4;--blue:#2d3cff;--org:#ff5a36;--lime:#d4ff3a}
-.sl{position:absolute;inset:0;padding:110px 24px 40px;display:flex;flex-direction:column;justify-content:center;clip-path:inset(0 0 100% 0);z-index:0;transition:clip-path .8s var(--ease);overflow:hidden}
-.sl.out{clip-path:inset(0)!important;z-index:1;transition:none}
-.sl.act{clip-path:inset(0);z-index:2}
-.s1{background:var(--cream);color:#111}.s2{background:var(--blue);color:var(--cream)}.s3{background:var(--org);color:#111}.s4{background:#111;color:var(--cream)}.s5{background:var(--cream);color:#111}.s6{background:var(--lime);color:#111}
-.r{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .9s var(--ease)}
-.act .r{opacity:1;transform:none;transition-delay:calc(var(--d,0)*110ms + .45s)}
-.hd{position:absolute;top:0;left:0;right:0;z-index:20;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 0;color:var(--fg);transition:color .5s,opacity .3s}
-.m.hold .hd{opacity:0}
-.pb{display:flex;gap:4px}
-.pb button{flex:1;background:none;border:0;padding:8px 0;cursor:pointer}
-.pb i{display:block;height:3px;border-radius:3px;background:rgba(128,128,128,.35);overflow:hidden}
-.pb b{display:block;height:100%;background:var(--fg);transform-origin:left;transform:scaleX(0)}
-.hr{display:flex;justify-content:space-between;padding:10px 8px 0;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.big{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.92}
-.mono2{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.s1::before{content:'';position:absolute;inset:0;background:radial-gradient(240px circle at var(--x,75%) var(--y,25%),rgba(45,60,255,.28),transparent 70%);pointer-events:none}
-.L{display:flex;overflow:hidden;padding:1vw 0;font-size:22vw}
-.L span{display:inline-block;opacity:0}
-.act .L span{animation:rise .95s var(--ease) both;animation-delay:calc(var(--i)*65ms + .35s)}
-@keyframes rise{from{transform:translateY(105%) rotate(7deg);opacity:0}to{transform:none;opacity:1}}
-.s1 .nm{font-size:22vw;color:var(--blue);margin-bottom:22px}
-.s1 p.d{max-width:300px;font-size:15px;font-weight:400;color:#333}
-.tk{position:absolute;left:-5%;width:110%;bottom:44px;background:#111;color:var(--cream);padding:14px 0;transform:rotate(-3deg);overflow:hidden;white-space:nowrap}
-.tk div{display:flex;gap:26px;width:max-content;padding-right:26px;animation:mq 16s linear infinite;font-family:'Archivo Black';font-size:20px;text-transform:uppercase}
-.tk em{font-style:normal;color:var(--org)}
-.tap{position:absolute;right:24px;top:130px;width:74px;height:74px;animation:spin 12s linear infinite}
-.no{position:absolute;right:-4vw;bottom:-6vw;font-family:'Archivo Black';font-size:62vw;line-height:1;color:transparent;-webkit-text-stroke:2px currentColor;opacity:.22;pointer-events:none}
-.tt{font-size:17vw;margin:12px 0 18px}
-.s4 .tt{font-size:10.5vw;color:var(--lime)}
-.sl p.t{font-size:15px;line-height:1.6;max-width:320px;margin-bottom:26px;font-weight:400}
-.bt{align-self:flex-start;display:inline-flex;gap:10px;padding:16px 26px;border-radius:40px;background:currentColor;position:relative;overflow:hidden;transition:transform .4s var(--ease)}
-.bt span{color:var(--bg2)}
-.s2 .bt{--bg2:var(--blue);background:var(--cream)}.s3 .bt{--bg2:var(--org);background:#111}.s4 .bt{--bg2:#111;background:var(--lime)}.s3 .bt span{color:var(--cream)}
-.bt:active{transform:scale(.93)}
-.rings{position:absolute;top:120px;right:-30px;width:150px;height:150px}
-.rings i{position:absolute;inset:0;border:2px solid var(--cream);border-radius:50%;animation:rg 3s ease-out infinite}
-.rings i:nth-child(2){animation-delay:1s}.rings i:nth-child(3){animation-delay:2s}
-@keyframes rg{from{transform:scale(.2);opacity:1}to{transform:scale(1.4);opacity:0}}
-.play{position:absolute;top:120px;right:20px;width:92px;animation:spin 10s linear infinite}
-.win{position:absolute;top:118px;right:20px;width:46vw;border:2px solid var(--lime);border-radius:14px;padding:10px;animation:fl2 4s ease-in-out infinite alternate}
-.win u{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);margin-right:5px}
-.win b{display:block;height:8px;border-radius:4px;margin-top:9px;background:linear-gradient(90deg,#333 30%,var(--lime) 50%,#333 70%);background-size:200%;animation:sh 1.8s linear infinite}
-.win b:nth-of-type(2){width:70%}.win b:nth-of-type(3){width:85%}
-@keyframes sh{to{background-position:-200% 0}}
-@keyframes fl2{to{transform:translateY(12px) rotate(2deg)}}
-.pho{width:50vw;aspect-ratio:1;margin-bottom:22px;background:var(--blue);position:relative;overflow:hidden;animation:mo 7s ease-in-out infinite;border-radius:60% 40% 55% 45%/50% 60% 40% 50%}
-@keyframes mo{50%{border-radius:40% 60% 45% 55%/60% 40% 60% 40%}}
-.pho b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Archivo Black';font-size:16vw;color:var(--cream)}
-.pho img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.s5 .tt{font-size:14vw;margin:0 0 14px}
-.s5 p.t{margin-bottom:12px;color:#333}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.chips span{border:1.5px solid #111;border-radius:30px;padding:9px 14px}
-.s6 .tt{font-size:23vw}
-.cb{display:flex;justify-content:space-between;background:#111;color:var(--lime);border-radius:40px;padding:20px 26px;font-family:'Archivo Black';font-size:18px;text-transform:uppercase;margin:4px 0 14px;transition:transform .4s var(--ease)}
-.cb:active{transform:scale(.95)}
-.cr{display:flex;justify-content:space-between;padding:18px 4px;border-bottom:2px solid #111;font-family:'Archivo Black';font-size:20px;text-transform:uppercase;transition:padding-left .4s var(--ease)}
-.cr:active{padding-left:14px}
-.cp{margin-top:20px;opacity:.6}
+  .marquee .track,.m-ribbon-track{animation:none}
 }
 </style>
 </head>
@@ -458,60 +1403,412 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
 <footer class="mono">© 2026 Ahlad A Nair. Designed &amp; Built with intent.</footer>
 
 
-<!-- MOBILE EDITION -->
-<div class="m" id="m" aria-label="Mobile portfolio">
-  <div class="hd"><div class="pb" id="pb"><button aria-label="Slide 1"><i><b></b></i></button><button aria-label="Slide 2"><i><b></b></i></button><button aria-label="Slide 3"><i><b></b></i></button><button aria-label="Slide 4"><i><b></b></i></button><button aria-label="Slide 5"><i><b></b></i></button><button aria-label="Slide 6"><i><b></b></i></button></div>
-    <div class="hr"><span>Ahlad A Nair</span><span id="cnt">01/06</span></div></div>
+<!-- ================= MOBILE EDITION v3 — KINETIC TACTILE OS (<=700px) ================= -->
+<div class="m" id="mApp" aria-label="Mobile interactive portfolio">
+  <div class="m-ambient" id="mAmbient" aria-hidden="true"></div>
+  <div class="m-grid-bg" aria-hidden="true"></div>
 
-  <section class="sl s1 act" data-fg="#111">
-    <svg class="tap r" style="--d:6" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="mc" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><circle cx="50" cy="50" r="8" fill="#ff5a36"/><text font-family="Space Mono" font-size="11" letter-spacing="2.2" fill="#111"><textPath href="#mc">TAP • HOLD • SWIPE • TAP • HOLD •</textPath></text></svg>
-    <p class="mono2 r" style="--d:0">(Portfolio — 2026)</p>
-    <p class="big L" id="mL" aria-label="Ahlad">AHLAD</p>
-    <p class="big nm r" style="--d:3">A Nair</p>
-    <p class="d r" style="--d:4">BBA student &amp; founder building businesses and shaping stories.</p>
-    <div class="tk" aria-hidden="true"><div><span>Founder</span><em>✦</em><span>Editor</span><em>✦</em><span>Publisher</span><em>✦</em><span>Web Developer</span><em>✦</em><span>BBA Student</span><em>✦</em><span>Founder</span><em>✦</em><span>Editor</span><em>✦</em><span>Publisher</span><em>✦</em><span>Web Developer</span><em>✦</em><span>BBA Student</span><em>✦</em></div></div>
+  <!-- Top Tactile Status Bar -->
+  <div class="m-topbar">
+    <a href="#mHero" class="m-brand-pill">
+      <i class="m-live-dot"></i>
+      <span>AHLAD.OS</span>
+    </a>
+    <div class="m-status-right">
+      <span class="m-clock" id="mClock">IST 00:00</span>
+      <button type="button" class="m-sfx-btn on" id="mSfxBtn" aria-label="Toggle tactile sound and haptics">
+        <span class="m-sfx-bars"><i></i><i></i><i></i></span>
+        <span id="mSfxLabel">FX ON</span>
+      </button>
+    </div>
+    <div class="m-scroll-line" id="mScrollLine"></div>
+  </div>
+
+  <!-- 1. HERO PLAYGROUND -->
+  <section class="m-sec m-hero" id="mHero" data-accent="rgba(226,74,56,0.24)" data-pill="#e24a38">
+    <div class="m-hero-pillar" id="mHeroPillar" aria-hidden="true"></div>
+
+    <div class="m-hero-toprow">
+      <div class="m-welcome">Welcome<br>To My World</div>
+      <svg class="m-spin-seal" id="mSpinSeal" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><path id="mSealPath" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs>
+        <circle cx="50" cy="50" r="46" fill="rgba(9,9,12,0.75)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle cx="50" cy="50" r="8" fill="#e24a38"/>
+        <text font-family="Space Mono" font-size="9.8" letter-spacing="2.1" fill="#f4f4f0">
+          <textPath href="#mSealPath">FOUNDER • BBA • EDITOR • 2026 •</textPath>
+        </text>
+      </svg>
+    </div>
+
+    <!-- Interactive Touch Particle & Shockwave Canvas -->
+    <div class="m-stage-card" id="mStageCard">
+      <canvas id="mParticles"></canvas>
+      <div class="m-stage-hud">
+        <span>KINETIC ENGINE v2.6</span>
+        <span id="mParticleModeLabel">MODE: SWIRL</span>
+      </div>
+      <div class="m-stage-bottom">
+        <span class="m-stage-hint"><i></i>DRAG TO SCATTER · TAP BURST</span>
+        <button type="button" class="m-vibe-btn" id="mVibeBtn">SHIFT VIBE ⚡</button>
+      </div>
+    </div>
+
+    <!-- Editorial Bio & Action Box -->
+    <div class="m-hero-info">
+      <div class="m-hero-title-row">
+        <h2 class="m-hero-name">Ahlad<br><span>A Nair</span></h2>
+        <span class="m-role-badge">BBA × FOUNDER</span>
+      </div>
+      <p class="m-hero-desc">
+        BBA student &amp; founder building businesses and shaping stories — from <b>DCSMAT Vagamon</b> to running an editing agency and an online news platform.
+      </p>
+      <div class="m-hero-actions">
+        <a href="#mDeckSec" class="m-cta-primary">
+          <span>Swipe Venture Deck</span>
+          <span>↓</span>
+        </a>
+        <button type="button" class="m-cta-burst" id="mBurstTrigger" aria-label="Trigger particle shockwave">
+          BOOM ✦
+        </button>
+      </div>
+    </div>
   </section>
 
-  <section class="sl s2" data-fg="#f1ede4">
-    <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div><span class="no" aria-hidden="true">01</span>
-    <p class="mono2 r">News Platform</p>
-    <h2 class="big tt r" style="--d:1">Stated<br>Words</h2>
-    <p class="t r" style="--d:2">An online publisher delivering timely news at the intersection of modern journalism and digital distribution.</p>
-    <a class="bt mono2 r" style="--d:3" href="https://thestatedword.blogspot.com" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
+  <!-- Diagonal Kinetic Ribbon -->
+  <div class="m-ribbon" aria-hidden="true">
+    <div class="m-ribbon-track">
+      <span>FOUNDER</span><i>✦</i><span>RIANADALHA</span><i>✦</i><span>STATED WORDS</span><i>✦</i><span>WEB DEVELOPER</span><i>✦</i><span>BBA @ DCSMAT</span><i>✦</i>
+      <span>FOUNDER</span><i>✦</i><span>RIANADALHA</span><i>✦</i><span>STATED WORDS</span><i>✦</i><span>WEB DEVELOPER</span><i>✦</i><span>BBA @ DCSMAT</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- 2. THE VENTURE DECK (3D SWIPEABLE STACK) -->
+  <section class="m-sec" id="mDeckSec" data-accent="rgba(45,60,255,0.26)" data-pill="#d4ff3a">
+    <div class="m-sec-head">
+      <span class="m-tag"><i></i>INTERACTIVE STACK</span>
+      <span class="m-tag">SWIPE LEFT / RIGHT</span>
+    </div>
+
+    <div class="m-deck-header">
+      <h2 class="m-sec-title">Venture<br><em>Deck</em></h2>
+      <span class="m-deck-counter" id="mDeckCount">01 / 05</span>
+    </div>
+
+    <div class="m-deck-stage" id="mDeckStage">
+      <!-- Card 1: Stated Words -->
+      <article class="m-dcard m-dc-blue" data-idx="0">
+        <div class="m-dcard-top">
+          <span class="m-dcard-pill">News Platform</span>
+          <span>01</span>
+        </div>
+        <div class="m-dcard-art">
+          <div class="orb" style="width:125px;height:125px"></div>
+        </div>
+        <div class="m-dcard-bottom">
+          <h3>Stated<br>Words</h3>
+          <p>Online media publisher delivering timely news at the intersection of modern journalism &amp; digital distribution.</p>
+          <div class="m-dcard-foot">
+            <a href="https://thestatedword.blogspot.com" target="_blank" rel="noopener" class="m-dcard-link">Visit Site ↗</a>
+            <span class="m-swipe-badge">« SWIPE »</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Rianadalha -->
+      <article class="m-dcard m-dc-red" data-idx="1">
+        <div class="m-dcard-top">
+          <span class="m-dcard-pill">Editing Agency</span>
+          <span>02</span>
+        </div>
+        <div class="m-dcard-art">
+          <svg class="mark" style="width:118px;height:118px" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#09090c" stroke-width="12"/>
+            <path d="M42 33l26 17-26 17z" fill="#09090c"/>
+          </svg>
+        </div>
+        <div class="m-dcard-bottom">
+          <h3>Rianadalha</h3>
+          <p>High-end media editing agency crafting polished video production, precise cuts, and narrative flow for creators.</p>
+          <div class="m-dcard-foot">
+            <a href="https://rianadalha.odoo.com" target="_blank" rel="noopener" class="m-dcard-link">Visit Agency ↗</a>
+            <span class="m-swipe-badge">« SWIPE »</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: The Founder -->
+      <article class="m-dcard m-dc-founder" data-idx="2">
+        <div class="m-founder-bg">AN</div>
+        <img src="profile.png" alt="Ahlad A Nair" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <div class="m-dcard-top">
+          <span class="m-dcard-pill">Ahlad A Nair</span>
+          <span>BBA×DCSMAT</span>
+        </div>
+        <div class="m-dcard-bottom">
+          <h3>The<br>Founder</h3>
+          <p>Practicing business administration in real time by building &amp; scaling companies alongside my degree.</p>
+          <div class="m-dcard-foot">
+            <a href="#mFounderSec" class="m-dcard-link">Read Bio ↓</a>
+            <span class="m-swipe-badge">« SWIPE »</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Principal's Portfolio -->
+      <article class="m-dcard m-dc-paper" data-idx="3">
+        <div class="m-dcard-top">
+          <span class="m-dcard-pill">Web Development</span>
+          <span>03</span>
+        </div>
+        <div class="m-dcard-art">
+          <div class="big-num" style="font-size:105px;color:#09090c">P</div>
+        </div>
+        <div class="m-dcard-bottom">
+          <h3>Principal's<br>Portfolio</h3>
+          <p>Bespoke executive portfolio website architected for a school principal, highlighting leadership and milestones.</p>
+          <div class="m-dcard-foot">
+            <a href="https://YOUR-PORTFOLIO-LINK" target="_blank" rel="noopener" class="m-dcard-link">View Project ↗</a>
+            <span class="m-swipe-badge">« SWIPE »</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5: Let's Connect -->
+      <article class="m-dcard m-dc-lime" data-idx="4">
+        <div class="m-dcard-top">
+          <span class="m-dcard-pill">Collaborate</span>
+          <span>04</span>
+        </div>
+        <div class="m-dcard-art">
+          <div class="at" style="font-size:110px;color:#09090c">@</div>
+        </div>
+        <div class="m-dcard-bottom">
+          <h3>Let's<br>Connect</h3>
+          <p>Open for video production inquiries, digital publishing partnerships, and custom web builds.</p>
+          <div class="m-dcard-foot">
+            <a href="#mConnectSec" class="m-dcard-link">Say Hello ↓</a>
+            <span class="m-swipe-badge">« SWIPE »</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="m-deck-controls">
+      <button type="button" class="m-ctrl-btn" id="mDeckPrev" aria-label="Previous card">← PREV</button>
+      <div class="m-ctrl-dots" id="mDeckDots">
+        <i class="on"></i><i></i><i></i><i></i><i></i>
+      </div>
+      <button type="button" class="m-ctrl-btn" id="mDeckNext" aria-label="Next card">NEXT →</button>
+    </div>
   </section>
 
-  <section class="sl s3" data-fg="#111">
-    <svg class="play" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#111" stroke-width="12"/><path d="M42 33l26 17-26 17z" fill="#111"/></svg><span class="no" aria-hidden="true">02</span>
-    <p class="mono2 r">Editing Agency</p>
-    <h2 class="big tt r" style="--d:1">Riana<br>dalha</h2>
-    <p class="t r" style="--d:2">High-end media editing — polished video production for creators and businesses, with precise cuts and narrative flow.</p>
-    <a class="bt mono2 r" style="--d:3" href="https://rianadalha.odoo.com" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
+  <!-- 3. INTERACTIVE ACCORDION VENTURES -->
+  <section class="m-sec" id="mVenturesSec" data-accent="rgba(226,74,56,0.22)" data-pill="#e24a38">
+    <div class="m-sec-head">
+      <span class="m-tag"><i></i>SELECTED VENTURES</span>
+      <span class="m-tag">INDEX · 2026</span>
+    </div>
+    <h2 class="m-sec-title">Built To<br><em>Scale</em></h2>
+
+    <div class="m-acc-list" id="mAccList">
+      <!-- Row 01 -->
+      <div class="m-acc-item open">
+        <button type="button" class="m-acc-trigger" aria-expanded="true">
+          <span class="m-acc-num">01</span>
+          <span class="m-acc-name">Rianadalha</span>
+          <span class="m-acc-icon">+</span>
+        </button>
+        <div class="m-acc-body" style="max-height:260px">
+          <div class="m-acc-inner">
+            <div class="m-acc-chips">
+              <span>Editing Agency</span>
+              <span>Video Production</span>
+              <span>Founder</span>
+            </div>
+            <p>A high-end media editing service bringing stories to life — polished video production for creators and businesses, with precise cuts and narrative flow.</p>
+            <a href="https://rianadalha.odoo.com" target="_blank" rel="noopener" class="m-acc-launch">Launch Rianadalha ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 02 -->
+      <div class="m-acc-item">
+        <button type="button" class="m-acc-trigger" aria-expanded="false">
+          <span class="m-acc-num">02</span>
+          <span class="m-acc-name">The Stated Words</span>
+          <span class="m-acc-icon">+</span>
+        </button>
+        <div class="m-acc-body">
+          <div class="m-acc-inner">
+            <div class="m-acc-chips">
+              <span>News Platform</span>
+              <span>Digital Publishing</span>
+              <span>Editorial</span>
+            </div>
+            <p>An online media publisher delivering timely, relevant news — scaling our digital footprint at the intersection of modern journalism and digital distribution.</p>
+            <a href="https://thestatedword.blogspot.com" target="_blank" rel="noopener" class="m-acc-launch">Read Stated Words ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 03 -->
+      <div class="m-acc-item">
+        <button type="button" class="m-acc-trigger" aria-expanded="false">
+          <span class="m-acc-num">03</span>
+          <span class="m-acc-name">Principal's Portfolio</span>
+          <span class="m-acc-icon">+</span>
+        </button>
+        <div class="m-acc-body">
+          <div class="m-acc-inner">
+            <div class="m-acc-chips">
+              <span>Web Development</span>
+              <span>UI/UX Architecture</span>
+              <span>Client Work</span>
+            </div>
+            <p>A professional portfolio website designed and built for the principal of a school, showcasing their career, achievements and leadership in a clean, credible online presence.</p>
+            <a href="https://YOUR-PORTFOLIO-LINK" target="_blank" rel="noopener" class="m-acc-launch">Explore Build ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="sl s4" data-fg="#f1ede4">
-    <div class="win" aria-hidden="true"><u></u><u></u><u></u><b></b><b></b><b></b></div><span class="no" aria-hidden="true">03</span>
-    <p class="mono2 r">Web Development</p>
-    <h2 class="big tt r" style="--d:1">The<br>Principal’s<br>Portfolio</h2>
-    <p class="t r" style="--d:2">A professional portfolio website built for a school principal, showcasing career and leadership.</p>
-    <a class="bt mono2 r" style="--d:3" href="https://YOUR-PORTFOLIO-LINK" target="_blank" rel="noopener"><span>Visit site ↗</span></a>
+  <!-- 4. THE FOUNDER — HOLOGRAPHIC ID PASS & BENTO -->
+  <section class="m-sec" id="mFounderSec" data-accent="rgba(212,255,58,0.18)" data-pill="#d4ff3a">
+    <div class="m-sec-head">
+      <span class="m-tag"><i></i>IDENTITY PASS</span>
+      <span class="m-tag">TOUCH TO TILT</span>
+    </div>
+    <h2 class="m-sec-title">The<br><em>Founder</em></h2>
+
+    <div class="m-id-card" id="mIdCard">
+      <div class="m-id-glare" id="mIdGlare"></div>
+      <div class="m-id-lanyard"></div>
+
+      <div class="m-id-top">
+        <div class="m-id-avatar">
+          <b>AN</b>
+          <img src="profile.png" alt="Portrait of Ahlad A Nair" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </div>
+        <div class="m-id-meta">
+          <span class="m-id-verified">● VERIFIED FOUNDER</span>
+          <h3>Ahlad<br>A Nair</h3>
+          <span class="m-id-sub">ID // AAN-2026-BBA</span>
+        </div>
+      </div>
+
+      <p class="m-id-bio">
+        While most first-year students are solely focused on theory, I believe the most effective way to learn business administration is to <strong>actively practice it</strong>.
+      </p>
+      <p class="m-id-bio" style="margin-bottom:14px">
+        Currently studying at <strong>DCSMAT Vagamon</strong>, I divide my time between academic coursework and managing my digital companies — coordinating editors for <strong>Rianadalha</strong> and publishing schedules for <strong>Stated Words</strong>.
+      </p>
+
+      <div class="m-id-barcode">
+        <span>AUTH: KERALA // IN</span>
+        <div class="m-bars" aria-hidden="true">
+          <i style="width:2px"></i><i style="width:4px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:2px"></i><i style="width:5px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:2px"></i><i style="width:4px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Bento Grid -->
+    <div class="m-bento">
+      <div class="m-bento-box">
+        <span class="k">Education</span>
+        <div class="v">BBA <em>1st Yr</em></div>
+      </div>
+      <div class="m-bento-box">
+        <span class="k">Campus</span>
+        <div class="v">DCSMAT <em>Vagamon</em></div>
+      </div>
+      <div class="m-bento-box">
+        <span class="k">Ventures</span>
+        <div class="v"><em>02</em> Active Cos</div>
+      </div>
+      <div class="m-bento-box">
+        <span class="k">Base</span>
+        <div class="v">Kerala, <em>IN</em></div>
+      </div>
+    </div>
   </section>
 
-  <section class="sl s5" data-fg="#111">
-    <div class="pho r"><b>AN</b><img src="profile.png" alt="Portrait of Ahlad A Nair" decoding="async" onerror="this.style.display='none'"></div>
-    <h2 class="big tt r" style="--d:1">The<br>Founder</h2>
-    <p class="t r" style="--d:2">Hi, I’m <b>Ahlad A Nair</b>. I believe the best way to learn business is to practice it — so I run my companies alongside my degree.</p>
-    <div class="chips mono2 r" style="--d:3"><span>BBA · 1st Year</span><span>DCSMAT</span><span>Vagamon, Kerala</span></div>
+  <!-- 5. CONNECT TERMINAL -->
+  <section class="m-sec" id="mConnectSec" data-accent="rgba(226,74,56,0.25)" data-pill="#e24a38">
+    <div class="m-sec-head">
+      <span class="m-tag"><i></i>DIRECT CHANNEL</span>
+      <span class="m-tag">OPEN INBOX</span>
+    </div>
+    <h2 class="m-sec-title">Let's<br><em>Connect</em></h2>
+
+    <div class="m-connect-card">
+      <p style="font-size:13.5px;color:#b8b8c4;line-height:1.55">
+        Whether you need media editing, have a business proposal, or want to discuss digital strategy, tap a channel or send a direct dispatch below.
+      </p>
+
+      <div class="m-social-grid">
+        <a href="mailto:ahladanair2007@gmail.com" class="m-soc-btn">
+          <b>Email</b><span>↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener" class="m-soc-btn">
+          <b>LinkedIn</b><span>↗</span>
+        </a>
+        <a href="https://instagram.com/ahladanair" target="_blank" rel="noopener" class="m-soc-btn">
+          <b>Instagram</b><span>↗</span>
+        </a>
+        <a href="https://github.com/ahladanair" target="_blank" rel="noopener" class="m-soc-btn">
+          <b>GitHub</b><span>↗</span>
+        </a>
+      </div>
+
+      <form class="m-form" id="mContactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="m-form-title">// QUICK DISPATCH TERMINAL</div>
+        <div class="m-field">
+          <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+        </div>
+        <div class="m-field">
+          <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
+        </div>
+        <div class="m-field">
+          <textarea name="message" rows="3" placeholder="Tell me about your project or inquiry..." required></textarea>
+        </div>
+        <button type="submit" class="m-submit">Send Inquiry →</button>
+        <p class="m-form-status" id="mFormStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <p class="m-foot-copy">© 2026 Ahlad A Nair · Built with Intent</p>
   </section>
 
-  <section class="sl s6" data-fg="#111">
-    <h2 class="big tt r">Say<br>Hello</h2>
-    <a class="cb r" style="--d:1" href="mailto:ahladanair2007@gmail.com"><span>Email Me</span><span>↗</span></a>
-    <a class="cr r" style="--d:2" href="https://www.linkedin.com/in/ahlad-a-nair-0b286a2b6/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
-    <a class="cr r" style="--d:3" href="https://instagram.com/ahladanair" target="_blank" rel="noopener">Instagram <span>↗</span></a>
-    <a class="cr r" style="--d:4" href="https://github.com/ahladanair" target="_blank" rel="noopener">GitHub <span>↗</span></a>
-    <p class="cp mono2 r" style="--d:5">© 2026 Ahlad A Nair</p>
-  </section>
+  <!-- Floating Bottom Navigation Dock -->
+  <div class="m-dock-wrap">
+    <nav class="m-dock" id="mDock" aria-label="Mobile Navigation">
+      <div class="m-dock-pill" id="mDockPill"></div>
+      <a href="#mHero" class="act" data-idx="0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-10.5z"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#mDeckSec" data-idx="1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg>
+        <span>Deck</span>
+      </a>
+      <a href="#mVenturesSec" data-idx="2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span>Work</span>
+      </a>
+      <a href="#mFounderSec" data-idx="3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg>
+        <span>Founder</span>
+      </a>
+      <a href="#mConnectSec" data-idx="4">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        <span>Connect</span>
+      </a>
+    </nav>
+  </div>
 </div>
+
+<!-- ================= DESKTOP SCRIPT (UNCHANGED) ================= -->
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -638,7 +1935,7 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
     sx = lerp(sx, mouseX, .07); sy = lerp(sy, mouseY, .07);
     smoothScroll = lerp(smoothScroll, scrollY, .12);
 
-    if (heroVisible && !reduce) {
+    if (heroVisible && !reduce && W > 0) {
       drawParticles(t);
       block.style.translate = `0 ${(smoothScroll * .25).toFixed(1)}px`;
     }
@@ -740,48 +2037,438 @@ body::after,header,.menu,main,footer,.cursor,.progress,.loader{display:none!impo
   setTimeout(() => $('.loader')?.remove(), 1400);
 })();
 </script>
+
+<!-- ================= MOBILE EDITION v3 — KINETIC TACTILE ENGINE ================= -->
 <script>
 (() => {
-  const m = document.getElementById('m'); if (!m) return;
-  const sl = [...m.querySelectorAll('.sl')], N = sl.length, fills = [...m.querySelectorAll('.pb b')], btns = [...m.querySelectorAll('.pb button')];
-  const cnt = document.getElementById('cnt'), vib = n => navigator.vibrate && navigator.vibrate(n);
-  const DUR = 6500; let cur = 0, el = 0, paused = false, last = performance.now();
+  const mApp = document.getElementById('mApp');
+  if (!mApp) return;
 
-  document.getElementById('mL').innerHTML = [...'AHLAD'].map((c, i) => `<span style="--i:${i}">${c}</span>`).join('');
+  /* --- 1. Tactile Haptics & WebAudio Synthesizer --- */
+  let fxEnabled = true;
+  let audioCtx = null;
+  const sfxBtn = document.getElementById('mSfxBtn');
+  const sfxLabel = document.getElementById('mSfxLabel');
 
-  function go(n) {
-    n = Math.max(0, Math.min(N - 1, n)); if (n === cur) return;
-    const old = sl[cur]; old.classList.remove('act'); old.classList.add('out'); setTimeout(() => old.classList.remove('out'), 850);
-    cur = n; sl[n].classList.remove('out'); sl[n].classList.add('act'); el = 0;
-    fills.forEach((f, i) => f.style.transform = `scaleX(${i < n ? 1 : 0})`);
-    m.style.setProperty('--fg', sl[n].dataset.fg);
-    cnt.textContent = `0${n + 1}/0${N}`;
+  function playTick(freq = 520, dur = 0.035, type = 'triangle') {
+    if (!fxEnabled) return;
+    if (navigator.vibrate) navigator.vibrate(8);
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + dur);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    } catch (_) {}
   }
-  (function tick(now) {
-    const dt = Math.min(100, now - last); last = now;
-    if (cur < N - 1) { if (!paused) { el += dt; if (el >= DUR) go(cur + 1); else fills[cur].style.transform = `scaleX(${el / DUR})`; } }
-    else fills[cur].style.transform = 'scaleX(1)';
-    requestAnimationFrame(tick);
-  })(last);
 
-  let sx = 0, st = 0, ht;
-  m.addEventListener('pointerdown', e => {
+  sfxBtn.addEventListener('click', () => {
+    fxEnabled = !fxEnabled;
+    sfxBtn.classList.toggle('on', fxEnabled);
+    sfxLabel.textContent = fxEnabled ? 'FX ON' : 'MUTE';
+    if (fxEnabled) playTick(740, 0.05);
+  });
+
+  /* --- 2. Live Kerala IST Clock --- */
+  const clockEl = document.getElementById('mClock');
+  function updateClock() {
+    try {
+      const now = new Date();
+      const ist = now.toLocaleTimeString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+      clockEl.textContent = `IST ${ist}`;
+    } catch {
+      clockEl.textContent = 'VAGAMON · IN';
+    }
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  /* --- 3. Interactive Mobile Particle & Shockwave Canvas --- */
+  const mCv = document.getElementById('mParticles');
+  const mCtx = mCv.getContext('2d');
+  const mStage = document.getElementById('mStageCard');
+  const vibeBtn = document.getElementById('mVibeBtn');
+  const modeLabel = document.getElementById('mParticleModeLabel');
+  const pillar = document.getElementById('mHeroPillar');
+  const burstBtn = document.getElementById('mBurstTrigger');
+  const spinSeal = document.getElementById('mSpinSeal');
+
+  const VIBES = [
+    { name: 'CRIMSON', primary: '#f4f4f0', hot: '#e24a38', pillar: '#e24a38' },
+    { name: 'ACID LIME', primary: '#d4ff3a', hot: '#2d3cff', pillar: '#d4ff3a' },
+    { name: 'COBALT', primary: '#ffffff', hot: '#00f0ff', pillar: '#2d3cff' }
+  ];
+  let vibeIdx = 0;
+  let mW = 0, mH = 0, mDpr = 1;
+  let mParts = [], ripples = [];
+  let mTouch = { x: -999, y: -999, active: false };
+
+  function initMobileParticles() {
+    if (window.innerWidth > 700) return;
+    const rect = mCv.getBoundingClientRect();
+    mW = Math.round(rect.width);
+    mH = Math.round(rect.height);
+    if (!mW || !mH) return;
+    mDpr = Math.min(window.devicePixelRatio || 1, 2);
+    mCv.width = mW * mDpr;
+    mCv.height = mH * mDpr;
+
+    const off = document.createElement('canvas');
+    off.width = mW; off.height = mH;
+    const o = off.getContext('2d', { willReadFrequently: true });
+
+    let fs = mH * 0.62;
+    o.font = `900 ${fs}px "Archivo Black", sans-serif`;
+    const tw = o.measureText('AHLAD').width;
+    fs *= Math.min(1, (mW * 0.88) / tw);
+    o.font = `900 ${fs}px "Archivo Black", sans-serif`;
+    o.textAlign = 'center';
+    o.textBaseline = 'middle';
+    o.fillText('AHLAD', mW / 2, mH / 2 - 4);
+
+    const img = o.getImageData(0, 0, mW, mH).data;
+    const step = 4;
+    const next = [];
+    for (let y = 0; y < mH; y += step) {
+      for (let x = 0; x < mW; x += step) {
+        if (img[(y * mW + x) * 4 + 3] > 128) {
+          const ang = Math.random() * Math.PI * 2;
+          const dist = Math.max(mW, mH) * 0.7;
+          next.push({
+            hx: x, hy: y,
+            x: mW / 2 + Math.cos(ang) * dist,
+            y: mH / 2 + Math.sin(ang) * dist,
+            vx: 0, vy: 0,
+            s: step * 0.48,
+            hot: Math.random() < 0.16
+          });
+        }
+      }
+    }
+    mParts = next;
+  }
+
+  function triggerMobileBurst(bx, by) {
+    const cx = bx ?? mW / 2;
+    const cy = by ?? mH / 2;
+    ripples.push({ x: cx, y: cy, r: 4, alpha: 1 });
+    const maxR = Math.max(mW, mH) * 0.65;
+    for (const p of mParts) {
+      const dx = p.x - cx, dy = p.y - cy;
+      const d = Math.hypot(dx, dy) || 1;
+      if (d < maxR) {
+        const force = (1 - d / maxR) * 18;
+        p.vx += (dx / d) * force + (Math.random() - 0.5) * 4;
+        p.vy += (dy / d) * force + (Math.random() - 0.5) * 4;
+      }
+    }
+    playTick(320, 0.06, 'sine');
+  }
+
+  function renderMobileCanvas(now) {
+    if (window.innerWidth <= 700 && mW > 0) {
+      const t = now * 0.001;
+      const vibe = VIBES[vibeIdx];
+      mCtx.setTransform(mDpr, 0, 0, mDpr, 0, 0);
+      mCtx.clearRect(0, 0, mW, mH);
+
+      // Draw expanding shockwave rings
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const rp = ripples[i];
+        rp.r += 5.5;
+        rp.alpha *= 0.92;
+        mCtx.beginPath();
+        mCtx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+        mCtx.strokeStyle = vibe.hot;
+        mCtx.globalAlpha = rp.alpha;
+        mCtx.lineWidth = 2;
+        mCtx.stroke();
+        if (rp.alpha < 0.03) ripples.splice(i, 1);
+      }
+      mCtx.globalAlpha = 1;
+
+      const R = 75, R2 = R * R;
+      const calm = [], hot = [];
+
+      for (let i = 0; i < mParts.length; i++) {
+        const p = mParts[i];
+        const tx = p.hx + Math.sin(t * 2 + p.hy * 0.04) * 1.4;
+        const ty = p.hy + Math.cos(t * 1.6 + p.hx * 0.04) * 1.4;
+        p.vx += (tx - p.x) * 0.065;
+        p.vy += (ty - p.y) * 0.065;
+
+        if (mTouch.active) {
+          const dx = p.x - mTouch.x, dy = p.y - mTouch.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < R2 && d2 > 0.01) {
+            const d = Math.sqrt(d2);
+            const f = (1 - d / R);
+            // Swirl + scatter force
+            p.vx += ((dx / d) * 6 - (dy / d) * 2.5) * f;
+            p.vy += ((dy / d) * 6 + (dx / d) * 2.5) * f;
+          }
+        }
+
+        p.vx *= 0.84;
+        p.vy *= 0.84;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        const spd = Math.abs(p.vx) + Math.abs(p.vy);
+        (p.hot || spd > 1.8 ? hot : calm).push(p);
+      }
+
+      mCtx.fillStyle = vibe.primary;
+      for (const p of calm) mCtx.fillRect(p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
+      mCtx.fillStyle = vibe.hot;
+      for (const p of hot) mCtx.fillRect(p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
+    }
+    requestAnimationFrame(renderMobileCanvas);
+  }
+
+  mStage.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    const r = mCv.getBoundingClientRect();
+    mTouch.x = e.clientX - r.left;
+    mTouch.y = e.clientY - r.top;
+    mTouch.active = true;
+    triggerMobileBurst(mTouch.x, mTouch.y);
+  });
+  mStage.addEventListener('pointermove', e => {
+    if (!mTouch.active) return;
+    const r = mCv.getBoundingClientRect();
+    mTouch.x = e.clientX - r.left;
+    mTouch.y = e.clientY - r.top;
+  });
+  window.addEventListener('pointerup', () => { mTouch.active = false; });
+
+  vibeBtn.addEventListener('click', () => {
+    vibeIdx = (vibeIdx + 1) % VIBES.length;
+    const v = VIBES[vibeIdx];
+    modeLabel.textContent = `VIBE: ${v.name}`;
+    pillar.style.background = v.pillar;
+    triggerMobileBurst(mW / 2, mH / 2);
+  });
+  burstBtn.addEventListener('click', () => triggerMobileBurst(mW / 2, mH / 2));
+  spinSeal.addEventListener('click', () => triggerMobileBurst(mW / 2, mH / 2));
+
+  (document.fonts?.ready ?? Promise.resolve()).then(() => {
+    initMobileParticles();
+    requestAnimationFrame(renderMobileCanvas);
+    window.addEventListener('resize', initMobileParticles);
+  });
+
+  /* --- 4. Interactive 3D Physics Venture Deck --- */
+  const cards = [...document.querySelectorAll('.m-dcard')];
+  const dots = [...document.querySelectorAll('#mDeckDots i')];
+  const deckCount = document.getElementById('mDeckCount');
+  const prevBtn = document.getElementById('mDeckPrev');
+  const nextBtn = document.getElementById('mDeckNext');
+  let activeCard = 0;
+  const totalCards = cards.length;
+
+  function layoutDeck() {
+    cards.forEach((c, idx) => {
+      const offset = (idx - activeCard + totalCards) % totalCards;
+      c.classList.remove('dragging');
+      if (offset === 0) {
+        c.style.transform = `translate3d(0, 0, 0) scale(1) rotate(0deg)`;
+        c.style.opacity = '1';
+        c.style.zIndex = '30';
+        c.style.pointerEvents = 'auto';
+      } else if (offset === 1) {
+        c.style.transform = `translate3d(14px, 14px, -40px) scale(0.93) rotate(3.5deg)`;
+        c.style.opacity = '0.88';
+        c.style.zIndex = '20';
+        c.style.pointerEvents = 'none';
+      } else if (offset === 2) {
+        c.style.transform = `translate3d(-14px, 26px, -80px) scale(0.86) rotate(-3.5deg)`;
+        c.style.opacity = '0.6';
+        c.style.zIndex = '10';
+        c.style.pointerEvents = 'none';
+      } else {
+        c.style.transform = `translate3d(0, 36px, -120px) scale(0.8)`;
+        c.style.opacity = '0';
+        c.style.zIndex = '1';
+        c.style.pointerEvents = 'none';
+      }
+    });
+    deckCount.textContent = `0${activeCard + 1} / 0${totalCards}`;
+    dots.forEach((d, i) => d.classList.toggle('on', i === activeCard));
+  }
+
+  function stepDeck(dir) {
+    activeCard = (activeCard + dir + totalCards) % totalCards;
+    layoutDeck();
+    playTick(620, 0.04);
+  }
+
+  prevBtn.addEventListener('click', () => stepDeck(-1));
+  nextBtn.addEventListener('click', () => stepDeck(1));
+
+  // Touch drag physics on the top card
+  let dragStartX = 0, dragStartY = 0, dragDX = 0, isDraggingCard = false;
+  const deckStage = document.getElementById('mDeckStage');
+
+  deckStage.addEventListener('pointerdown', e => {
     if (e.target.closest('a,button')) return;
-    sx = e.clientX; st = performance.now();
-    ht = setTimeout(() => { paused = true; m.classList.add('hold'); }, 220);
+    const topCard = cards[activeCard];
+    if (!topCard) return;
+    isDraggingCard = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragDX = 0;
+    topCard.classList.add('dragging');
   });
-  m.addEventListener('pointerup', e => {
-    clearTimeout(ht); if (!st) return;
-    const dx = e.clientX - sx, quick = performance.now() - st < 220;
-    paused = false; m.classList.remove('hold');
-    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
-    else if (quick) go(cur + (e.clientX > innerWidth * .35 ? 1 : -1));
-    st = 0; vib(8);
+
+  window.addEventListener('pointermove', e => {
+    if (!isDraggingCard) return;
+    dragDX = e.clientX - dragStartX;
+    const dy = (e.clientY - dragStartY) * 0.25;
+    const rot = dragDX * 0.065;
+    const topCard = cards[activeCard];
+    topCard.style.transform = `translate3d(${dragDX}px, ${dy}px, 0) rotate(${rot}deg)`;
+  }, { passive: true });
+
+  window.addEventListener('pointerup', () => {
+    if (!isDraggingCard) return;
+    isDraggingCard = false;
+    const topCard = cards[activeCard];
+    if (Math.abs(dragDX) > 65) {
+      const dir = dragDX < 0 ? 1 : -1;
+      const throwX = dragDX < 0 ? -380 : 380;
+      topCard.classList.remove('dragging');
+      topCard.style.transform = `translate3d(${throwX}px, 20px, 0) rotate(${dragDX * 0.12}deg)`;
+      topCard.style.opacity = '0';
+      setTimeout(() => stepDeck(dir), 180);
+    } else {
+      layoutDeck();
+    }
   });
-  m.addEventListener('pointercancel', () => { clearTimeout(ht); paused = false; st = 0; m.classList.remove('hold'); });
-  m.addEventListener('pointermove', e => { m.style.setProperty('--x', e.clientX + 'px'); m.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });
-  btns.forEach((b, i) => b.addEventListener('click', () => { go(i); vib(10); }));
-  addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(cur + 1); if (e.key === 'ArrowLeft') go(cur - 1); });
+
+  layoutDeck();
+
+  /* --- 5. Interactive Venture Accordion Drawers --- */
+  const accItems = [...document.querySelectorAll('.m-acc-item')];
+  accItems.forEach(item => {
+    const btn = item.querySelector('.m-acc-trigger');
+    const body = item.querySelector('.m-acc-body');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      accItems.forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.m-acc-trigger').setAttribute('aria-expanded', 'false');
+        other.querySelector('.m-acc-body').style.maxHeight = '0px';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = body.scrollHeight + 24 + 'px';
+      }
+      playTick(540, 0.035);
+    });
+  });
+
+  /* --- 6. Interactive 3D Holographic Founder ID Card --- */
+  const idCard = document.getElementById('mIdCard');
+  const idGlare = document.getElementById('mIdGlare');
+  idCard.addEventListener('pointermove', e => {
+    const r = idCard.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    const rx = (0.5 - y) * 14;
+    const ry = (x - 0.5) * 16;
+    idCard.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.01)`;
+    idGlare.style.setProperty('--gx', `${x * 100}%`);
+    idGlare.style.setProperty('--gy', `${y * 100}%`);
+  });
+  idCard.addEventListener('pointerleave', () => {
+    idCard.style.transform = '';
+  });
+  idCard.addEventListener('pointerup', () => {
+    idCard.style.transform = '';
+  });
+
+  /* --- 7. Bottom Dock Scroll Spy & Dynamic Ambient Aura --- */
+  const dockLinks = [...document.querySelectorAll('#mDock a')];
+  const dockPill = document.getElementById('mDockPill');
+  const ambient = document.getElementById('mAmbient');
+  const scrollLine = document.getElementById('mScrollLine');
+  const sections = ['mHero', 'mDeckSec', 'mVenturesSec', 'mFounderSec', 'mConnectSec'].map(id => document.getElementById(id));
+
+  function setDockActive(index) {
+    dockLinks.forEach((a, i) => a.classList.toggle('act', i === index));
+    dockPill.style.transform = `translateX(${index * 100}%)`;
+    const sec = sections[index];
+    if (sec) {
+      const glow = sec.dataset.accent || 'rgba(226,74,56,0.22)';
+      const pillClr = sec.dataset.pill || '#e24a38';
+      ambient.style.setProperty('--accent-glow', glow);
+      dockPill.style.background = pillClr;
+    }
+  }
+
+  dockLinks.forEach((a, i) => {
+    a.addEventListener('click', () => {
+      setDockActive(i);
+      playTick(680, 0.03);
+    });
+  });
+
+  const secObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target);
+        if (idx !== -1) setDockActive(idx);
+      }
+    });
+  }, { rootMargin: '-38% 0px -48% 0px' });
+
+  sections.forEach(s => s && secObserver.observe(s));
+
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 700) return;
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const ratio = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    scrollLine.style.transform = `scaleX(${ratio.toFixed(3)})`;
+  }, { passive: true });
+
+  /* --- 8. Mobile Quick Dispatch Form --- */
+  const mForm = document.getElementById('mContactForm');
+  const mStatus = document.getElementById('mFormStatus');
+  mForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    playTick(780, 0.06);
+    const d = new FormData(mForm);
+    if (mForm.action.includes('YOUR_FORM_ID')) {
+      location.href = `mailto:ahladanair2007@gmail.com?subject=${encodeURIComponent('Inquiry from ' + d.get('name'))}&body=${encodeURIComponent(d.get('message') + '\n\n— ' + d.get('name') + ' (' + d.get('email') + ')')}`;
+      mStatus.textContent = 'OPENING MAIL APP...';
+      return;
+    }
+    mStatus.textContent = 'DISPATCHING...';
+    try {
+      const res = await fetch(mForm.action, { method: 'POST', body: d, headers: { Accept: 'application/json' } });
+      if (!res.ok) throw 0;
+      mForm.reset();
+      mStatus.textContent = 'DISPATCH RECEIVED ✓';
+    } catch {
+      mStatus.textContent = 'ERROR — TAP EMAIL ABOVE';
+    }
+  });
 })();
 </script>
 </body>
