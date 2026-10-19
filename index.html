@@ -96,12 +96,11 @@ nav a:hover::after,nav a.active::after{transform:scaleX(1);transform-origin:left
 @keyframes grow{to{transform:translateX(-50%) scaleY(1)}}
 .hero-top{position:absolute;top:110px;left:var(--gutter);font-family:'Archivo Black';font-size:clamp(16px,1.6vw,22px);line-height:1.05;text-transform:uppercase;z-index:3}
 .hero-meta{position:absolute;bottom:36px;width:100%;display:flex;justify-content:space-between;padding:0 var(--gutter);z-index:3}
-.warp-wrap{position:relative;z-index:2;margin-top:6vh;height:clamp(110px,18vw,260px);display:grid;place-items:center}
-.warp{position:absolute;display:flex;font-family:'Archivo Black';font-size:clamp(40px,11.4vw,190px);line-height:1;white-space:nowrap}
-.warp span{display:inline-block;will-change:transform;backface-visibility:hidden}
-.warp.solid{color:var(--ink)}
-.warp.outline{color:transparent;-webkit-text-stroke:1.5px var(--ink);translate:18px -14px}
-.warp.ghost{color:transparent;-webkit-text-stroke:1px rgba(0,0,0,.35);translate:0 -.32em;scale:.8}
+.stage{position:relative;z-index:2;margin-top:3vh;height:clamp(200px,32vw,400px);width:100%;max-width:1400px;margin-left:auto;margin-right:auto;touch-action:pan-y}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage-hint{position:relative;z-index:3;text-align:center;margin-top:10px;color:var(--muted);display:flex;justify-content:center;gap:18px;align-items:center}
+.stage-hint i{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25;transform:scale(.7)}}
 .hero-desc{position:relative;z-index:3;max-width:480px;margin:5vh auto 0;text-align:center;color:#2b2b2b;font-weight:300;padding:0 20px}
 .scroll-cue{position:relative;z-index:3;margin:26px auto 0;display:block;width:fit-content;border:1px solid var(--ink);padding:14px 26px;border-radius:40px;transition:background .4s var(--ease),color .4s var(--ease)}
 .scroll-cue:hover{background:var(--ink);color:var(--bg)}
@@ -219,7 +218,8 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
   .menu-btn{display:block}
   .red-block{width:24vw}
   .hero-meta{flex-direction:column;gap:4px;bottom:24px}
-  .warp.ghost,.tri{display:none}
+  .tri{display:none}
+  .stage{height:clamp(150px,44vw,260px)}
   .card{border-radius:18px;padding:14px}
   .card .tag{font-size:8px}
 }
@@ -267,11 +267,8 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
     <div class="hero-top">Welcome<br>to my</div>
 
     <h1 class="sr">Ahlad A Nair — Portfolio</h1>
-    <div class="warp-wrap" id="warpWrap" aria-hidden="true">
-      <div class="warp ghost outline" data-text="Portfolio" data-phase="2"></div>
-      <div class="warp outline" data-text="Portfolio" data-phase="1.2"></div>
-      <div class="warp solid" data-text="Portfolio" data-phase="0"></div>
-    </div>
+    <div class="stage" id="stage" aria-hidden="true"><canvas id="particles"></canvas></div>
+    <div class="stage-hint mono" aria-hidden="true"><i></i><span>Move to scatter</span><span>·</span><span>Click to burst</span></div>
 
     <p class="hero-desc">BBA student &amp; founder building businesses and shaping stories — from a business degree at DCSMAT Vagamon to running an editing agency and an online news platform.</p>
     <a href="#ventures" class="scroll-cue mono mag">Explore my work ↓</a>
@@ -400,10 +397,100 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const lerp = (a, b, n) => a + (b - a) * n;
 
-  /* ---------- Warping headline (only animates while hero is on screen) ---------- */
-  const warps = $$('.warp').map(el => {
-    el.innerHTML = [...el.dataset.text.toUpperCase()].map(c => `<span>${c}</span>`).join('');
-    return { phase: parseFloat(el.dataset.phase), spans: [...el.children] };
+  /* ---------- Interactive particle name ---------- */
+  const cv = $('#particles'), ctx = cv.getContext('2d');
+  const WORD = 'AHLAD';
+  let W = 0, H = 0, dpr = 1, parts = [], pm = { x: -9999, y: -9999, on: false };
+
+  function buildParticles() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    W = Math.round(r.width); H = Math.round(r.height);
+    if (!W || !H) return;
+    cv.width = W * dpr; cv.height = H * dpr;
+
+    const off = document.createElement('canvas'); off.width = W; off.height = H;
+    const o = off.getContext('2d', { willReadFrequently: true });
+    let fs = H * 1.05;
+    o.font = `${fs}px "Archivo Black", sans-serif`;
+    const tw = o.measureText(WORD).width;
+    fs *= Math.min(1, (W * .94) / tw);
+    o.font = `${fs}px "Archivo Black", sans-serif`;
+    o.textAlign = 'center'; o.textBaseline = 'middle';
+    o.fillText(WORD, W / 2, H / 2 + fs * .04);
+
+    const data = o.getImageData(0, 0, W, H).data;
+    const step = W < 600 ? 4 : 5;
+    const old = parts.length;
+    const next = [];
+    for (let y = 0; y < H; y += step) {
+      for (let x = 0; x < W; x += step) {
+        if (data[(y * W + x) * 4 + 3] > 128) {
+          const p = parts[next.length] || {};
+          // new particles fly in from random points around the stage
+          const a = Math.random() * Math.PI * 2, d = Math.max(W, H) * (.5 + Math.random() * .6);
+          next.push({
+            hx: x, hy: y,
+            x: old ? (p.x ?? x) : W / 2 + Math.cos(a) * d,
+            y: old ? (p.y ?? y) : H / 2 + Math.sin(a) * d,
+            vx: 0, vy: 0, s: step * .46, hot: Math.random() < .12
+          });
+        }
+      }
+    }
+    parts = next;
+    if (reduce) { parts.forEach(p => { p.x = p.hx; p.y = p.hy; }); drawParticles(0); }
+  }
+
+  function drawParticles(t) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const R = W < 600 ? 80 : 120, R2 = R * R;
+    const calm = [], hot = [];
+    for (let i = 0; i < parts.length; i++) {
+      const p = parts[i];
+      if (!reduce) {
+        // gentle idle wave so the word always feels alive
+        const tx = p.hx + Math.sin(t * 1.4 + p.hy * .03) * 1.6;
+        const ty = p.hy + Math.cos(t * 1.1 + p.hx * .025) * 1.6;
+        p.vx += (tx - p.x) * .05; p.vy += (ty - p.y) * .05;
+        if (pm.on) {
+          const dx = p.x - pm.x, dy = p.y - pm.y, d2 = dx * dx + dy * dy;
+          if (d2 < R2 && d2 > .01) {
+            const d = Math.sqrt(d2), f = (1 - d / R);
+            p.vx += (dx / d) * f * f * 7; p.vy += (dy / d) * f * f * 7;
+          }
+        }
+        p.vx *= .86; p.vy *= .86;
+        p.x += p.vx; p.y += p.vy;
+      }
+      const speed = Math.abs(p.vx) + Math.abs(p.vy);
+      (p.hot || speed > 2.2 ? hot : calm).push(p);
+    }
+    ctx.fillStyle = '#0d0d0d';
+    for (const p of calm) ctx.fillRect(p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
+    ctx.fillStyle = '#e24a38';
+    for (const p of hot) ctx.fillRect(p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
+  }
+
+  function burst(x, y) {
+    const R = Math.max(W, H) * .45;
+    for (const p of parts) {
+      const dx = p.x - x, dy = p.y - y, d = Math.hypot(dx, dy) || 1;
+      if (d < R) { const f = (1 - d / R) * 22; p.vx += (dx / d) * f + (Math.random() - .5) * 4; p.vy += (dy / d) * f + (Math.random() - .5) * 4; }
+    }
+  }
+
+  const stage = $('#stage');
+  const setPM = e => { const r = cv.getBoundingClientRect(); pm.x = e.clientX - r.left; pm.y = e.clientY - r.top; pm.on = true; };
+  addEventListener('pointermove', e => { if (heroVisible) setPM(e); }, { passive: true });
+  stage.addEventListener('pointerdown', e => { setPM(e); burst(pm.x, pm.y); });
+  stage.addEventListener('pointerup', e => { if (e.pointerType === 'touch') pm.on = false; });
+  document.addEventListener('pointerleave', () => pm.on = false);
+
+  (document.fonts?.ready ?? Promise.resolve()).then(() => {
+    buildParticles();
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(buildParticles, 150); });
   });
 
   /* ---------- State shared by the single animation loop ---------- */
@@ -429,14 +516,7 @@ footer{background:var(--ink);color:#8a8a8a;text-align:center;padding:30px 0 40px
     smoothScroll = lerp(smoothScroll, scrollY, .12);
 
     if (heroVisible && !reduce) {
-      for (const { phase, spans } of warps) {
-        for (let i = 0; i < spans.length; i++) {
-          const w = Math.sin(t * 1.3 + i * .7 + phase);
-          const w2 = Math.cos(t * .9 + i * .5 + phase);
-          spans[i].style.transform =
-            `translate3d(0,${(w2 * 8 + sy * 6).toFixed(2)}px,0) skewY(${(w * 14 + sx * 10).toFixed(2)}deg) rotate(${(w2 * 3).toFixed(2)}deg) scaleY(${(1 + w * .12).toFixed(3)})`;
-        }
-      }
+      drawParticles(t);
       block.style.translate = `0 ${(smoothScroll * .25).toFixed(1)}px`;
     }
     if (fanVisible) {
